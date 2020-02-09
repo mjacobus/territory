@@ -1,17 +1,24 @@
 language: ruby
-dist: trusty
+sudo: false
 cache: bundler
+
 rvm:
   - 2.6
 
+# env:
+#   - DB=mysql
+#     DATABASE_URL="mysql2://root@127.0.0.1:3306/field_service_test"
+
 before_script:
-  - gem install bundler:2.0.2
-  - bundle install
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
 
 script:
-  - bundle exec rspec
+  - RAILS_ENV=test bundle exec rake rspec
 
-services:
-  - mysql
+# https://docs.travis-ci.com/user/database-setup/#MySQL-5.7
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
