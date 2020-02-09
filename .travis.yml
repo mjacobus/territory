@@ -1,0 +1,13 @@
+language: ruby
+dist: trusty
+cache: bundler
+rvm:
+  - 2.6
+
+script:
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+  - bundle exec rspec
+
+services:
+  - mysql
