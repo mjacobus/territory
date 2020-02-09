@@ -1,0 +1,57 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Layout/LineLength:
+  Max: 100
+
+Style/Documentation:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  Enabled: true
+  EnforcedStyle: indented
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Naming/RescuedExceptionsVariableName:
+  PreferredName: 'exception'
+
+Style/FormatStringToken:
+  EnforcedStyle: template
+
+RSpec:
+  Exclude:
+    - 'spec/factories/**/*'
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'script/**/*'
+    - 'log/**/*'
+    - 'docker/**/*'
+    - 'doc/**/*'
+    - 'bin/**/*'
+    - 'Rakefile'
+    - 'config.ru'
+    - 'config/**/*'
+    - 'db/schema.rb'
