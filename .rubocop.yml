@@ -8,6 +8,8 @@ Metrics/BlockLength:
 
 Layout/LineLength:
   Max: 100
+  Exclude:
+    - 'db/seeds.rb'
 
 Style/Documentation:
   Enabled: false
@@ -46,6 +48,7 @@ RSpec/MultipleExpectations:
 
 AllCops:
   Exclude:
+    - 'node_modules/**/*'
     - 'script/**/*'
     - 'log/**/*'
     - 'docker/**/*'
