@@ -9,17 +9,21 @@ env:
   - DB=mysql DATABASE_URL="mysql2://travis@127.0.0.1:3306/territory_manager_test"
 
 before_script:
-  - bundle exec rake db:create
+  - mysql -e 'CREATE DATABASE territory_manager_test;'
+  # - bundle exec rake db:create
   - bundle exec rake db:migrate
 
 script:
   - RAILS_ENV=test bundle exec rspec
 
-# https://docs.travis-ci.com/user/database-setup/#MySQL-5.7
-addons:
-  apt:
-    sources:
-      - mysql-5.7-trusty
-    packages:
-      - mysql-server
-      - mysql-client
+services:
+  - mysql
+
+# # https://docs.travis-ci.com/user/database-setup/#MySQL-5.7
+# addons:
+#   apt:
+#     sources:
+#       - mysql-5.7-trusty
+#     packages:
+#       - mysql-server
+#       - mysql-client
