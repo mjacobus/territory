@@ -51,6 +51,9 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'coveralls', require: false
+  gem 'simplecov', require: false
 end
 
 group :test do
