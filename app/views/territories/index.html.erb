@@ -1,5 +1,7 @@
 <h1>Territories</h1>
 
+<%= link_to('New', new_territory_path) %>
+
 <div class="territory-list">
   <% @territories.each do |territory| %>
     <div class="item"> <%= territory.name %> </div>
