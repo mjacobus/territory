@@ -6,10 +6,14 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
 
+Metrics/MethodLength:
+  Exclude:
+   - 'db/migrate/**.rb'
+
 Layout/LineLength:
   Max: 100
   Exclude:
-    - 'db/seeds.rb'
+   - 'db/seeds.rb'
 
 Style/Documentation:
   Enabled: false
