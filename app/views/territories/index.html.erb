@@ -1,9 +1,12 @@
 <h1>Territories</h1>
 
-<%= link_to('New', new_territory_path) %>
+<%= link_to('New', new_territory_path, class: 'btn btn-info') %>
 
-<div class="territory-list">
+
+<table class="table table-striped">
   <% @territories.each do |territory| %>
-    <div class="item"> <%= territory.name %> </div>
+    <tr>
+      <td> <%= territory.name %> </td>
+    </tr>
   <% end %>
-</div>
+</table>
