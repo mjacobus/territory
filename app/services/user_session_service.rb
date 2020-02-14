@@ -21,9 +21,7 @@ class UserSessionService
   end
 
   def current_user
-    User.find(@session['user_id'])
-  rescue ActiveRecord::RecordNotFound
-    nil
+    User.find_by(id: @session['user_id'], enabled: true)
   end
 
   def destroy

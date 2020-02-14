@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+  skip_before_action :require_enabled_user
+
   def create
     session_service.create_from_oauth(request.env['omniauth.auth'])
     redirect_to(root_url)

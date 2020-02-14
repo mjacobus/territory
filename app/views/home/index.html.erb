@@ -1,0 +1,11 @@
+<h1>You know what to do</h1>
+
+<div class="alert alert-primary" role="alert">
+  If you got here you should know what to do. Then do it.
+</div>
+
+<% unless current_user %>
+<div class="alert alert-warning" role="alert">
+  If you logged in and still cannot use this application, ask the congregation system admin to enable your account.
+</div>
+<% end %>

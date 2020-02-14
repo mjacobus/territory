@@ -90,13 +90,23 @@ RSpec.describe UserSessionService do
   end
 
   describe '#current_user' do
-    context 'when user is logged in' do
+    context 'when session id is present and user is enabled' do
       before do
-        session['user_id'] = User.create!.id
+        session['user_id'] = User.create!(enabled: true).id
       end
 
       it 'returns the current user' do
         expect(service.current_user).to eq(user)
+      end
+    end
+
+    context 'when session id is present but user is not enabled' do
+      before do
+        session['user_id'] = User.create!(enabled: false).id
+      end
+
+      it 'returns nil' do
+        expect(service.current_user).to be_nil
       end
     end
 
