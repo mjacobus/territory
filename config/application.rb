@@ -17,5 +17,11 @@ module TerritoryManager
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    config.middleware.use OmniAuth::Builder do
+      if ENV['OAUTH_GOOGLE_KEY']
+        provider :google_oauth2, ENV['OAUTH_GOOGLE_KEY'], ENV['OAUTH_GOOGLE_SECRET']
+      end
+    end
   end
 end

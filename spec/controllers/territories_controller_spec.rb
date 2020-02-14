@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe TerritoriesController, type: :controller do
+  before do
+    allow(controller).to receive(:current_user).and_return(current_user)
+  end
+
+  let(:current_user) { User.new(id: 1) }
+
   describe 'GET #index' do
     let(:territory) { Territory.create!(name: 'foo') }
 
@@ -12,6 +18,16 @@ RSpec.describe TerritoriesController, type: :controller do
       get :index
 
       expect(assigns(:territories)).to eq(Territory.all)
+    end
+
+    context 'when user is logged out' do
+      let(:current_user) { nil }
+
+      it 'redirects to /' do
+        get :index
+
+        expect(response).to redirect_to('/')
+      end
     end
   end
 
