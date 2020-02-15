@@ -39,6 +39,9 @@
           <ul class="nav navbar-nav">
             <li><%= link_to "Territories", territories_path  %></li>
             <% if current_user %>
+              <% if current_user.master? %>
+                <li><%= link_to "Users", users_path  %></li>
+              <% end %>
               <li><%= link_to "Logout", '/logout'  %></li>
             <% else %>
               <li><%= link_to "Google Login", '/auth/google_oauth2'  %></li>

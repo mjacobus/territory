@@ -1,0 +1,32 @@
+<h1>Users</h1>
+
+
+<% @users.each do |user| %>
+  <hr>
+  <div class="row">
+    <div class="col-sm-1"> 
+      <% if user.avatar %>
+        <%= image_tag("#{user.avatar}?sz=25") %>
+      <% end %>
+    </div>
+    <div class="col-sm-1">
+      <%= 'Admin' if user.master? %>
+      <%= 'Enabled' if user.enabled? %>
+    </div>
+    <div class="col-sm-3"> <%= user.name %></div>
+    <div class="col-sm-3"> <%= user.email %></div>
+    <div class="col-sm-4">
+      <% if user.enabled? %>
+        <div class="btn btn-danger">Disable</div>
+      <% else %>
+        <div class="btn btn-success">Enable</div>
+      <% end %>
+
+      <% if user.master? %>
+        <div class="btn btn-danger">Revoke admin</div>
+      <% else %>
+        <div class="btn btn-success">Make admin</div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
