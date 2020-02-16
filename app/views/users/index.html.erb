@@ -17,15 +17,15 @@
     <div class="col-sm-3"> <%= user.email %></div>
     <div class="col-sm-4">
       <% if user.enabled? %>
-        <div class="btn btn-danger">Disable</div>
+        <a href="/users/<%= user.id %>/disable" data-method="PATCH" class="btn btn-danger" data-confirm="Sure you want to disable the account for <%= user.name %> (<%= user.email %> )?">Disable</a>
       <% else %>
-        <div class="btn btn-success">Enable</div>
+        <a href="/users/<%= user.id %>/enable" data-method="PATCH" class="btn btn-success" data-confirm="Sure you want to enable the account for <%= user.name %> (<%= user.email %> )?">Enable</a>
       <% end %>
 
       <% if user.master? %>
-        <div class="btn btn-danger">Revoke admin</div>
+        <a href="/users/<%= user.id %>/revoke_admin" data-method="PATCH" class="btn btn-danger" data-confirm="Sure you want to revoke admin rights from <%= user.name %> (<%= user.email %> )?">Revoke Admin</a>
       <% else %>
-        <div class="btn btn-success">Make admin</div>
+        <a href="/users/<%= user.id %>/grant_admin" data-method="PATCH" class="btn btn-success" data-confirm="Sure you want to grant admin rights to <%= user.name %> (<%= user.email %> )?">Grant Admin</a>
       <% end %>
     </div>
   </div>

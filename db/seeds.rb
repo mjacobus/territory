@@ -5,7 +5,7 @@
   Territory.find_or_create_by!(name: "T-#{n}")
 
   user = User.find_or_create_by!(
-    name: "User #{n}",
+    name: "User #{n}"
   )
 
   user.master = (rand(5) % 5).zero?
