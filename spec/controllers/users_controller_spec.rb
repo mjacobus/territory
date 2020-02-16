@@ -3,21 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let(:admin) { User.create!(name: 'admin', master: master, enabled: enabled) }
+  let(:current_user) { admin_user }
   let(:enabled) { true }
   let(:master) { true }
   let(:user) do
     User.create!(
       name: 'admin',
-      master: managed_master,
-      enabled: managed_enabled
+      master: master,
+      enabled: enabled
     )
-  end
-  let(:managed_master) { false }
-  let(:managed_enabled) { false }
-
-  before do
-    allow(controller).to receive(:current_user).and_return(admin)
   end
 
   describe '#index' do
@@ -36,9 +30,9 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context 'when user is not master' do
-      let(:master) { false }
+      let(:current_user) { regular_user }
 
-      it 'responds with success' do
+      it 'redirects to /' do
         get :index
 
         expect(response).to redirect_to('/')
@@ -47,6 +41,8 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe '#enable' do
+    let(:enabled) { false }
+
     let(:perform_request) do
       patch :enable, params: { id: user.id }
     end
@@ -63,7 +59,6 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe '#disable' do
-    let(:managed_enabled) { true }
     let(:perform_request) do
       patch :disable, params: { id: user.id }
     end
@@ -80,6 +75,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe '#grant_admin' do
+    let(:master) { false }
     let(:perform_request) do
       patch :grant_admin, params: { id: user.id }
     end
@@ -96,7 +92,6 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe '#revoke_admin' do
-    let(:managed_master) { true }
     let(:perform_request) do
       patch :revoke_admin, params: { id: user.id }
     end

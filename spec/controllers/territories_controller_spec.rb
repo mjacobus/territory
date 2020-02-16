@@ -3,12 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe TerritoriesController, type: :controller do
-  before do
-    allow(controller).to receive(:current_user).and_return(current_user)
-  end
-
-  let(:current_user) { User.new(id: 1) }
-
   describe 'GET #index' do
     let(:territory) { Territory.create!(name: 'foo') }
 
