@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe ApplicationController, type: :controller do
   let(:service) { instance_double(UserSessionService, current_user: 'the-user') }
+  let(:skip_login) { true }
 
   before do
     allow(UserSessionService).to receive(:new).with(session: session).and_return(service)
