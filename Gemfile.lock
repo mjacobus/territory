@@ -320,7 +320,7 @@ DEPENDENCIES
   rails (~> 6.0.2, >= 6.0.2.1)
   rails-controller-testing
   rspec-rails (= 4.0.0.beta3)
-  rubocop
+  rubocop (~> 0.79)
   rubocop-performance
   rubocop-rspec
   sass-rails (>= 6)

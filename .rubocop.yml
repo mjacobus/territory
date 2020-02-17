@@ -62,3 +62,5 @@ AllCops:
     - 'config.ru'
     - 'config/**/*'
     - 'db/schema.rb'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
