@@ -63,3 +63,4 @@ AllCops:
     - 'config/**/*'
     - 'db/schema.rb'
     - 'node_modules/**/*'
+    - 'vendor/**/*'
