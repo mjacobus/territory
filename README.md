@@ -20,7 +20,7 @@ cd projects
 git clone https://github.com/mjacobus/territory.git
 cd territory
 bundle install # after you installed ruby version
-cp .env.development.sample .env.development.local
+cp .env.sample .env
 
 yarn install
 
