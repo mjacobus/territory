@@ -33,3 +33,4 @@ yarn-debug.log*
 /.env.development.local
 /.env.test.local
 /.env.local
+/db/schema.rb
