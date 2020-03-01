@@ -7,10 +7,10 @@ rvm:
 
 env:
   # - DB=mysql DATABASE_URL="mysql2://root@127.0.0.1:3306/territory_manager_test"
-  - DB=pg DATABASE_URL="postgres://localhost:5432/territory_manager_ENV"
+  - DB=pg DATABASE_URL="postgres://postgres@localhost:5432/territory_manager_ENV"
 
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database territory_manager_test;' -U postgres
   - mysql -e 'CREATE DATABASE territory_manager_test;'
   - bundle exec rake db:migrate
 
