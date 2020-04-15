@@ -7,6 +7,10 @@
   <% @territories.each do |territory| %>
     <tr>
       <td> <%= territory.name %> </td>
+      <td>
+        <%= link_to 'Editar', edit_territory_path(territory) %> |
+        <%= link_to 'Excluir', territory_path(territory), data: { method: :delete, confirm: 'Sure?' } %>
+      </td>
     </tr>
   <% end %>
 </table>

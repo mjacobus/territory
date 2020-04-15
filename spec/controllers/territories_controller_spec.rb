@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe TerritoriesController, type: :controller do
-  describe 'GET #index' do
-    let(:territory) { Territory.create!(name: 'foo') }
+  let(:territory) { Territory.create!(name: 'foo') }
 
+  describe 'GET #index' do
     it 'assigns @territories' do
       territory
 
@@ -19,6 +19,27 @@ RSpec.describe TerritoriesController, type: :controller do
 
       it 'redirects to /' do
         get :index
+
+        expect(response).to redirect_to('/')
+      end
+    end
+  end
+
+  describe 'GET #show' do
+    let(:territory) { Territory.create!(name: 'foo') }
+
+    it 'assigns @territory' do
+      get :show, params: { id: territory.id }
+
+      expect(response).to be_successful
+      expect(assigns(:territory)).to eq(territory)
+    end
+
+    context 'when user is logged out' do
+      let(:current_user) { nil }
+
+      it 'redirects to /' do
+        get :show, params: { id: territory.id }
 
         expect(response).to redirect_to('/')
       end
@@ -63,6 +84,50 @@ RSpec.describe TerritoriesController, type: :controller do
 
         expect(controller).to render_template('new')
       end
+    end
+  end
+
+  describe 'PATCH #update' do
+    context 'when payload is valid' do
+      let(:territory_params) { { name: 'T1' } }
+
+      it 'creates a new territory' do
+        patch :update, params: { territory: { name: 'T2' }, id: territory.id }
+
+        expect(Territory.last.name).to eq('T2')
+      end
+
+      it 'redirects to the index page' do
+        patch :update, params: { territory: { name: 'T2' }, id: territory.id }
+
+        expect(response).to redirect_to('/territories')
+      end
+    end
+
+    context 'when record is invalid' do
+      it 're-renders the form' do
+        patch :update, params: { territory: { name: '' }, id: territory.id }
+
+        expect(controller).to render_template('edit')
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    before do
+      territory
+    end
+
+    it 'deletes territory' do
+      expect do
+        delete :destroy, params: { id: territory.id }
+      end.to change(Territory, :count).by(-1)
+    end
+
+    it 'redirects to the index page' do
+      delete :destroy, params: { id: territory.id }
+
+      expect(response).to redirect_to('/territories')
     end
   end
 end
