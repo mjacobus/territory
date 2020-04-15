@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Territory < ApplicationRecord
+  MAX_PHONES = 100
+
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   has_many :phones
 
@@ -12,5 +14,9 @@ class Territory < ApplicationRecord
         phones.create!(number: phone_number)
       end
     end
+  end
+
+  def full?
+    phones.count >= MAX_PHONES
   end
 end
