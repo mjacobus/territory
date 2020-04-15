@@ -9,7 +9,8 @@
       <td> <%= territory.name %> </td>
       <td>
         <%= link_to 'Editar', edit_territory_path(territory) %> |
-        <%= link_to 'Excluir', territory_path(territory), data: { method: :delete, confirm: 'Sure?' } %>
+        <%= link_to 'Excluir', territory_path(territory), data: { method: :delete, confirm: 'Tem certeza que quer excluir este território?' } %>|
+        <%= link_to 'Telefones', territory_phones_path(territory) %>
       </td>
     </tr>
   <% end %>

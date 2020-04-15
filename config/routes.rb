@@ -3,7 +3,10 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  resources :territories
+  resources :territories do
+    resources :phones
+  end
+
   resources :users, only: %i[index] do
     member do
       patch :enable
