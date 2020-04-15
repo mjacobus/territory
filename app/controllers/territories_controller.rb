@@ -5,8 +5,16 @@ class TerritoriesController < ApplicationController
     @territories = Territory.all
   end
 
+  def show
+    territory
+  end
+
   def new
     @territory = Territory.new
+  end
+
+  def edit
+    territory
   end
 
   def create
@@ -20,7 +28,27 @@ class TerritoriesController < ApplicationController
     render :new
   end
 
+  def update
+    territory.attributes = territory_params
+
+    if territory.save
+      redirect_to(territories_path)
+      return
+    end
+
+    render :edit
+  end
+
+  def destroy
+    territory.destroy
+    redirect_to(territories_path)
+  end
+
   private
+
+  def territory
+    @territory ||= Territory.find(params[:id])
+  end
 
   def territory_params
     params.require(:territory).permit(:name)

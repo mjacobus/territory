@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  resources :territories, except: %i[destroy edit update show]
+  resources :territories
   resources :users, only: %i[index] do
     member do
       patch :enable
