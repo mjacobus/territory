@@ -29,4 +29,8 @@ RSpec.describe Territory do
 
     expect(names).to eq(%w[T01 T02])
   end
+
+  it 'has many phones' do
+    expect(territory).to respond_to(:phones)
+  end
 end
