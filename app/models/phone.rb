@@ -27,6 +27,19 @@ class Phone < ApplicationRecord
     siblings.find(previous_index)
   end
 
+  def format_number(prefix:)
+    "#{prefix}#{number}".gsub(/[^\d]/, '')
+  end
+
+  def carrier_variations
+    {
+      'Oi' => format_number(prefix: '014'),
+      'TIM' => format_number(prefix: '041'),
+      'Vivo/Telefônica/GVT' => format_number(prefix: '015'),
+      'Claro/Net' => format_number(prefix: '021')
+    }
+  end
+
   private
 
   def siblings

@@ -5,6 +5,10 @@
 
 <h1><%= @phone.number %></h1>
 
+<% @phone.carrier_variations.each do |carrier, number| %>
+  <p><small>Se sua operadora é</small> <%= carrier %>:<br><strong><%= number %></strong></p>
+<% end %>
+
 <div class="btn-group btn-block">
   <button type="button" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Ações
@@ -14,6 +18,6 @@
       class: 'dropdown-item text-danger btn btn-block',
       data: { method: :delete, confirm: 'Tem certeza que quer excluir este número?' }
     %>
-    <div class="dropdown-divider"></div>
+  <div class="dropdown-divider"></div>
   </div>
 </div>
