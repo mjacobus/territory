@@ -1,0 +1,19 @@
+<div class="row">
+  <%= link_to("<< Anterior", territory_phone_path(@territory, @phone.previous), class: 'btn pull-left') %>
+  <%= link_to("Próximo >>", territory_phone_path(@territory, @phone.next), class: 'btn pull-right') %>
+</div>
+
+<h1><%= @phone.number %></h1>
+
+<div class="btn-group btn-block">
+  <button type="button" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Ações
+  </button>
+  <div class="dropdown-menu">
+    <%= link_to 'Excluir', territory_phone_path(@territory, @phone),
+      class: 'dropdown-item text-danger btn btn-block',
+      data: { method: :delete, confirm: 'Tem certeza que quer excluir este número?' }
+    %>
+    <div class="dropdown-divider"></div>
+  </div>
+</div>

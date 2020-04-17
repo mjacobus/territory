@@ -5,6 +5,10 @@ class PhonesController < ApplicationController
     @phones = territory.phones
   end
 
+  def show
+    @phone = territory.phones.find(params[:id])
+  end
+
   def create
     territory.create_phones(params[:phone_numbers].split("\n"))
     redirect_to action: :index

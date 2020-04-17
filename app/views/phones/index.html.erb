@@ -9,9 +9,8 @@
   <% @phones.each_with_index do |phone, index| %>
     <tr>
       <td> <%= (index + 1).to_s.rjust(3, '0') %> </td>
-      <td> <%= phone.number %> </td>
       <td>
-        <%= link_to 'Excluir', territory_phone_path(@territory, phone), data: { method: :delete, confirm: 'Tem certeza que quer excluir este número?' } %>
+        <%= link_to(phone.number, territory_phone_path(@territory, phone)) %>
       </td>
     </tr>
   <% end %>
