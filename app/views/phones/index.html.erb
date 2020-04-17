@@ -1,17 +1,17 @@
-<h1>Telefones</h1>
-
-<p>Território: <%= @territory.name %></p>
-
-<% #= link_to('New', new_territory_phone_path(@territory), class: 'btn btn-info') %>
-
+<%= render partial: '/breadcrumb', locals: {
+  items: [
+    ['Territórios', territories_path],
+    [@territory.name, territory_path(@territory)],
+    ['Telefones']
+  ]
+}
+%>
 
 <table class="table table-striped">
   <% @phones.each_with_index do |phone, index| %>
     <tr>
-      <td> <%= (index + 1).to_s.rjust(3, '0') %> </td>
-      <td>
-        <%= link_to(phone.number, territory_phone_path(@territory, phone)) %>
-      </td>
+      <td><%= (index + 1).to_s.rjust(3, '0') %></td>
+      <td><%= link_to(phone.number, territory_phone_path(@territory, phone)) %></td>
     </tr>
   <% end %>
 </table>

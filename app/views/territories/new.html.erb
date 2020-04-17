@@ -1,3 +1,9 @@
-<h1>Novo Território</h1>
+<%= render partial: '/breadcrumb', locals: {
+  items: [
+    ['Territórios', territories_path],
+    ['Novo']
+  ]
+}
+%>
 
 <%= render partial: 'form', locals: { territory: @territory } %>

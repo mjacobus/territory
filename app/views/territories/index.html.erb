@@ -1,7 +1,11 @@
-<h1>Territories</h1>
+<%= render partial: '/breadcrumb', locals: {
+  items: [
+    ['Territórios'],
+  ]
+}
+%>
 
 <%= link_to('New', new_territory_path, class: 'btn btn-info') %>
-
 
 <table class="table table-striped">
   <% @territories.each do |territory| %>
