@@ -7,6 +7,10 @@ class Phone < ApplicationRecord
 
   validates :number, presence: true, uniqueness: { case_sensitive: false }
 
+  def casted_number
+    PhoneNumber.new(number)
+  end
+
   def next
     ids = siblings.pluck(:id)
     index = ids.index(id)
@@ -27,16 +31,12 @@ class Phone < ApplicationRecord
     siblings.find(previous_index)
   end
 
-  def format_number(prefix:)
-    "#{prefix}#{number}".gsub(/[^\d]/, '')
-  end
-
   def carrier_variations
     {
-      'Oi' => format_number(prefix: '014'),
-      'TIM' => format_number(prefix: '041'),
-      'Vivo/Telefônica/GVT' => format_number(prefix: '015'),
-      'Claro/Net' => format_number(prefix: '021')
+      'Oi' => casted_number.with_prefix('014'),
+      'TIM' => casted_number.with_prefix('041'),
+      'Vivo/Telefônica/GVT' => casted_number.with_prefix('015'),
+      'Claro/Net' => casted_number.with_prefix('021')
     }
   end
 

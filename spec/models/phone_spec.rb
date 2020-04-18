@@ -43,12 +43,4 @@ RSpec.describe Phone, type: :model do
       expect(phone.number).to eq('f')
     end
   end
-
-  describe '#format_number' do
-    it 'removes any non-number char' do
-      formatted = described_class.new(number: '(41) 1234-1234').format_number(prefix: '014')
-
-      expect(formatted).to eq('0144112341234')
-    end
-  end
 end
