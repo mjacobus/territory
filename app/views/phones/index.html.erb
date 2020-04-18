@@ -1,0 +1,35 @@
+<%= render partial: '/breadcrumb', locals: {
+  items: [
+    ['Territórios', territories_path],
+    [@territory.name, territory_path(@territory)],
+    ['Telefones']
+  ]
+}
+%>
+
+<table class="table table-striped">
+  <% @phones.each_with_index do |phone, index| %>
+    <tr>
+      <td><%= (index + 1).to_s.rjust(3, '0') %></td>
+      <td><%= link_to(phone.number, territory_phone_path(@territory, phone)) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<% unless @territory.full?  %>
+  <hr>
+
+  <h2>Adicione novos telefones</h2>
+  <%= form_with(url: "#{territory_phones_path(@territory)}", method: :post, data: { remote: :false }) do %>
+    <div class="row">
+      <div class="col-lg-12">
+        <%= text_area_tag(:phone_numbers, nil, placeholder: "telefone 1\ntelefone 2\n...\ntelefone 100", rows: 10) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <input type="submit" class="btn btn-success" value="Criar telefones" >
+      </div>
+    </div>
+  <% end %>
+<% end %>

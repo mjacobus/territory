@@ -28,7 +28,7 @@
         <a class="navbar-brand" href="#">
           <span>
           <% if current_user %>
-            <%= image_tag("#{current_user.avatar}?sz=25") %>
+            <%= image_tag("#{current_user.avatar}?sz=25", class: 'avatar-25') %>
             <%= current_user.name %>
           <% else %>
             Territory Manager

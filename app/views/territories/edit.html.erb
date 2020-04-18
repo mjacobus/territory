@@ -1,3 +1,10 @@
-<h1>Editar território</h1>
+<%= render partial: '/breadcrumb', locals: {
+  items: [
+    ['Territórios', territories_path],
+    [@territory.name, territory_path(@territory)],
+    ['Editar']
+  ]
+}
+%>
 
 <%= render partial: 'form', locals: { territory: @territory } %>
