@@ -13,10 +13,10 @@
   <%= link_to("Próximo >>", territory_phone_path(@territory, @phone.next), class: 'btn pull-right') %>
 </div>
 
-<h1><%= @phone.number %></h1>
+<h1><a href="tel:<%= @phone.casted_number.sanitized %>"><%= @phone.casted_number %></a></h1>
 
 <% @phone.carrier_variations.each do |carrier, number| %>
-  <p><small>Se sua operadora é</small> <%= carrier %>:<br><strong><%= number %></strong></p>
+  <p><small>Se sua operadora é</small> <%= carrier %>:<br><a href="tel:<%= number.sanitized %>"><strong><%= number %></strong></a></p>
 <% end %>
 
 <div class="btn-group btn-block">
