@@ -35,6 +35,7 @@ gem 'dotenv-rails'
 
 # frontend
 gem 'jquery-rails'
+gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 
 gem 'omniauth'

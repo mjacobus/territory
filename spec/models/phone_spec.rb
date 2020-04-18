@@ -43,4 +43,18 @@ RSpec.describe Phone, type: :model do
       expect(phone.number).to eq('f')
     end
   end
+
+  describe '#assign_call_attempt' do
+    before do
+      phone.save!
+    end
+
+    let(:user) { User.create!(name: 'name') }
+    let(:attributes) { { outcome: 'not_home', user: user } }
+    let(:assign) { phone.assign_call_attempt(attributes) }
+
+    it 'saves the call attempt' do
+      expect { assign }.to change { phone.call_attempts.count }.by(1)
+    end
+  end
 end

@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :territories do
-    resources :phones
+    resources :phones do
+      resources :call_attempts
+    end
   end
 
   resources :users, only: %i[index] do
