@@ -57,10 +57,15 @@ RSpec.describe CallAttemptsController, type: :controller do
       expect { perform_request }.to change(CallAttempt, :count).by(1)
     end
 
-    it 'redirects to phone path when not contacted' do
+    it 'redirects to phone edit form' do
       perform_request
 
-      path = territory_phone_path(territory, phone)
+      path = edit_territory_phone_call_attempt_path(
+        territory,
+        phone,
+        CallAttempt.last,
+        hide_outcome: true
+      )
 
       expect(response).to redirect_to(path)
     end

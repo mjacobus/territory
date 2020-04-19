@@ -27,3 +27,7 @@
 .invalid-feedback {
   color: #a94442;
 }
+
+.call-attempt-details {
+  padding-top: 20px;
+}

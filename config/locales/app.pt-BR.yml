@@ -16,3 +16,5 @@ pt-BR:
         can_call_again: Pode ligar de novo
         called_annonymously: Feito chamada anônima
         reachable_by: Quando é melhor revisitar
+  'true': 'Sim'
+  'false': 'Não'

@@ -19,10 +19,6 @@ class CallAttemptsController < ApplicationController
       user: current_user
     )
 
-    unless call_attempt.contacted?
-      return redirect_to([territory, phone])
-    end
-
     redirect_to_edit(call_attempt)
   end
 

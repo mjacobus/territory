@@ -1,25 +1,25 @@
+<h1><%= outcome_label(@call_attempt.outcome) %></h1>
+
 <%= simple_form_for([@territory, @phone, @call_attempt], local: true) do |f| %>
   <%= f.error_notification %>
-  <% if params[:hide_outcome] %>
-    <input type="hidden" value="true" name="hide_outcome">
-  <% else %>
-    <%= f.input :outcome, as: :radio_buttons, collection: CallAttempt::OUTCOMES.map { |outcome| [outcome_label(outcome), outcome] } %>
+  <% if @call_attempt.contacted? %>
+    <%= f.input :name %>
+    <%= f.input :gender, as: :radio_buttons, collection: CallAttempt::GENDERS.map { |gender| [gender_label(gender), gender] } %>
+    <%= f.input :age, collection: [
+      ['0-10,', 10],
+      ['10-15', 15],
+      ['15-20', 20],
+      ['20-30', 30],
+      ['30-40', 40],
+      ['40-50', 50],
+      ['50-60', 60],
+      ['50+', 70],
+    ] %>
+    <%= f.input :has_children %>
+    <%= f.input :can_text %>
+    <%= f.input :can_call_again %>
   <% end %>
-  <%= f.input :name %>
-  <%= f.input :gender, as: :radio_buttons, collection: CallAttempt::GENDERS.map { |gender| [gender_label(gender), gender] } %>
-  <%= f.input :age, collection: [
-    ['0-10,', 10],
-    ['10-15', 15],
-    ['15-20', 20],
-    ['20-30', 30],
-    ['30-40', 40],
-    ['40-50', 50],
-    ['50-60', 60],
-    ['50+', 70],
-  ] %>
-  <%= f.input :has_children %>
-  <%= f.input :can_text %>
-  <%= f.input :can_call_again %>
+
   <%= f.input :called_annonymously %>
   <%= f.input :notes %>
   <%= f.input :reachable_by %>
