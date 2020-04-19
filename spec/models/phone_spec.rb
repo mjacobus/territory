@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe Phone, type: :model do
   let(:phone) { described_class.new(number: 'some-number', territory: territory) }
   let(:territory) { Territory.new(name: 'T1') }
+  let(:user) { User.create!(name: 'name') }
 
   it 'belongs to territory' do
     expect(phone.territory).to eq(territory)
@@ -49,12 +50,29 @@ RSpec.describe Phone, type: :model do
       phone.save!
     end
 
-    let(:user) { User.create!(name: 'name') }
     let(:attributes) { { outcome: 'not_home', user: user } }
     let(:assign) { phone.assign_call_attempt(attributes) }
 
     it 'saves the call attempt' do
       expect { assign }.to change { phone.call_attempts.count }.by(1)
+    end
+  end
+
+  describe '#quick_assign_attempt' do
+    before { phone.save! }
+
+    it 'rejects non valid assignment' do
+      expect { phone.quick_assign_attempt('invalid', user: user) }.to raise_error(
+        ActiveRecord::RecordInvalid
+      )
+    end
+
+    it 'accepts valid outcome' do
+      result = phone.quick_assign_attempt('contacted', user: user)
+
+      expect(result).to be_a(CallAttempt)
+      expect(result).to be_persisted
+      expect(result).to be_contacted
     end
   end
 end

@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   resources :territories do
     resources :phones do
-      resources :call_attempts
+      resources :call_attempts do
+        collection do
+          post 'create/:outcome', as: :create, action: :quick_create
+        end
+      end
     end
   end
 

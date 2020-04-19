@@ -1,6 +1,10 @@
 <%= simple_form_for([@territory, @phone, @call_attempt], local: true) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :outcome, as: :radio_buttons, collection: CallAttempt::OUTCOMES.map { |outcome| [outcome_label(outcome), outcome] } %>
+  <% if params[:hide_outcome] %>
+    <input type="hidden" value="true" name="hide_outcome">
+  <% else %>
+    <%= f.input :outcome, as: :radio_buttons, collection: CallAttempt::OUTCOMES.map { |outcome| [outcome_label(outcome), outcome] } %>
+  <% end %>
   <%= f.input :name %>
   <%= f.input :gender, as: :radio_buttons, collection: CallAttempt::GENDERS.map { |gender| [gender_label(gender), gender] } %>
   <%= f.input :age, collection: [
