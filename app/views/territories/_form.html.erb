@@ -1,12 +1,6 @@
-<% if territory.errors.any? %>
-  <ul>
-    <% territory.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render partial: '/form_errors', locals: { model: territory } %>
 
 <%= form_with model: territory, local: true do |f| %>
   <%= f.text_field :name %>
-  <%= f.submit "Create", class: 'btn btn-success' %>
+  <%= f.submit "Salvar", class: 'btn btn-success' %>
 <% end %>

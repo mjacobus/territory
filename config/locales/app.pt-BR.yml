@@ -1,0 +1,18 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      call_attempt: Ligação
+    attributes:
+      call_attempt:
+        outcome: Resultado
+        gender: Sexo
+        age: Idade
+        name: Nome
+        notes: Observações
+        answered: Atendeu
+        has_children: Tem filhos
+        can_text: Pode mandar mensagem de texto
+        can_call_again: Pode ligar de novo
+        called_annonymously: Feito chamada anônima
+        reachable_by: Quando é melhor revisitar

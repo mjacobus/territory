@@ -1,0 +1,11 @@
+<h2>Histórico</h2>
+<ul class="list-group">
+  <% call_attempts.each do |call_attempt| %>
+    <li class="list-group-item">
+      <%= outcome_label(call_attempt.outcome) %>
+      <span class="pull-right">
+      <%= l(call_attempt.created_at, format: :short) %>
+      </span>
+    </li>
+  <% end %>
+</ul>

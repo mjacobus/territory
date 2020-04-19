@@ -24,6 +24,10 @@ module TerritoryManager
       end
     end
 
+    config.i18n.available_locales = ["pt-BR"]
+    config.i18n.default_locale = 'pt-BR'
+    config.time_zone = 'America/Sao_Paulo'
+
     config.generators do |generate|
       generate.helper false
       generate.assets false
