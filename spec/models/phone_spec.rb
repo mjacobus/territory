@@ -75,4 +75,11 @@ RSpec.describe Phone, type: :model do
       expect(result).to be_contacted
     end
   end
+
+  it 'removes children' do
+    phone.save!
+    phone.quick_assign_attempt('contacted', user: user)
+
+    expect { phone.destroy }.to change(CallAttempt, :count).by(-1)
+  end
 end

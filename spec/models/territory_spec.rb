@@ -33,4 +33,11 @@ RSpec.describe Territory do
   it 'has many phones' do
     expect(territory).to respond_to(:phones)
   end
+
+  it 'removes phones recursively' do
+    territory.save!
+    territory.create_phones(['11111'])
+
+    expect { territory.destroy }.to change(Phone, :count).by(-1)
+  end
 end

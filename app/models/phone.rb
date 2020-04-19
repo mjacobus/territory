@@ -2,7 +2,7 @@
 
 class Phone < ApplicationRecord
   belongs_to :territory
-  has_many :call_attempts
+  has_many :call_attempts, dependent: :destroy
 
   default_scope -> { order(:number) }
 
