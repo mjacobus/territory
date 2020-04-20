@@ -59,10 +59,16 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
+    autoprefixer-rails (9.7.6)
+      execjs
     awesome_print (1.8.0)
     bindex (0.8.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
+    bootstrap (4.4.1)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 1.14.3, < 2)
+      sassc-rails (>= 2.0.0)
     builder (3.2.4)
     byebug (11.1.1)
     capybara (3.31.0)
@@ -74,7 +80,6 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     childprocess (3.0.0)
-    commonjs (0.2.7)
     concurrent-ruby (1.1.6)
     coveralls (0.8.23)
       json (>= 1.8, < 3)
@@ -108,12 +113,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (2.3.0)
     jwt (2.2.1)
-    less (2.6.0)
-      commonjs (~> 0.2.7)
-    less-rails (4.0.0)
-      actionpack (>= 4)
-      less (~> 2.6.0)
-      sprockets (>= 2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -158,6 +157,7 @@ GEM
     parser (2.7.0.2)
       ast (~> 2.4.0)
     pg (1.2.2)
+    popper_js (1.16.0)
     public_suffix (4.0.3)
     puma (4.3.3)
       nio4r (~> 2.0)
@@ -278,11 +278,6 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    twitter-bootstrap-rails (3.2.2)
-      actionpack (>= 3.1)
-      execjs (>= 2.2.2, >= 2.2)
-      less-rails (>= 2.5.0)
-      railties (>= 3.1)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.1)
@@ -312,6 +307,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   bootsnap (>= 1.4.2)
+  bootstrap (~> 4.4)
   byebug
   capybara (>= 2.15)
   coveralls
@@ -338,7 +334,6 @@ DEPENDENCIES
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
-  twitter-bootstrap-rails
   tzinfo-data
   web-console (>= 3.3.0)
   webdrivers
