@@ -13,32 +13,34 @@
   <%= link_to("Próximo >>", territory_phone_path(@territory, @phone.next), class: 'btn pull-right') %>
 </div>
 
-<div class="btn-group pull-right">
-  <button type="button" class="btn btn-success btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Adicionar
-  </button>
-  <div class="dropdown-menu">
-    <%= link_to 'Contato', create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'contacted'),
-      class: 'dropdown-item btn',
-      data: { method: :post }
-    %>
-    <%= link_to 'Não em casa', create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'not_home'),
-      class: 'dropdown-item btn',
-      data: { method: :post }
-    %>
-    <%= link_to 'Telefone desligado', create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'disconnected'),
-      class: 'dropdown-item btn',
-      data: { method: :post }
-    %>
-    <%= link_to 'Telefone inválido', create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'unreachable'),
-      class: 'dropdown-item btn',
-      data: { method: :post }
-    %>
-    <div class="dropdown-divider"></div>
-    <%= link_to 'Excluir telefone', territory_phone_path(@territory, @phone),
-      class: 'dropdown-item text-danger btn',
-      data: { method: :delete, confirm: 'Tem certeza que quer excluir este número?' }
-    %>
+<div class="clearfix">
+  <div class="btn-group pull-right">
+    <button type="button" class="btn btn-success btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Adicionar
+    </button>
+    <div class="dropdown-menu">
+      <%= link_to 'Contato', create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'contacted'),
+        class: 'dropdown-item btn',
+        data: { method: :post }
+      %>
+      <%= link_to 'Não em casa', create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'not_home'),
+        class: 'dropdown-item btn',
+        data: { method: :post }
+      %>
+      <%= link_to 'Telefone desligado', create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'disconnected'),
+        class: 'dropdown-item btn',
+        data: { method: :post }
+      %>
+      <%= link_to 'Telefone inválido', create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'unreachable'),
+        class: 'dropdown-item btn',
+        data: { method: :post }
+      %>
+      <div class="dropdown-divider"></div>
+      <%= link_to 'Excluir telefone', territory_phone_path(@territory, @phone),
+        class: 'dropdown-item text-danger btn',
+        data: { method: :delete, confirm: 'Tem certeza que quer excluir este número?' }
+      %>
+    </div>
   </div>
 </div>
 
