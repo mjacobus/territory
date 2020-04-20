@@ -4,7 +4,7 @@ class Territory < ApplicationRecord
   MAX_PHONES = 100
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
-  has_many :phones
+  has_many :phones, dependent: :destroy
 
   default_scope -> { order(:name) }
 

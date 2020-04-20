@@ -11,6 +11,6 @@ module ApplicationHelper
   end
 
   def gender_label(gender)
-    { male: 'Homem', female: 'Mulher' }.fetch(gender.to_sym)
+    { male: 'Masculino', female: 'Feminino' }.fetch(gender.to_sym)
   end
 end

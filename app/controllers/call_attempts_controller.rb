@@ -13,6 +13,15 @@ class CallAttemptsController < ApplicationController
     call_attempt
   end
 
+  def quick_create
+    call_attempt = phone.quick_assign_attempt(
+      params[:outcome],
+      user: current_user
+    )
+
+    redirect_to_edit(call_attempt)
+  end
+
   def create
     phone.assign_call_attempt(call_attempt_params)
     redirect_to [territory, phone]
@@ -23,8 +32,7 @@ class CallAttemptsController < ApplicationController
 
   def update
     if call_attempt.update(call_attempt_params)
-      redirect_to [territory, phone]
-      return
+      return redirect_to([territory, phone])
     end
 
     render :edit
@@ -47,6 +55,16 @@ class CallAttemptsController < ApplicationController
 
   def territory
     @territory ||= Territory.find(params[:territory_id])
+  end
+
+  def redirect_to_edit(call_attempt)
+    url = edit_territory_phone_call_attempt_path(
+      territory,
+      phone,
+      call_attempt,
+      hide_outcome: true
+    )
+    redirect_to(url)
   end
 
   # rubocop:disable Metrics/MethodLength

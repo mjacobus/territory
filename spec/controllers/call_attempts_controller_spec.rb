@@ -44,6 +44,52 @@ RSpec.describe CallAttemptsController, type: :controller do
     end
   end
 
+  describe 'POST #quick_create' do
+    let(:params) do
+      {
+        territory_id: territory.id,
+        phone_id: phone.id
+      }
+    end
+    let(:perform_request) { post :quick_create, params: params.merge(outcome: 'not_home') }
+
+    it 'quick_create a new call_attempts' do
+      expect { perform_request }.to change(CallAttempt, :count).by(1)
+    end
+
+    it 'redirects to phone edit form' do
+      perform_request
+
+      path = edit_territory_phone_call_attempt_path(
+        territory,
+        phone,
+        CallAttempt.last,
+        hide_outcome: true
+      )
+
+      expect(response).to redirect_to(path)
+    end
+
+    it 'assigns user to the call attempt' do
+      perform_request
+
+      expect(CallAttempt.last.user).to eq(current_user)
+    end
+
+    it 'redirects to the edit form when phone contacted' do
+      post :quick_create, params: params.merge(outcome: 'contacted')
+
+      path = edit_territory_phone_call_attempt_path(
+        territory,
+        phone,
+        CallAttempt.last,
+        hide_outcome: true
+      )
+
+      expect(response).to redirect_to(path)
+    end
+  end
+
   describe 'PUT #update' do
     before do
       call_attempt_params[:notes] = 'updated note'
