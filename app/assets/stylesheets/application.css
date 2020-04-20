@@ -61,3 +61,10 @@
   border: 0;
   margin-bottom: 10px;
 }
+
+.google-login {
+  font-weight: bold;
+  height: 100px;
+  line-height: 100px;
+  vertical-align: middle;
+}
