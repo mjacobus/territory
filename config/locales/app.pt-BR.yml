@@ -18,3 +18,14 @@ pt-BR:
         reachable_by: Quando é melhor revisitar
   'true': 'Sim'
   'false': 'Não'
+
+  app:
+    title: "Gerenciador de Territórios"
+    messages:
+      contact_admin: "Se você já logou mas não tem acesso, contate o admin de sua congregação."
+    links:
+      my_territories: "Meus territórios"
+      territories: "Territórios"
+      users: "Usuários"
+      logout: "Sair"
+      google_login: "Entrar com minha conta do Gmail"

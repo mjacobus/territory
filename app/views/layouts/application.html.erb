@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "TerritoryManager" %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title><%= content_for?(:title) ? yield(:title) : t('app.title') %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", media: "all" %>
@@ -18,38 +18,44 @@
   </head>
   <body>
 
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">
-          <span>
-          <% if current_user %>
-            <%= image_tag("#{current_user.avatar}?sz=25", class: 'avatar-25') %>
-            <%= current_user.name %>
-          <% else %>
-            Territory Manager
-          <% end %>
-          </span>
-        </a>
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <li><%= link_to "Territories", territories_path  %></li>
-            <% if current_user %>
-              <% if current_user.master? %>
-                <li><%= link_to "Users", users_path  %></li>
+    <% if current_user %>
+      <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            <span>
+              <% if current_user %>
+                <%= image_tag("#{current_user.avatar}?sz=25", class: 'avatar-25') %>
+                <%= current_user.name %>
+              <% else %>
+                <%= t('app.title') %>
               <% end %>
-              <li><%= link_to "Logout", '/logout'  %></li>
-            <% else %>
-              <li><%= link_to "Google Login", '/auth/google_oauth2'  %></li>
-            <% end  %>
-          </ul>
+            </span>
+          </a>
+          <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+              <li><%= link_to t("app.links.territories"), territories_path  %></li>
+              <% if current_user %>
+                <% if current_user.master? %>
+                  <li><%= link_to t('app.links.users'), users_path  %></li>
+                <% end %>
+                <li><%= link_to t('app.links.logout'), '/logout'  %></li>
+              <% else %>
+                <li><%= link_to t('app.links.google_login'), '/auth/google_oauth2'  %></li>
+              <% end  %>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
+    <% else %>
+      <div class="login">
+        <%= link_to t('app.links.google_login'), '/auth/google_oauth2', class: 'btn btn-block btn-info'  %>
+      </div>
+    <% end %>
 
     <div class="container">
       <div class="row">
