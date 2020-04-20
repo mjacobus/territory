@@ -6,15 +6,15 @@ pt-BR:
     attributes:
       call_attempt:
         outcome: Resultado
-        gender: Sexo
+        gender: Gênero
         age: Idade
         name: Nome
         notes: Observações
         answered: Atendeu
-        has_children: Tem filhos
-        can_text: Pode mandar mensagem de texto
-        can_call_again: Pode ligar de novo
-        called_annonymously: Feito chamada anônima
+        has_children: Tem filhos?
+        can_text: Mandar mensagem de texto?
+        can_call_again: Ligar novamente?
+        called_annonymously: Chamada anônima?
         reachable_by: Quando é melhor revisitar
   'true': 'Sim'
   'false': 'Não'

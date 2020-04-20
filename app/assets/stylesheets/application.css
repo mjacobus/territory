@@ -31,3 +31,33 @@
 .call-attempt-details {
   padding-top: 20px;
 }
+
+.text-muted {
+  display: block;
+  clear: both;
+}
+
+.input[type="checkbox"] {
+  margin-right: 20px !important;
+}
+
+.form-check-label {
+  margin-left: 5px;
+}
+
+.inline-check-boxes .form-check {
+  display: block;
+  float: left;
+  margin-right: 20px;
+}
+
+.soft-labels label {
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.special-legends legend {
+  font-size: 14px;
+  border: 0;
+  margin-bottom: 10px;
+}

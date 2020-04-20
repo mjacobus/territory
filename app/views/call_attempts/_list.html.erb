@@ -15,7 +15,7 @@
                 <p>
                   <strong>Nome:</strong> <%= attempt.name %><br>
                   <% if attempt.gender %>
-                    <strong>Sexo:</strong> <%= gender_label(attempt.gender)  %><br>
+                    <strong>Gênero:</strong> <%= gender_label(attempt.gender)  %><br>
                   <% end %>
                   <% if attempt.user != current_user %>
                     <strong>Publicador:</strong> <%= attempt.user.name %><br>
@@ -24,17 +24,22 @@
                     <strong>Idade aproximada:</strong> <%= attempt.age %> ou menos<br>
                   <% end %>
                   <% unless attempt.has_children.nil? %>
-                    <strong>Filhos:</strong> <%= t attempt.has_children %><br>
+                    <strong>Tem filhos?</strong> <%= t attempt.has_children %><br>
                   <% end %>
-                    <strong>Pode mandar mensagem de texto:</strong> <%= t attempt.can_text %><br>
-                    <strong>Pode mandar mensagem de texto:</strong> <%= t attempt.can_call_again %><br>
+                  <% unless attempt.can_text.nil? %>
+                    <strong>Mandar mensagem de texto?</strong> <%= t attempt.can_text? %><br>
+                  <% end %>
+                  <% unless attempt.can_call_again.nil? %>
+                    <strong>Ligar novamente?</strong> <%= t attempt.can_call_again? %><br>
+                  <% end %>
                   <% if attempt.called_annonymously %>
-                    <strong>Ligação anônima:</strong><%= t attempt.called_annonymously %><br>
+                    <strong>Ligação anônima?</strong><%= t attempt.called_annonymously %><br>
                   <% end %>
                 </p>
 
-                <p>Observações: <%= attempt.notes %></p>
-                <% if attempt.reachable_by %>
+                <p><strong>Observações:</strong> <%= attempt.notes %></p>
+
+                <% if attempt.reachable_by.present? %>
                   <p><strong>Melhor hora:</strong> <%= attempt.reachable_by %></p>
                 <% end %>
               </div>
@@ -42,12 +47,12 @@
 
             <div class="text-right call-attempt-details">
               <%= link_to 'Excluir', territory_phone_call_attempt_path(@territory, @phone, attempt),
-                class: 'dropdown-item btn text-danger',
+                class: 'dropdown-item btn btn-primary',
                 data: { method: :delete, confirm: 'Tem certeza que quer excluir este contato?' }
               %>
 
               <%= link_to 'Editar', edit_territory_phone_call_attempt_path(@territory, @phone, attempt),
-                class: 'dropdown-item btn text-success'
+                class: 'dropdown-item btn btn-primary'
               %>
             </div>
           </div>
