@@ -1,61 +1,72 @@
 <% unless call_attempts.empty? %>
-  <h2>Histórico</h2>
-  <ul class="list-group">
+  <div class="text-center">
+  <%= t('app.titles.history') %>
+  </div>
+  <ul class="list-group mb-4">
     <% call_attempts.each do |attempt| %>
       <li class="list-group-item">
-        <div class="pointer <%= attempt.contacted? ? 'text-success' : 'text-secondary' %>" data-toggle="collapse" data-target="#call-attempt-details-id_<%= attempt.id  %>">
-          <%= outcome_label(attempt.outcome) %>
-          <span class="pull-right">
+        <div class="row mt-2" data-toggle="collapse" data-target="#call-attempt-details-id_<%= attempt.id  %>">
+          <div class="col-6 text-left">
+            <%= outcome_label(attempt.outcome) %>
+          </div>
+          <div class="col-6 text-right">
             <%= l(attempt.created_at, format: :short) %>
-          </span>
+          </div>
         </div>
-          <div class="collapse" id="call-attempt-details-id_<%= attempt.id  %>">
-            <% if attempt.contacted? %>
-              <div class="card card-body pt-4 call-attempt-details">
-                <p>
-                  <strong>Nome:</strong> <%= attempt.name %><br>
-                  <% if attempt.gender %>
-                    <strong>Gênero:</strong> <%= gender_label(attempt.gender)  %><br>
-                  <% end %>
-                  <% if attempt.user != current_user %>
-                    <strong>Publicador:</strong> <%= attempt.user.name %><br>
-                  <% end %>
-                  <% if attempt.age %>
-                    <strong>Idade aproximada:</strong> <%= attempt.age %> ou menos<br>
-                  <% end %>
-                  <% unless attempt.has_children.nil? %>
-                    <strong>Tem filhos?</strong> <%= t attempt.has_children %><br>
-                  <% end %>
-                  <% unless attempt.can_text.nil? %>
-                    <strong>Mandar mensagem de texto?</strong> <%= t attempt.can_text? %><br>
-                  <% end %>
-                  <% unless attempt.can_call_again.nil? %>
-                    <strong>Ligar novamente?</strong> <%= t attempt.can_call_again? %><br>
-                  <% end %>
-                  <% if attempt.called_annonymously %>
-                    <strong>Ligação anônima?</strong><%= t attempt.called_annonymously %><br>
-                  <% end %>
-                </p>
 
-                <p><strong>Observações:</strong> <%= attempt.notes %></p>
+        <div class="collapse" id="call-attempt-details-id_<%= attempt.id  %>">
+          <% if attempt.contacted? %>
+            <p>
+              <strong>Nome:</strong> <%= attempt.name %><br>
+              <% if attempt.gender %>
+                <strong>Gênero:</strong><%= gender_label(attempt.gender)  %><br>
+              <% end %>
+              <% if attempt.user != current_user %>
+                <strong>Publicador:</strong><br> <%= attempt.user.name %><br>
+              <% end %>
+              <% if attempt.age %>
+                <strong>Idade aproximada:</strong><br> <%= attempt.age %> ou menos<br>
+              <% end %>
+              <% unless attempt.has_children.nil? %>
+                <strong>Tem filhos?</strong><br> <%= t attempt.has_children %><br>
+              <% end %>
+              <% unless attempt.can_text.nil? %>
+                <strong>Mandar mensagem de texto?</strong><br> <%= t attempt.can_text? %><br>
+              <% end %>
+              <% unless attempt.can_call_again.nil? %>
+                <strong>Ligar novamente?</strong><br> <%= t attempt.can_call_again? %><br>
+              <% end %>
+              <% if attempt.called_annonymously %>
+                <strong>Ligação anônima?</strong><br><%= t attempt.called_annonymously %><br>
+              <% end %>
+            </p>
 
-                <% if attempt.reachable_by.present? %>
-                  <p><strong>Melhor hora:</strong> <%= attempt.reachable_by %></p>
-                <% end %>
-              </div>
+            <p><strong>Observações:</strong><br> <%= attempt.notes %></p>
+
+            <% if attempt.reachable_by.present? %>
+              <p><strong>Melhor hora:</strong><br> <%= attempt.reachable_by %></p>
             <% end %>
+          <% end %>
 
-            <div class="text-right call-attempt-details">
-              <%= link_to 'Excluir', territory_phone_call_attempt_path(@territory, @phone, attempt),
-                class: 'dropdown-item btn btn-primary',
-                data: { method: :delete, confirm: 'Tem certeza que quer excluir este contato?' }
-              %>
 
-              <%= link_to 'Editar', edit_territory_phone_call_attempt_path(@territory, @phone, attempt),
-                class: 'dropdown-item btn btn-primary'
-              %>
+          <div class="row mt-2">
+            <div class="col-6 text-left">
+              <a class="btn btn-danger btn-block"
+                 data-method="delete"
+                 data-confirm="<%= t('app.messages.confirm_call_attempt_delete') %>"
+                 href="<%= territory_phone_call_attempt_path(@territory, @phone, attempt) %>">
+                 <%= t('app.links.remove') %>
+              </a>
+            </div>
+            <div class="col-6 text-right">
+              <a class="btn btn-info btn-block"
+                 href="<%= edit_territory_phone_call_attempt_path(@territory, @phone, attempt) %>">
+                 <%= t('app.links.edit') %>
+              </a>
             </div>
           </div>
+
+        </div>
       </li>
     <% end %>
   </ul>

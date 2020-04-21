@@ -1,11 +1,11 @@
-<h1>You know what to do</h1>
+<% if current_user && !current_user.enabled? %>
+  <div class="alert alert-warning" role="alert">
+    <%= t('app.messages.contact_admin') %>
+  </div>
+<% end %>
 
-<div class="alert alert-primary" role="alert">
-  If you got here you should know what to do. Then do it.
-</div>
-
-<% unless current_user %>
-<div class="alert alert-warning" role="alert">
-  If you logged in and still cannot use this application, ask the congregation system admin to enable your account.
-</div>
+<% if current_user && current_user.enabled? %>
+  <ul>
+    <li> <%= link_to(t('app.links.my_territories'), territories_path)  %> </li>
+  </ul>
 <% end %>

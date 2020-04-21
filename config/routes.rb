@@ -3,6 +3,10 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
+  if Rails.env.development?
+    get '/dev/login', to: 'development#login'
+  end
+
   resources :territories do
     resources :phones do
       resources :call_attempts do
