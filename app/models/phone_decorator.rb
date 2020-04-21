@@ -73,7 +73,7 @@ class PhoneDecorator
 
   def badge_class
     {
-      contact_again: 'badge-primary',
+      contact_again: 'badge-success',
       never_called: 'badge-light',
       unreachable: 'badge-secondary',
       do_not_contact_again: 'badge-danger'

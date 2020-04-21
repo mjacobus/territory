@@ -22,22 +22,13 @@
                 <strong>Gênero:</strong><%= gender_label(attempt.gender)  %><br>
               <% end %>
               <% if attempt.user != current_user %>
-                <strong>Publicador:</strong><br> <%= attempt.user.name %><br>
-              <% end %>
-              <% if attempt.age %>
-                <strong>Idade aproximada:</strong><br> <%= attempt.age %> ou menos<br>
-              <% end %>
-              <% unless attempt.has_children.nil? %>
-                <strong>Tem filhos?</strong><br> <%= t attempt.has_children %><br>
+                <strong>Publicador:</strong> <%= attempt.user.name %><br>
               <% end %>
               <% unless attempt.can_text.nil? %>
                 <strong>Mandar mensagem de texto?</strong><br> <%= t attempt.can_text? %><br>
               <% end %>
               <% unless attempt.can_call_again.nil? %>
                 <strong>Ligar novamente?</strong><br> <%= t attempt.can_call_again? %><br>
-              <% end %>
-              <% if attempt.called_annonymously %>
-                <strong>Ligação anônima?</strong><br><%= t attempt.called_annonymously %><br>
               <% end %>
             </p>
 
