@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe CallAttemptsController, type: :controller do
-  let(:territory) { Territory.create!(name: 'foo') }
+  let(:territory) { Territory.create!(name: 'foo', user: current_user) }
   let(:phone) { Phone.create!(number: '222', territory: territory) }
   let(:call_attempt) do
     phone.assign_call_attempt(

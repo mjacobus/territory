@@ -13,4 +13,17 @@ module ApplicationHelper
   def gender_label(gender)
     { male: 'Masculino', female: 'Feminino' }.fetch(gender.to_sym)
   end
+
+  def user_collection_for_select(territory)
+    values = User.all.map do |user|
+      ["#{user.name} (#{user.email})", user.id]
+    end
+
+    if territory.user
+      user = territory.user
+      values << ["#{user.name} (#{user.email})", user.id]
+    end
+
+    values.uniq
+  end
 end

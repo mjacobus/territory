@@ -3,8 +3,10 @@
 class Territory < ApplicationRecord
   MAX_PHONES = 100
 
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  belongs_to :user, required: false
   has_many :phones, dependent: :destroy
+
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
 
   default_scope -> { order(:name) }
 
@@ -18,5 +20,9 @@ class Territory < ApplicationRecord
 
   def full?
     phones.count >= MAX_PHONES
+  end
+
+  def assigned_to?(user)
+    user_id == user.id
   end
 end

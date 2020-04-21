@@ -26,6 +26,6 @@ class PhonesController < ApplicationController
   end
 
   def territory
-    @territory ||= Territory.find(params[:territory_id])
+    @territory ||= current_user.allowed_territories.find(params[:territory_id])
   end
 end

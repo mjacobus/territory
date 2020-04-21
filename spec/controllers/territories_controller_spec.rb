@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe TerritoriesController, type: :controller do
-  let(:territory) { Territory.create!(name: 'foo') }
+  let(:territory) { Territory.create!(name: 'foo', user: current_user) }
 
   describe 'GET #index' do
     it 'assigns @territories' do
@@ -26,8 +26,6 @@ RSpec.describe TerritoriesController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:territory) { Territory.create!(name: 'foo') }
-
     it 'assigns @territory' do
       get :show, params: { id: territory.id }
 

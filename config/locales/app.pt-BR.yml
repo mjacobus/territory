@@ -3,7 +3,10 @@ pt-BR:
   activerecord:
     models:
       call_attempt: Ligação
+      territory: Território
     attributes:
+      territory:
+        user_id: Publicador
       call_attempt:
         outcome: Resultado
         gender: Gênero
@@ -25,6 +28,7 @@ pt-BR:
       contact_admin: "Se você já logou mas não tem acesso, contate o admin de sua congregação."
       confirm_phone_delete: "Tem certeza de que deseja excluir este telefone?"
       confirm_call_attempt_delete: "Tem certeza de que deseja excluir este telefonema?"
+      alert_someone_else_territory: "Cuidado! Este território está designado para outro publicador."
     links:
       my_territories: "Meus territórios"
       territories: "Territórios"

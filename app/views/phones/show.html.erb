@@ -8,6 +8,11 @@
 }
 %>
 
+<% unless @territory.assigned_to?(current_user) %>
+  <div class="alert alert-danger" role="alert">
+    <%= t('app.messages.alert_someone_else_territory') %>
+  </div>
+<% end %>
 
 <div class="text-center">
   <h2 class"mt-3 mb-3"><%= @phone.number %></h2>
