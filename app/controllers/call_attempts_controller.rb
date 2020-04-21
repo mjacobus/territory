@@ -54,7 +54,7 @@ class CallAttemptsController < ApplicationController
   end
 
   def territory
-    @territory ||= Territory.find(params[:territory_id])
+    @territory ||= current_user.allowed_territories.find(params[:territory_id])
   end
 
   def redirect_to_edit(call_attempt)

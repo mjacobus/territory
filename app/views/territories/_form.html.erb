@@ -1,6 +1,9 @@
 <%= render partial: '/form_errors', locals: { model: territory } %>
 
-<%= form_with model: territory, local: true do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit "Salvar", class: 'btn btn-success' %>
+<%= simple_form_for(territory) do |f| %>
+  <%= f.input :name %>
+  <% if current_user.master? %>
+    <%= f.input :user_id, as: :radio_buttons, collection: user_collection_for_select(@territory) %>
+  <% end %>
+  <%= f.submit class: 'btn btn-success' %>
 <% end %>

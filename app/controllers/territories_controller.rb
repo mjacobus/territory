@@ -2,7 +2,7 @@
 
 class TerritoriesController < ApplicationController
   def index
-    @territories = Territory.all
+    @territories = territories.all
   end
 
   def show
@@ -10,7 +10,7 @@ class TerritoriesController < ApplicationController
   end
 
   def new
-    @territory = Territory.new
+    @territory = territories.build
   end
 
   def edit
@@ -18,7 +18,7 @@ class TerritoriesController < ApplicationController
   end
 
   def create
-    @territory = Territory.new(territory_params)
+    @territory = territories.build(territory_params)
 
     if @territory.save
       redirect_to(territories_path)
@@ -46,11 +46,19 @@ class TerritoriesController < ApplicationController
 
   private
 
+  def territories
+    current_user.allowed_territories
+  end
+
   def territory
-    @territory ||= Territory.find(params[:id])
+    @territory ||= territories.find(params[:id])
   end
 
   def territory_params
-    params.require(:territory).permit(:name)
+    param_names = [:name]
+    if current_user.master?
+      param_names << :user_id
+    end
+    params.require(:territory).permit(*param_names)
   end
 end

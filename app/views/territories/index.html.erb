@@ -12,6 +12,11 @@
     <tr>
       <td> <%= territory.name %> </td>
       <td>
+      <% if territory.user %>
+         <%= territory.user.name %>
+      <% end %>
+      </td>
+      <td>
         <%= link_to 'Editar', edit_territory_path(territory), class: 'btn' %>
         <%= link_to 'Excluir', territory_path(territory), data: { method: :delete, confirm: 'Tem certeza que quer excluir este território?' }, class: 'btn text-danger' %>
         <%= link_to 'Telefones', territory_phones_path(territory) , class: 'btn'%>
