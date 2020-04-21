@@ -2,16 +2,11 @@
 
 module ApplicationHelper
   def outcome_label(outcome)
-    {
-      not_home: 'Não em Casa',
-      contacted: 'Contatado(a)',
-      unreachable: 'Número Inválido',
-      disconnected: 'Desligado'
-    }.fetch(outcome.to_sym)
+    I18n.t("app.outcomes.#{outcome}")
   end
 
   def gender_label(gender)
-    { male: 'Masculino', female: 'Feminino' }.fetch(gender.to_sym)
+    I18n.t("app.genders.#{gender}")
   end
 
   def user_collection_for_select(territory)

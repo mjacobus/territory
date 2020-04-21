@@ -43,6 +43,9 @@ pt-BR:
       previous: "<< Anterior"
       next: "Próximo >>"
       other_carrier: 'Outra operadora'
+    genders:
+      male: "Masculino"
+      female: "Feminino"
 
     outcomes:
       not_home: "Não em casa"

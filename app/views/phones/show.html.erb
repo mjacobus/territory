@@ -16,8 +16,9 @@
 
 <div class="text-center">
   <h2 class"mt-3 mb-3"><%= @phone.number %>
-    <span class="badge <%= @phone.badge_class  %>"><%= @phone.badge_text %></span>
   </h2>
+  <p><%= @phone.contact_name %></p>
+  <h3><span class="badge <%= @phone.badge_class  %>"><%= @phone.badge_text %></span></h3>
 </div>
 
 <div class="row">

@@ -40,12 +40,12 @@ class PhoneDecorator
   end
 
   def status
-    unless contacted?
-      return 'never_called'
-    end
-
     if outcomes.include?('unreachable')
       return 'unreachable'
+    end
+
+    unless contacted?
+      return 'never_called'
     end
 
     if call_again? || can_text?
