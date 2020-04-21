@@ -52,6 +52,7 @@ pt-BR:
 
     titles:
       history: 'Histórico'
+      phones: 'Telefones'
 
     phone_status:
       unreachable: "Número inválido"
