@@ -34,9 +34,9 @@ class Phone < ApplicationRecord
 
   def carrier_variations
     {
-      'Oi' => casted_number.with_prefix('014'),
-      'TIM' => casted_number.with_prefix('041'),
       'Vivo/Telefônica/GVT' => casted_number.with_prefix('015'),
+      'TIM' => casted_number.with_prefix('041'),
+      'Oi' => casted_number.with_prefix('014'),
       'Claro/Net' => casted_number.with_prefix('021')
     }
   end

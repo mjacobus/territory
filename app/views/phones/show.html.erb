@@ -8,46 +8,51 @@
 }
 %>
 
-<div class="row">
-  <%= link_to("<< Anterior", territory_phone_path(@territory, @phone.previous), class: 'btn pull-left') %>
-  <%= link_to("Próximo >>", territory_phone_path(@territory, @phone.next), class: 'btn pull-right') %>
+
+<div class="text-center">
+  <h2 class"mt-3 mb-3"><%= @phone.number %></h2>
 </div>
 
-<div class="clearfix">
-  <div class="btn-group pull-right">
-    <button type="button" class="btn btn-success btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Adicionar
-    </button>
-    <div class="dropdown-menu">
-      <%= link_to 'Contato', create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'contacted'),
-        class: 'dropdown-item btn',
-        data: { method: :post }
-      %>
-      <%= link_to 'Não em casa', create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'not_home'),
-        class: 'dropdown-item btn',
-        data: { method: :post }
-      %>
-      <%= link_to 'Telefone desligado', create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'disconnected'),
-        class: 'dropdown-item btn',
-        data: { method: :post }
-      %>
-      <%= link_to 'Telefone inválido', create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'unreachable'),
-        class: 'dropdown-item btn',
-        data: { method: :post }
-      %>
-      <div class="dropdown-divider"></div>
-      <%= link_to 'Excluir telefone', territory_phone_path(@territory, @phone),
-        class: 'dropdown-item text-danger btn',
-        data: { method: :delete, confirm: 'Tem certeza que quer excluir este número?' }
-      %>
-    </div>
+
+<div class="row">
+  <div class="col-6 text-left">
+    <a class="btn btn-secondary w-100" href="<%= territory_phone_path(@territory, @phone.previous) %>"> <%= t('app.links.previous') %></a>
+  </div>
+  <div class="col-6 text-right">
+    <a class="btn btn-secondary w-100" href="<%= territory_phone_path(@territory, @phone.next) %>"> <%= t('app.links.next') %></a>
   </div>
 </div>
 
-<h1><a href="tel:<%= @phone.casted_number.sanitized %>"><%= @phone.casted_number %></a></h1>
+<div class="dropdown mt-2">
+  <button class="btn btn-success dropdown-toggle btn-block" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= t('app.links.call_number') %>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <% @phone.carrier_variations.each do |carrier, number| %>
+      <a class="dropdown-item" href="tel:<%= number.sanitized %>"><%= carrier %></a>
+    <% end %>
+    <a class="dropdown-item" href="tel:<%= @phone.casted_number.sanitized %>"><%= t('app.links.other_carrier') %></a>
+  </div>
+</div>
 
-<% @phone.carrier_variations.each do |carrier, number| %>
-  <p><small>Se sua operadora é</small> <%= carrier %>:<br><a href="tel:<%= number.sanitized %>"><strong><%= number %></strong></a></p>
-<% end %>
 
-<%= render partial: '/call_attempts/list', locals: { call_attempts: @phone.call_attempts } %>
+<div class="dropdown mt-2">
+  <button class="btn btn-info dropdown-toggle btn-block" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= t('app.links.add') %>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" data-method="post" href="<%= create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'contacted') %>"><%= t('app.outcomes.contacted') %></a>
+    <a class="dropdown-item" data-method="post" href="<%= create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'not_home') %>"><%= t('app.outcomes.not_home') %></a>
+    <a class="dropdown-item" data-method="post" href="<%= create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'disconnected') %>"><%= t('app.outcomes.disconnected') %></a>
+    <a class="dropdown-item" data-method="post" href="<%= create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'unreachable') %>"><%= t('app.outcomes.unreachable') %></a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item text-danger"
+       data-method="delete"
+       data-confirm="<%= t('app.messages.confirm_phone_delete') %>"
+       href="<%= territory_phone_path(@territory, @phone) %>"><%= t('app.links.remove_phone') %></a>
+  </div>
+</div>
+
+<div class="mt-5">
+  <%= render partial: '/call_attempts/list', locals: { call_attempts: @phone.call_attempts } %>
+</div>

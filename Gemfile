@@ -34,9 +34,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'dotenv-rails'
 
 # frontend
+gem 'bootstrap', '~> 4.4'
 gem 'jquery-rails'
 gem 'simple_form'
-gem 'bootstrap' , '~> 4.4'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'

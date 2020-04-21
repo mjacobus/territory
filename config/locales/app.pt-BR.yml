@@ -23,9 +23,28 @@ pt-BR:
     title: "Gerenciador de Territórios"
     messages:
       contact_admin: "Se você já logou mas não tem acesso, contate o admin de sua congregação."
+      confirm_phone_delete: "Tem certeza de que deseja excluir este telefone?"
+      confirm_call_attempt_delete: "Tem certeza de que deseja excluir este telefonema?"
     links:
       my_territories: "Meus territórios"
       territories: "Territórios"
       users: "Usuários"
       logout: "Sair"
       google_login: "Entrar com minha conta do Gmail"
+      call_number: "Ligar"
+      add: "Adicionar"
+      remove_phone: "Excluir telefone"
+      remove: "Exluir"
+      edit: "Alterar"
+      previous: "<< Anterior"
+      next: "Próximo >>"
+      other_carrier: 'Outra operadora'
+
+    outcomes:
+      not_home: "Não em casa"
+      contacted: "Contatado"
+      disconnected: "Fora da Área de cobertura"
+      unreachable: "Telefone inválido"
+
+    titles:
+      history: 'Histórico'
