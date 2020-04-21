@@ -8,10 +8,21 @@
 %>
 
 <table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Telefone</th>
+      <th>Nome</th>
+      <th>Status</th>
+    </tr>
+  </thead>
   <% @phones.each_with_index do |phone, index| %>
+    <% phone = PhoneDecorator.new(phone) %>
     <tr>
       <td><%= (index + 1).to_s.rjust(3, '0') %></td>
       <td><%= link_to(phone.number, territory_phone_path(@territory, phone)) %></td>
+      <td><%= phone.contact_name %></td>
+      <td><%= t("app.phone_status.#{phone.status}") if phone.contacted? %></td>
     </tr>
   <% end %>
 </table>
