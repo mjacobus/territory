@@ -32,15 +32,6 @@ class Phone < ApplicationRecord
     siblings.find(previous_index)
   end
 
-  def carrier_variations
-    {
-      'Vivo/Telefônica/GVT' => casted_number.with_prefix('015'),
-      'TIM' => casted_number.with_prefix('041'),
-      'Oi' => casted_number.with_prefix('014'),
-      'Claro/Net' => casted_number.with_prefix('021')
-    }
-  end
-
   def assign_call_attempt(attributes)
     call_attempts.create!(attributes.symbolize_keys.except(:phone_id))
   end

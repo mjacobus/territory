@@ -16,20 +16,21 @@
 
 <div class="text-center">
   <h2 class"mt-3 mb-3"><%= @phone.number %></h2>
+  <p><%= @phone.contact_name %></p>
+  <h3><span class="badge <%= @phone.badge_class  %>"><%= @phone.badge_text %></span></h3>
 </div>
-
 
 <div class="row">
   <div class="col-6 text-left">
-    <a class="btn btn-secondary w-100" href="<%= territory_phone_path(@territory, @phone.previous) %>"> <%= t('app.links.previous') %></a>
+    <a class="btn btn-light w-100" href="<%= territory_phone_path(@territory, @phone.previous) %>"> <%= t('app.links.previous') %></a>
   </div>
   <div class="col-6 text-right">
-    <a class="btn btn-secondary w-100" href="<%= territory_phone_path(@territory, @phone.next) %>"> <%= t('app.links.next') %></a>
+    <a class="btn btn-light w-100" href="<%= territory_phone_path(@territory, @phone.next) %>"> <%= t('app.links.next') %></a>
   </div>
 </div>
 
 <div class="dropdown mt-2">
-  <button class="btn btn-success dropdown-toggle btn-block" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-warning dropdown-toggle btn-block" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <%= t('app.links.call_number') %>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -42,7 +43,7 @@
 
 
 <div class="dropdown mt-2">
-  <button class="btn btn-info dropdown-toggle btn-block" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-dark dropdown-toggle btn-block" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <%= t('app.links.add') %>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

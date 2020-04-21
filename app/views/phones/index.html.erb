@@ -7,14 +7,27 @@
 }
 %>
 
-<table class="table table-striped">
-  <% @phones.each_with_index do |phone, index| %>
-    <tr>
-      <td><%= (index + 1).to_s.rjust(3, '0') %></td>
-      <td><%= link_to(phone.number, territory_phone_path(@territory, phone)) %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="card">
+  <div class="card-header"> <%= t('app.titles.phones') %></div>
+  <ul class="list-group list-group-flush">
+    <% @phones.each_with_index do |phone, index| %>
+      <% phone = PhoneDecorator.new(phone) %>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <%= link_to(phone.number, territory_phone_path(@territory, phone)) %>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <%= phone.contact_name %>
+          </div>
+          <div class="col-sm-12 col-md-4 text-md-right">
+            <span class="badge <%= phone.badge_class  %>"><%= phone.badge_text %></span>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 <% unless @territory.full?  %>
   <hr>
