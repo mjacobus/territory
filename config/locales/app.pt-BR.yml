@@ -43,6 +43,7 @@ pt-BR:
       previous: "<< Anterior"
       next: "Próximo >>"
       other_carrier: 'Outra operadora'
+      export_contacts: 'Importar lista de contatos'
     genders:
       male: "Masculino"
       female: "Feminino"
@@ -62,3 +63,6 @@ pt-BR:
       contact_again: "Revisitar"
       do_not_contact_again: "Não ligar mais"
       never_called: "Nunca ligado"
+    vcard:
+      notes: 'Testemunho por telefone. %{notes}'
+      name_prefix: 'jwtel -'

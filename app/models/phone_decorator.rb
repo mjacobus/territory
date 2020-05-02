@@ -3,6 +3,7 @@
 class PhoneDecorator
   delegate(*Phone.column_names, to: :@phone)
   delegate :to_param,
+           :id,
            :call_attempts,
            :previous,
            :carrier_variations,
@@ -37,6 +38,10 @@ class PhoneDecorator
 
   def contacted?
     outcomes.include?('contacted')
+  end
+
+  def notes
+    @phone.call_attempts.pluck(:notes).compact
   end
 
   def status

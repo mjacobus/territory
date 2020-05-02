@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   resources :territories do
     resources :phones do
+      collection do
+        get :vcards
+      end
       resources :call_attempts do
         collection do
           post 'create/:outcome', as: :create, action: :quick_create

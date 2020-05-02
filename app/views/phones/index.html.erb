@@ -8,7 +8,9 @@
 %>
 
 <div class="card">
-  <div class="card-header"> <%= t('app.titles.phones') %></div>
+  <div class="card-header">
+    <%= t('app.titles.phones') %> - <a href="<%= vcards_territory_phones_path(@territory) %>"><%= t('app.links.export_contacts') %></a>
+  </div>
   <ul class="list-group list-group-flush">
     <% @phones.each_with_index do |phone, index| %>
       <% phone = PhoneDecorator.new(phone) %>

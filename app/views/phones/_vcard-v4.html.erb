@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:4.0
+N:<%= vcard.full_name %>;;;<%= vcard.treated_as  %>;
+FN:<%= vcard.full_name %>
+ORG:<%= vcard.org %>
+TITLE:<%= vcard.title %>
+TEL;TYPE=home,voice;VALUE=uri:tel:<%= vcard.formatted_phone %>
+EMAIL:<%= vcard.email %>
+REV:<%= vcard.revision %>
+UID:<%= vcard.uid %>
+END:VCARD
