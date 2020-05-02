@@ -1,0 +1,7 @@
+<% @phones.map { |phone| PhoneVcard.new(phone) }.each do |vcard| %>
+<% if params[:v] == '4' %>
+<%= render partial: 'vcard-v4', locals: { vcard: vcard } %>
+<% else %>
+<%= render partial: 'vcard-v3', locals: { vcard: vcard } %>
+<% end %>
+<% end %>

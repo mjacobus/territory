@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:<%= vcard.full_name %>;;;<%= vcard.treated_as %>;
+FN:<%= vcard.full_name %>
+ORG:<%= vcard.org %>
+TITLE:<%= vcard.title %>
+TEL;TYPE=cell:<%= vcard.formatted_phone %>
+URL:<%= "#{root_url}#{vcard.url_path}" %>
+UID:<%= vcard.uid %>
+REV:<%= vcard.revision %>
+NOTE:<%= vcard.note %>
+END:VCARD

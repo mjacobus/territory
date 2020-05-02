@@ -19,6 +19,17 @@ class PhonesController < ApplicationController
     redirect_to action: :index
   end
 
+  def vcards
+    @phones = territory.phones
+    data = render_to_string(template: 'phones/vcards', layout: false)
+    send_data(data,
+              content_type: 'text/x-vcard',
+              filename: "#{territory.name}-contacts.vcf")
+    # send_file 'foo', layout: false,
+    #   content_type: 'text/x-vcard',
+    #   filename: "#{territory.name}-contacts.vcf"
+  end
+
   private
 
   def phone
