@@ -79,8 +79,7 @@ class CallAttemptsController < ApplicationController
       :answered,
       :gender,
       :has_children,
-      :can_text,
-      :can_call_again,
+      :return_visit,
       :called_annonymously,
       :reachable_by
     ).to_h.merge(user: current_user)

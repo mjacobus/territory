@@ -4,9 +4,12 @@ pt-BR:
     models:
       call_attempt: Ligação
       territory: Território
+      phone: Telefone
     attributes:
       territory:
         user_id: Publicador
+      phone:
+        return_visit: Revisitar
       call_attempt:
         outcome: Resultado
         gender: Gênero
@@ -15,7 +18,7 @@ pt-BR:
         notes: Observações
         answered: Atendeu
         has_children: Tem filhos?
-        can_text: Mandar mensagem de texto?
+        return_visit: Revisitar?
         can_call_again: Ligar novamente?
         called_annonymously: Chamada anônima?
         reachable_by: Quando é melhor revisitar
@@ -62,6 +65,7 @@ pt-BR:
       unreachable: "Número inválido"
       contact_again: "Revisitar"
       do_not_contact_again: "Não ligar mais"
+      error: "Não ligar mais"
       never_called: "Nunca ligado"
     vcard:
       notes: 'Testemunho por telefone. %{notes}'
