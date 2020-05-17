@@ -4,8 +4,28 @@
   </div>
 <% end %>
 
-<% if current_user && current_user.enabled? %>
-  <ul>
-    <li> <%= link_to(t('app.links.my_territories'), territories_path)  %> </li>
+<br>
+
+<div class="card">
+  <div class="card-header">
+    <%= t('app.titles.my_return_visits') %>
+  </div>
+  <ul class="list-group list-group-flush">
+    <% @phones_to_return_visit.each_with_index do |phone, index| %>
+      <% phone = PhoneDecorator.new(phone) %>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <%= link_to(phone.number, territory_phone_path(phone.territory_id, phone)) %>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <%= phone.contact_name %>
+          </div>
+          <div class="col-sm-12 col-md-4 text-md-right">
+            <span class="badge <%= phone.badge_class  %>"><%= phone.badge_text %></span>
+          </div>
+        </div>
+      </li>
+    <% end %>
   </ul>
-<% end %>
+</div>

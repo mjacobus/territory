@@ -13,6 +13,10 @@ class TestFactories
     @territories ||= TerritoryFactory.new(self)
   end
 
+  def users
+    @users ||= UserFactory.new(self)
+  end
+
   class Factory
     attr_reader :factories
 
@@ -44,11 +48,17 @@ class TestFactories
     end
   end
 
+  class UserFactory < Factory
+    def attributes(overrides = {})
+      { name: "User-#{seq}" }.merge(overrides)
+    end
+  end
+
   class TerritoryFactory < Factory
-    def attributes(_overrides = {})
+    def attributes(overrides = {})
       {
         name: "T-#{seq}"
-      }
+      }.merge(overrides)
     end
   end
 
@@ -57,7 +67,7 @@ class TestFactories
       {
         number: "#{seq}-111",
         territory: overrides[:territory] || factories.territories.create
-      }
+      }.merge(overrides)
     end
   end
 
@@ -81,7 +91,7 @@ class TestFactories
         outcome: 'contacted',
         gender: %w[male female].sample,
         notes: "nice talk #{seq}"
-      }
+      }.merge(overrides)
     end
   end
 end

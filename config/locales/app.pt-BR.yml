@@ -19,7 +19,6 @@ pt-BR:
         answered: Atendeu
         has_children: Tem filhos?
         return_visit: Revisitar?
-        can_call_again: Ligar novamente?
         called_annonymously: Chamada anônima?
         reachable_by: Quando é melhor revisitar
   'true': 'Sim'
@@ -60,6 +59,7 @@ pt-BR:
     titles:
       history: 'Histórico'
       phones: 'Telefones'
+      my_return_visits: 'Minhas Revisitas'
 
     phone_status:
       unreachable: "Número inválido"
