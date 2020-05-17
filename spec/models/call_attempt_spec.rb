@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe CallAttempt, type: :model do
-  let(:territory) { Phone.new(territory: territory) }
   let(:phone) { Phone.new }
   let(:attempt) { described_class.new(phone: phone, user: User.new) }
   let(:contacted) do
@@ -14,6 +13,10 @@ RSpec.describe CallAttempt, type: :model do
       gender: 'male',
       notes: 'nice talk'
     )
+  end
+
+  it 'defaults make_return_visit_to nil' do
+    expect(contacted.make_return_visit).to be nil
   end
 
   it 'belongs to phone' do
