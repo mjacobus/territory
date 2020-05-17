@@ -54,7 +54,7 @@ pt-BR:
     outcomes:
       not_home: "Não em casa"
       contacted: "Contatado"
-      disconnected: "Fora da Área de cobertura"
+      disconnected: "Fora da Área de cobertura ou desligado"
       unreachable: "Telefone inválido"
 
     titles:
@@ -66,8 +66,9 @@ pt-BR:
       unreachable: "Número inválido"
       contact_again: "Revisitar"
       do_not_contact_again: "Não ligar mais"
-      error: "Não ligar mais"
+      error: "Verificar"
       never_called: "Nunca ligado"
+      not_home: "Não atendeu"
     vcard:
       notes: 'Testemunho por telefone. %{notes}'
       name_prefix: 'jwtel -'

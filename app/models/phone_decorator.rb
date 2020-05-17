@@ -40,6 +40,10 @@ class PhoneDecorator
 
   # rubocop:disable Metrics/MethodLength
   def status
+    if outcomes.empty?
+      return 'never_called'
+    end
+
     # Contacted but no feedback
     unless return_visit.nil?
       if return_visit?
@@ -53,8 +57,8 @@ class PhoneDecorator
       return 'unreachable'
     end
 
-    unless contacted?
-      return 'never_called'
+    if outcomes.include?('not_home')
+      return 'not_home'
     end
 
     'error'
@@ -82,8 +86,9 @@ class PhoneDecorator
       contact_again: 'badge-success',
       never_called: 'badge-light',
       unreachable: 'badge-secondary',
+      not_home: 'badge-warning',
       do_not_contact_again: 'badge-danger',
-      error: 'badge-danger'
+      error: 'badge-primary'
     }.fetch(status.to_sym)
   end
 
