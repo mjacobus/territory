@@ -24,11 +24,8 @@
               <% if attempt.user != current_user %>
                 <strong>Publicador:</strong> <%= attempt.user.name %><br>
               <% end %>
-              <% unless attempt.can_text.nil? %>
-                <strong>Mandar mensagem de texto?</strong><br> <%= t attempt.can_text? %><br>
-              <% end %>
-              <% unless attempt.can_call_again.nil? %>
-                <strong>Ligar novamente?</strong><br> <%= t attempt.can_call_again? %><br>
+              <% unless attempt.return_visit.nil? %>
+                <strong>Revisitar?</strong><br> <%= t attempt.return_visit? %><br>
               <% end %>
             </p>
 

@@ -3,10 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe CallAttempt, type: :model do
+  let(:factories) { TestFactories.new }
+  let(:factory) { factories.call_attempts }
   let(:phone) { Phone.new }
   let(:attempt) { described_class.new(phone: phone, user: User.new) }
   let(:contacted) do
-    described_class.new(
+    factory.build(
       phone: phone,
       outcome: 'contacted',
       user: User.new,
@@ -15,8 +17,8 @@ RSpec.describe CallAttempt, type: :model do
     )
   end
 
-  it 'defaults make_return_visit_to nil' do
-    expect(contacted.make_return_visit).to be nil
+  it 'defaults return_visit nil' do
+    expect(contacted.return_visit).to be nil
   end
 
   it 'belongs to phone' do
@@ -102,5 +104,40 @@ RSpec.describe CallAttempt, type: :model do
     contacted.gender = 'other'
 
     expect(contacted).not_to be_valid
+  end
+
+  describe '#return_visit' do
+    context 'when transitioning to return_visit to not_home' do
+      it 'stays true' do
+        phone = factories.phones.create
+
+        factory.create_return_visit(phone: phone)
+        factory.create_not_home(phone: phone)
+
+        expect(phone.reload.return_visit).to be true
+      end
+    end
+
+    context 'when transitioning to return_visit to not_home' do
+      it 'changes to false' do
+        phone = factories.phones.create
+
+        factory.create_return_visit(phone: phone)
+        factory.create_do_not_call(phone: phone)
+
+        expect(phone.reload.return_visit).to be false
+      end
+    end
+
+    context 'when transitioning to do_not_visit to not_home' do
+      it 'changes to false' do
+        phone = factories.phones.create
+
+        factory.create_do_not_call(phone: phone)
+        factory.create_not_home(phone: phone)
+
+        expect(phone.reload.return_visit).to be false
+      end
+    end
   end
 end

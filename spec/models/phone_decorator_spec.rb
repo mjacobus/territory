@@ -13,8 +13,6 @@ RSpec.describe PhoneDecorator do
   let(:pluck_args) do
     %i[
       name
-      can_call_again
-      can_text
       outcome
     ]
   end
@@ -43,96 +41,6 @@ RSpec.describe PhoneDecorator do
 
     it 'returns all possible contact names' do
       expect(decorator.contact_name).to eq('John, Mary')
-    end
-  end
-
-  describe '#call_again?' do
-    let(:plucked) do
-      [
-        [nil, nil],
-        [nil, ''],
-        [nil, true],
-        [nil, nil],
-        [nil, last],
-        [nil, '']
-      ]
-    end
-
-    context 'when last answer is no' do
-      let(:last) { false }
-
-      it 'returns false' do
-        expect(decorator.call_again?).to be last
-      end
-    end
-
-    context 'when last answer is yes' do
-      let(:last) { true }
-
-      it 'returns true' do
-        expect(decorator.call_again?).to be last
-      end
-    end
-
-    context 'when last answer absent' do
-      let(:plucked) { [[nil, nil]] }
-
-      it 'returns true' do
-        expect(decorator.call_again?).to be true
-      end
-    end
-
-    context 'when there was no answer' do
-      let(:plucked) { [] }
-
-      it 'returns true' do
-        expect(decorator.call_again?).to be true
-      end
-    end
-  end
-
-  describe '#can_text?' do
-    let(:plucked) do
-      [
-        [nil, nil, nil],
-        [nil, nil, ''],
-        [nil, nil, true],
-        [nil, nil, nil],
-        [nil, nil, last],
-        [nil, nil, '']
-      ]
-    end
-
-    context 'when last answer is no' do
-      let(:last) { false }
-
-      it 'returns false' do
-        expect(decorator.can_text?).to be last
-      end
-    end
-
-    context 'when last answer is yes' do
-      let(:last) { true }
-
-      it 'returns true' do
-        expect(decorator.can_text?).to be last
-      end
-    end
-
-    context 'when last answer absent' do
-      let(:plucked) { [[nil, nil]] }
-
-      it 'returns true' do
-        expect(decorator.can_text?).to be true
-      end
-    end
-
-    context 'when there was no answer' do
-      let(:plucked) { [] }
-
-      it 'returns true' do
-        expect(decorator.can_text?).to be true
-      end
     end
   end
 end

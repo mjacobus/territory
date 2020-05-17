@@ -6,6 +6,8 @@ class PhoneDecorator
            :id,
            :call_attempts,
            :previous,
+           :return_visit,
+           :return_visit?,
            :carrier_variations,
            :casted_number,
            :next,
@@ -17,14 +19,6 @@ class PhoneDecorator
 
   def contact_name
     pluck(:name).map(&:to_s).reject(&:empty?).uniq.join(', ')
-  end
-
-  def can_text?
-    boolean_or(:can_text, true)
-  end
-
-  def call_again?
-    boolean_or(:can_call_again, true)
   end
 
   def carrier_variations
@@ -44,7 +38,17 @@ class PhoneDecorator
     @phone.call_attempts.pluck(:notes).compact
   end
 
+  # rubocop:disable Metrics/MethodLength
   def status
+    # Contacted but no feedback
+    unless return_visit.nil?
+      if return_visit?
+        return 'contact_again'
+      end
+
+      return 'do_not_contact_again'
+    end
+
     if outcomes.include?('unreachable')
       return 'unreachable'
     end
@@ -53,12 +57,9 @@ class PhoneDecorator
       return 'never_called'
     end
 
-    if call_again? || can_text?
-      return 'contact_again'
-    end
-
-    'do_not_contact_again'
+    'error'
   end
+  # rubocop:enable Metrics/MethodLength
 
   def contact?
     true
@@ -81,7 +82,8 @@ class PhoneDecorator
       contact_again: 'badge-success',
       never_called: 'badge-light',
       unreachable: 'badge-secondary',
-      do_not_contact_again: 'badge-danger'
+      do_not_contact_again: 'badge-danger',
+      error: 'badge-danger'
     }.fetch(status.to_sym)
   end
 
@@ -109,6 +111,6 @@ class PhoneDecorator
   end
 
   def fields_to_pluck
-    %i[name can_call_again can_text outcome]
+    %i[name outcome]
   end
 end
