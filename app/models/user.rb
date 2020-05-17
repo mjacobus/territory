@@ -14,7 +14,7 @@ class User < ApplicationRecord
   def return_visits
     Phone.where(return_visit: true)
       .joins(:call_attempts)
-      .where(call_attempts: { user_id: id }).tap do |sql|
-    end
+      .where(call_attempts: { user_id: id })
+      .distinct
   end
 end
