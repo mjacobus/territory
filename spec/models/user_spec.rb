@@ -10,7 +10,10 @@ RSpec.describe User do
       user1 = factories.users.create
       user2 = factories.users.create
 
-      expected = factories.call_attempts.create_return_visit(user: user1)
+      phone = factories.call_attempts.create_return_visit(user: user1).phone
+      expected = factories.call_attempts.create_return_visit(user: user1, phone: phone)
+
+      factories.call_attempts.create_not_home(phone: expected.phone, user: user2)
       factories.call_attempts.create_return_visit(user: user2)
 
       expect(user1.return_visits).to eq([expected.phone])
