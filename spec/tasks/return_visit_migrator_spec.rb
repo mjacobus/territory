@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Tasks::ReturnVisitMigrator do
   describe '#migrate' do
+    let(:factories) { TestFactories.new }
     let(:territory) { Territory.create!(name: 'the-territory') }
 
     it 'marks as return visits the records allow either can_call or can_ext' do
@@ -42,15 +43,15 @@ RSpec.describe Tasks::ReturnVisitMigrator do
 
     def create_attempt(number, call, text)
       phone = Phone.find_or_create_by!(number: number, territory: territory)
-      CallAttempt.create!(
+      factories.call_attempts.build(
         phone: phone,
         outcome: 'contacted',
         can_call_again: call,
         can_text: text,
-        user: User.new,
-        gender: 'male',
-        notes: 'nice talk'
-      )
+        user: User.new
+      ).tap do |attempt|
+        attempt.save(validate: false)
+      end
     end
   end
 end

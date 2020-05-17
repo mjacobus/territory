@@ -20,6 +20,7 @@ class CallAttempt < ApplicationRecord
 
   private
 
+  # rubocop:disable Metrics/MethodLength
   def validate_contacted_fields
     unless contacted?
       return
@@ -29,10 +30,15 @@ class CallAttempt < ApplicationRecord
       errors.add(:gender, :blank)
     end
 
+    unless [true, false].include?(return_visit)
+      errors.add(:return_visit, :blank)
+    end
+
     unless notes.present?
       errors.add(:notes, :blank)
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def update_phone_status
     unless phone
