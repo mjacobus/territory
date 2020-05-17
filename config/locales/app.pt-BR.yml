@@ -32,6 +32,7 @@ pt-BR:
       confirm_call_attempt_delete: "Tem certeza de que deseja excluir este telefonema?"
       alert_someone_else_territory: "Cuidado! Este território está designado para outro publicador."
     links:
+      home: "Home"
       my_territories: "Meus territórios"
       territories: "Territórios"
       users: "Usuários"
