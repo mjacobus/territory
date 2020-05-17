@@ -10,4 +10,11 @@ class User < ApplicationRecord
 
     territories
   end
+
+  def return_visits
+    Phone.where(return_visit: true)
+      .joins(:call_attempts)
+      .where(call_attempts: { user_id: id }).tap do |sql|
+    end
+  end
 end
