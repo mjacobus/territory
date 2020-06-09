@@ -29,7 +29,7 @@
               <% end %>
             </p>
 
-            <p><strong>Observações:</strong><br> <%= attempt.notes %></p>
+            <p><strong>Observações:</strong><br> <%= simple_format(attempt.notes) %></p>
 
             <% if attempt.reachable_by.present? %>
               <p><strong>Melhor hora:</strong><br> <%= attempt.reachable_by %></p>
