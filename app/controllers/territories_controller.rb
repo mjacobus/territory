@@ -5,10 +5,6 @@ class TerritoriesController < ApplicationController
     @territories = territories.all
   end
 
-  def show
-    territory
-  end
-
   def new
     @territory = territories.build
   end
