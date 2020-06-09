@@ -25,25 +25,6 @@ RSpec.describe TerritoriesController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
-    it 'assigns @territory' do
-      get :show, params: { id: territory.id }
-
-      expect(response).to be_successful
-      expect(assigns(:territory)).to eq(territory)
-    end
-
-    context 'when user is logged out' do
-      let(:current_user) { nil }
-
-      it 'redirects to /' do
-        get :show, params: { id: territory.id }
-
-        expect(response).to redirect_to('/')
-      end
-    end
-  end
-
   describe 'GET #new' do
     it 'renders the new template' do
       get :new
