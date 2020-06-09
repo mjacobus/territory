@@ -92,9 +92,12 @@ RSpec.describe CallAttemptsController, type: :controller do
 
   describe 'PUT #update' do
     before do
+      call_attempt.user = regular_user
+      call_attempt.save!
       call_attempt_params[:notes] = 'updated note'
     end
 
+    let(:current_user) { admin_user }
     let(:params) do
       {
         call_attempt: call_attempt_params.merge(notes: 'updated note'),
@@ -117,6 +120,11 @@ RSpec.describe CallAttemptsController, type: :controller do
       path = territory_phone_path(territory, phone)
 
       expect(response).to redirect_to(path)
+    end
+
+    it 'does not update owner' do
+      expect { perform_request }
+        .not_to(change { call_attempt.reload.user })
     end
   end
 

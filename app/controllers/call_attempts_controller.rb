@@ -31,7 +31,7 @@ class CallAttemptsController < ApplicationController
   end
 
   def update
-    if call_attempt.update(call_attempt_params)
+    if call_attempt.update(call_attempt_params.except(:user))
       return redirect_to([territory, phone])
     end
 
