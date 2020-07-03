@@ -21,27 +21,3 @@
     <hr>
   </div>
 <% end %>
-
-<hr>
-
-<%= simple_form_for([@territory, @phone, @call_attempt], local: true) do |f| %>
-  <div class="inline-check-boxes special-legends soft-labels">
-    <%= f.error_notification %>
-    <% if @call_attempt.contacted? %>
-      <hr>
-      <%= f.input :name %>
-      <hr>
-      <%= f.input :gender, as: :radio_buttons, collection: CallAttempt::GENDERS.map { |gender| [gender_label(gender), gender] } %>
-      <hr>
-      <%= render partial: '/boolean_radiobuttons', locals: { f: f, field: :return_visit, allow_nil: false } %>
-    <% end %>
-    <hr>
-    <%= f.input :notes %>
-    <hr>
-    <%= f.input :reachable_by %>
-    <hr>
-
-    <%= f.submit(class: 'btn btn-primary btn-block') %>
-    <hr>
-  </div>
-<% end %>
