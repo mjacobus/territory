@@ -16,13 +16,16 @@
         <% phone = PhoneDecorator.new(phone) %>
         <li class="list-group-item">
           <div class="row">
-            <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-3">
               <%= link_to(phone.number, territory_phone_path(phone.territory_id, phone)) %>
             </div>
-            <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-3">
               <%= phone.contact_name %>
             </div>
-            <div class="col-sm-12 col-md-4 text-md-right">
+            <div class="col-sm-12 col-md-3">
+              <%= phone.reachable_by %>
+            </div>
+            <div class="col-sm-12 col-md-3 text-md-right">
               <span class="badge <%= phone.badge_class  %>"><%= phone.badge_text %></span>
             </div>
           </div>

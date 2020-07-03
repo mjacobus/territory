@@ -82,10 +82,11 @@ class CallAttemptForm
 
   def reachable_by=(value)
     @call_attempt.reachable_by = value
+    @phone.reachable_by = value
   end
 
   def reachable_by
-    @call_attempt.reachable_by
+    @phone.reachable_by
   end
 
   def gender=(value)
