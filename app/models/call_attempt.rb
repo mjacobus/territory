@@ -7,7 +7,6 @@ class CallAttempt < ApplicationRecord
   belongs_to :user
 
   default_scope -> { order(created_at: :asc) }
-  after_save { update_phone_status }
 
   validates :outcome, presence: true, inclusion: { in: OUTCOMES }
   validates :gender, inclusion: { in: GENDERS, allow_nil: true, allow_blank: true }
@@ -15,19 +14,5 @@ class CallAttempt < ApplicationRecord
 
   def contacted?
     outcome.to_s == 'contacted'
-  end
-
-  private
-
-  def update_phone_status
-    unless phone
-      return
-    end
-
-    phone.call_attempts.pluck(:return_visit).compact.each do |return_visit|
-      phone.return_visit = return_visit
-    end
-
-    phone.save!
   end
 end

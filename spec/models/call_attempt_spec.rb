@@ -100,39 +100,4 @@ RSpec.describe CallAttempt, type: :model do
 
     expect(contacted).not_to be_valid
   end
-
-  describe '#return_visit' do
-    context 'when transitioning to return_visit to not_home' do
-      it 'stays true' do
-        phone = factories.phones.create
-
-        factory.create_return_visit(phone: phone)
-        factory.create_not_home(phone: phone)
-
-        expect(phone.reload.return_visit).to be true
-      end
-    end
-
-    context 'when transitioning to return_visit to not_home' do
-      it 'changes to false' do
-        phone = factories.phones.create
-
-        factory.create_return_visit(phone: phone)
-        factory.create_do_not_call(phone: phone)
-
-        expect(phone.reload.return_visit).to be false
-      end
-    end
-
-    context 'when transitioning to do_not_visit to not_home' do
-      it 'changes to false' do
-        phone = factories.phones.create
-
-        factory.create_do_not_call(phone: phone)
-        factory.create_not_home(phone: phone)
-
-        expect(phone.reload.return_visit).to be false
-      end
-    end
-  end
 end

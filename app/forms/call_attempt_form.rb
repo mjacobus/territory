@@ -14,8 +14,9 @@ class CallAttemptForm
   def persist(attributes)
     self.attributes = attributes
     if valid?
-      @phone.save!
       @call_attempt.save!
+      @phone.save!
+      @phone.update_status
     end
   end
 

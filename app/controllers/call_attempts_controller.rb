@@ -37,6 +37,7 @@ class CallAttemptsController < ApplicationController
 
   def destroy
     call_attempt.destroy
+    @phone.update_status
     redirect_to [territory, phone]
   end
 

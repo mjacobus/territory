@@ -16,6 +16,8 @@ RSpec.describe User do
       factories.call_attempts.create_not_home(phone: expected.phone, user: user2)
       factories.call_attempts.create_return_visit(user: user2)
 
+      phone.update_status
+
       expect(user1.return_visits).to eq([expected.phone])
     end
   end

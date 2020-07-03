@@ -57,4 +57,46 @@ RSpec.describe Phone, type: :model do
       expect { assign }.to change { phone.call_attempts.count }.by(1)
     end
   end
+
+  describe '#update_status' do
+    let(:factories) { TestFactories.new }
+    let(:factory) { factories.call_attempts }
+
+    context 'when transitioning to return_visit to not_home' do
+      it 'stays true' do
+        phone = factories.phones.create
+
+        factory.create_return_visit(phone: phone)
+        factory.create_not_home(phone: phone)
+        phone.update_status
+
+        expect(phone.reload.return_visit).to be true
+      end
+    end
+
+    context 'when transitioning to return_visit to not_home' do
+      it 'changes to false' do
+        phone = factories.phones.create
+
+        factory.create_return_visit(phone: phone)
+        factory.create_do_not_call(phone: phone)
+        phone.update_status
+
+        expect(phone.reload.return_visit).to be false
+      end
+    end
+
+    context 'when transitioning to do_not_visit to not_home' do
+      it 'changes to false' do
+        phone = factories.phones.create
+
+        factory.create_do_not_call(phone: phone)
+        factory.create_not_home(phone: phone)
+
+        phone.update_status
+
+        expect(phone.reload.return_visit).to be false
+      end
+    end
+  end
 end
