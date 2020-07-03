@@ -32,7 +32,7 @@ class PhoneVcard
   end
 
   def full_name
-    "#{prefix} #{first_name}"
+    "#{prefix} #{first_name} #{@phone.casted_number.sanitized}"
   end
 
   def prefix
