@@ -10,7 +10,7 @@ class CallAttemptsController < ApplicationController
   end
 
   def edit
-    call_attempt
+    @call_attempt_form = CallAttemptForm.new(call_attempt)
   end
 
   def quick_create
@@ -31,9 +31,13 @@ class CallAttemptsController < ApplicationController
   end
 
   def update
-    if call_attempt.update(call_attempt_params.except(:user))
+    if form.persist(call_attempt_params.except(:user))
       return redirect_to([territory, phone])
     end
+
+    # if call_attempt.update(call_attempt_params.except(:user))
+    #   return redirect_to([territory, phone])
+    # end
 
     render :edit
   end
@@ -44,6 +48,10 @@ class CallAttemptsController < ApplicationController
   end
 
   private
+
+  def form
+    @call_attempt_form ||= CallAttemptForm.new(params[:id] ? call_attempt : CallAttempt.new)
+  end
 
   def call_attempt
     @call_attempt ||= phone.call_attempts.find(params[:id])

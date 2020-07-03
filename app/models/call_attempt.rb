@@ -18,13 +18,13 @@ class CallAttempt < ApplicationRecord
     outcome.to_s == 'contacted'
   end
 
-  def gender
-    raise 'User phone gender'
-  end
-
-  def name
-    raise 'User phone name'
-  end
+  # def gender
+  #   raise 'User phone gender'
+  # end
+  #
+  # def name
+  #   raise 'User phone name'
+  # end
 
   private
 
