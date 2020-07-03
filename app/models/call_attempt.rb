@@ -12,27 +12,12 @@ class CallAttempt < ApplicationRecord
   validates :outcome, presence: true, inclusion: { in: OUTCOMES }
   validates :gender, inclusion: { in: GENDERS, allow_nil: true, allow_blank: true }
   validates :user, presence: true
-  validate :validate_contacted_fields
 
   def contacted?
     outcome.to_s == 'contacted'
   end
 
   private
-
-  def validate_contacted_fields
-    unless contacted?
-      return
-    end
-
-    unless [true, false].include?(return_visit)
-      errors.add(:return_visit, :blank)
-    end
-
-    unless notes.present?
-      errors.add(:notes, :blank)
-    end
-  end
 
   def update_phone_status
     unless phone

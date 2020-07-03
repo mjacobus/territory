@@ -3,6 +3,8 @@
 class CallAttemptForm
   include ActiveModel::Model
 
+  validate :validate_contacted_fields
+
   def initialize(call_attempt)
     @call_attempt = call_attempt
     @phone = call_attempt.phone
@@ -104,5 +106,23 @@ class CallAttemptForm
 
   def url
     [@territory, @phone, @call_attempt]
+  end
+
+  def contacted?
+    @call_attempt.contacted?
+  end
+
+  def validate_contacted_fields
+    unless contacted?
+      return
+    end
+
+    unless [true, false].include?(return_visit)
+      errors.add(:return_visit, :blank)
+    end
+
+    unless notes.present?
+      errors.add(:notes, :blank)
+    end
   end
 end
