@@ -1,6 +1,6 @@
 <p><strong><%= outcome_label(@call_attempt.outcome) %></strong></p>
 
-<%= simple_form_for([@territory, @phone, @call_attempt], local: true) do |f| %>
+<%= simple_form_for(@form, url: @form.url, local: true, method: @form.method) do |f| %>
   <div class="inline-check-boxes special-legends soft-labels">
     <%= f.error_notification %>
     <% if @call_attempt.contacted? %>

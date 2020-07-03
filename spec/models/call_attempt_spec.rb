@@ -74,22 +74,6 @@ RSpec.describe CallAttempt, type: :model do
     expect(attempt).to be_valid
   end
 
-  it 'requires gender when person was contacted' do
-    attempt.outcome = 'contacted'
-    attempt.gender = ''
-
-    expect(attempt).not_to be_valid
-    expect(attempt.errors[:gender]).not_to be_empty
-  end
-
-  it 'requires return_visit when person was contacted' do
-    attempt.outcome = 'contacted'
-    attempt.return_visit = ''
-
-    expect(attempt).not_to be_valid
-    expect(attempt.errors[:return_visit]).not_to be_empty
-  end
-
   it 'accepts false return_visit when person was contacted' do
     attempt.outcome = 'contacted'
     attempt.return_visit = false
@@ -97,14 +81,6 @@ RSpec.describe CallAttempt, type: :model do
     attempt.gender = 'male'
 
     expect(attempt).to be_valid
-  end
-
-  it 'requires notes when person was contacted' do
-    attempt.outcome = 'contacted'
-    attempt.notes = ''
-
-    expect(attempt).not_to be_valid
-    expect(attempt.errors[:notes]).not_to be_empty
   end
 
   it 'accepts male as #gender' do
@@ -123,40 +99,5 @@ RSpec.describe CallAttempt, type: :model do
     contacted.gender = 'other'
 
     expect(contacted).not_to be_valid
-  end
-
-  describe '#return_visit' do
-    context 'when transitioning to return_visit to not_home' do
-      it 'stays true' do
-        phone = factories.phones.create
-
-        factory.create_return_visit(phone: phone)
-        factory.create_not_home(phone: phone)
-
-        expect(phone.reload.return_visit).to be true
-      end
-    end
-
-    context 'when transitioning to return_visit to not_home' do
-      it 'changes to false' do
-        phone = factories.phones.create
-
-        factory.create_return_visit(phone: phone)
-        factory.create_do_not_call(phone: phone)
-
-        expect(phone.reload.return_visit).to be false
-      end
-    end
-
-    context 'when transitioning to do_not_visit to not_home' do
-      it 'changes to false' do
-        phone = factories.phones.create
-
-        factory.create_do_not_call(phone: phone)
-        factory.create_not_home(phone: phone)
-
-        expect(phone.reload.return_visit).to be false
-      end
-    end
   end
 end

@@ -58,28 +58,45 @@ RSpec.describe Phone, type: :model do
     end
   end
 
-  describe '#quick_assign_attempt' do
-    before { phone.save! }
+  describe '#update_status' do
+    let(:factories) { TestFactories.new }
+    let(:factory) { factories.call_attempts }
 
-    it 'rejects non valid assignment' do
-      expect { phone.quick_assign_attempt('invalid', user: user) }.to raise_error(
-        ActiveRecord::RecordInvalid
-      )
+    context 'when transitioning to return_visit to not_home' do
+      it 'stays true' do
+        phone = factories.phones.create
+
+        factory.create_return_visit(phone: phone)
+        factory.create_not_home(phone: phone)
+        phone.update_status
+
+        expect(phone.reload.return_visit).to be true
+      end
     end
 
-    it 'accepts valid outcome' do
-      result = phone.quick_assign_attempt('contacted', user: user)
+    context 'when transitioning to return_visit to not_home' do
+      it 'changes to false' do
+        phone = factories.phones.create
 
-      expect(result).to be_a(CallAttempt)
-      expect(result).to be_persisted
-      expect(result).to be_contacted
+        factory.create_return_visit(phone: phone)
+        factory.create_do_not_call(phone: phone)
+        phone.update_status
+
+        expect(phone.reload.return_visit).to be false
+      end
     end
-  end
 
-  it 'removes children' do
-    phone.save!
-    phone.quick_assign_attempt('contacted', user: user)
+    context 'when transitioning to do_not_visit to not_home' do
+      it 'changes to false' do
+        phone = factories.phones.create
 
-    expect { phone.destroy }.to change(CallAttempt, :count).by(-1)
+        factory.create_do_not_call(phone: phone)
+        factory.create_not_home(phone: phone)
+
+        phone.update_status
+
+        expect(phone.reload.return_visit).to be false
+      end
+    end
   end
 end

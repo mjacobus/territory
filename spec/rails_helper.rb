@@ -65,3 +65,11 @@ RSpec.configure do |config|
 
   config.include ControllerSpecHelper, type: :controller
 end
+
+# Monkey patch for testing only.
+# TODO: Refactor this.
+class Phone < ApplicationRecord
+  def assign_call_attempt(attributes)
+    call_attempts.create!(attributes.symbolize_keys.except(:phone_id))
+  end
+end

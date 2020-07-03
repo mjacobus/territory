@@ -8,6 +8,16 @@ class Phone < ApplicationRecord
 
   validates :number, presence: true, uniqueness: { case_sensitive: false }
 
+  def update_status
+    self.return_visit = nil
+
+    call_attempts.pluck(:return_visit).compact.each do |return_visit|
+      self.return_visit = return_visit
+    end
+
+    save!
+  end
+
   def casted_number
     PhoneNumber.new(number)
   end
@@ -30,22 +40,6 @@ class Phone < ApplicationRecord
       previous_index = ids.first
     end
     siblings.find(previous_index)
-  end
-
-  def assign_call_attempt(attributes)
-    call_attempts.create!(attributes.symbolize_keys.except(:phone_id))
-  end
-
-  def quick_assign_attempt(outcome, user:)
-    call_attempts.build(outcome: outcome, user: user).tap do |record|
-      record.valid?
-
-      if record.errors[:outcome].empty? && record.errors[:user].empty?
-        record.save(validate: false)
-      else
-        record.save!
-      end
-    end
   end
 
   private

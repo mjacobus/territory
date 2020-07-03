@@ -17,10 +17,6 @@
         <div class="collapse" id="call-attempt-details-id_<%= attempt.id  %>">
           <% if attempt.contacted? %>
             <p>
-              <strong>Nome:</strong> <%= attempt.name %><br>
-              <% if attempt.gender %>
-                <strong>Gênero:</strong><%= gender_label(attempt.gender)  %><br>
-              <% end %>
               <% if attempt.user != current_user %>
                 <strong>Publicador:</strong> <%= attempt.user.name %><br>
               <% end %>

@@ -94,6 +94,7 @@ RSpec.describe CallAttemptsController, type: :controller do
     before do
       call_attempt.user = regular_user
       call_attempt.save!
+      call_attempt_params.delete(:outcome)
       call_attempt_params[:notes] = 'updated note'
     end
 

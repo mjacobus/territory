@@ -7,6 +7,7 @@ module Tasks
       CallAttempt.order(created_at: :desc).each do |call_attempt|
         call_attempt.return_visit = make_return_visit_value(call_attempt)
         call_attempt.save(validate: false)
+        call_attempt.phone.update_status
       end
     end
 

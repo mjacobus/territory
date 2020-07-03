@@ -29,22 +29,6 @@ RSpec.describe PhoneDecorator do
     expect(decorator.to_param).to eq('1')
   end
 
-  describe '#contact_name' do
-    let(:plucked) do
-      [
-        ['John'],
-        ['John'],
-        [''],
-        [nil],
-        ['Mary']
-      ]
-    end
-
-    it 'returns all possible contact names' do
-      expect(decorator.contact_name).to eq('John, Mary')
-    end
-  end
-
   describe '#status' do
     context 'when never called' do
       let(:plucked) { [] }

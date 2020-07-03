@@ -11,6 +11,7 @@ class PhoneDecorator
            :carrier_variations,
            :casted_number,
            :next,
+           :name,
            to: :@phone
 
   def initialize(phone)
@@ -18,7 +19,7 @@ class PhoneDecorator
   end
 
   def contact_name
-    pluck(:name).map(&:to_s).reject(&:empty?).uniq.join(', ')
+    name
   end
 
   def carrier_variations
