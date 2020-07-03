@@ -17,6 +17,17 @@ class CallAttemptForm
     end
   end
 
+  def draft(outcome:, user:)
+    @call_attempt.user = user
+    @call_attempt.outcome = outcome
+
+    if @call_attempt.errors[:outcome].empty? && @call_attempt.errors[:user].empty?
+      return @call_attempt.save(validate: false)
+    end
+
+    @call_attempt.save!
+  end
+
   def model_name
     ActiveModel::Name.new(@call_attempt.class)
   end
@@ -32,6 +43,22 @@ class CallAttemptForm
   def name=(value)
     @phone.name = value
     @call_attempt.name = value
+  end
+
+  def outcome
+    @call_attempt.outcome
+  end
+
+  def outcome=(value)
+    @call_attempt.outcome = value
+  end
+
+  def user
+    @call_attempt.user
+  end
+
+  def user=(value)
+    @call_attempt.user = value
   end
 
   def notes=(value)

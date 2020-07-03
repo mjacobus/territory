@@ -32,22 +32,6 @@ class Phone < ApplicationRecord
     siblings.find(previous_index)
   end
 
-  def assign_call_attempt(attributes)
-    call_attempts.create!(attributes.symbolize_keys.except(:phone_id))
-  end
-
-  def quick_assign_attempt(outcome, user:)
-    call_attempts.build(outcome: outcome, user: user).tap do |record|
-      record.valid?
-
-      if record.errors[:outcome].empty? && record.errors[:user].empty?
-        record.save(validate: false)
-      else
-        record.save!
-      end
-    end
-  end
-
   private
 
   def siblings

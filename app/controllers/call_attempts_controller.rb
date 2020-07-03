@@ -6,24 +6,21 @@ class CallAttemptsController < ApplicationController
   end
 
   def new
-    @call_attempt = phone.call_attempts.build
+    form
   end
 
   def edit
-    @call_attempt_form = CallAttemptForm.new(call_attempt)
+    form
   end
 
   def quick_create
-    call_attempt = phone.quick_assign_attempt(
-      params[:outcome],
-      user: current_user
-    )
-
-    redirect_to_edit(call_attempt)
+    form.draft(outcome: params[:outcome], user: current_user)
+    url = [:edit, form.url, hide_outcome: true].flatten
+    redirect_to(url)
   end
 
   def create
-    phone.assign_call_attempt(call_attempt_params)
+    form.persist(call_attempt_params)
     redirect_to [territory, phone]
   rescue ActiveRecord::RecordInvalid => exception
     @call_attempt = exception.record
@@ -34,10 +31,6 @@ class CallAttemptsController < ApplicationController
     if form.persist(call_attempt_params.except(:user))
       return redirect_to([territory, phone])
     end
-
-    # if call_attempt.update(call_attempt_params.except(:user))
-    #   return redirect_to([territory, phone])
-    # end
 
     render :edit
   end
@@ -50,7 +43,9 @@ class CallAttemptsController < ApplicationController
   private
 
   def form
-    @call_attempt_form ||= CallAttemptForm.new(params[:id] ? call_attempt : CallAttempt.new)
+    @form ||= CallAttemptForm.new(
+      params[:id] ? call_attempt : phone.call_attempts.build
+    )
   end
 
   def call_attempt
@@ -63,16 +58,6 @@ class CallAttemptsController < ApplicationController
 
   def territory
     @territory ||= current_user.allowed_territories.find(params[:territory_id])
-  end
-
-  def redirect_to_edit(call_attempt)
-    url = edit_territory_phone_call_attempt_path(
-      territory,
-      phone,
-      call_attempt,
-      hide_outcome: true
-    )
-    redirect_to(url)
   end
 
   # rubocop:disable Metrics/MethodLength
