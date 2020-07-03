@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 # rubocop:disable RSpec/ExampleLength
+# rubocop:disable Metrics/MethodLength
 RSpec.describe Tasks::CallAttributesToPhoneMigrator do
   describe '#migrate' do
     let(:factories) { TestFactories.new }
@@ -46,3 +47,4 @@ RSpec.describe Tasks::CallAttributesToPhoneMigrator do
   end
 end
 # rubocop:enable RSpec/ExampleLength
+# rubocop:enable Metrics/MethodLength

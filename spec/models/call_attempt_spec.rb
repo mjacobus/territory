@@ -74,14 +74,6 @@ RSpec.describe CallAttempt, type: :model do
     expect(attempt).to be_valid
   end
 
-  it 'requires return_visit when person was contacted' do
-    attempt.outcome = 'contacted'
-    attempt.return_visit = ''
-
-    expect(attempt).not_to be_valid
-    expect(attempt.errors[:return_visit]).not_to be_empty
-  end
-
   it 'accepts false return_visit when person was contacted' do
     attempt.outcome = 'contacted'
     attempt.return_visit = false
@@ -89,14 +81,6 @@ RSpec.describe CallAttempt, type: :model do
     attempt.gender = 'male'
 
     expect(attempt).to be_valid
-  end
-
-  it 'requires notes when person was contacted' do
-    attempt.outcome = 'contacted'
-    attempt.notes = ''
-
-    expect(attempt).not_to be_valid
-    expect(attempt.errors[:notes]).not_to be_empty
   end
 
   it 'accepts male as #gender' do

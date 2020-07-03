@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Tasks
+  # rubocop:disable Metrics/AbcSize
   class CallAttributesToPhoneMigrator
     # complement to migration 20200703145418
     def migrate
@@ -13,5 +14,6 @@ module Tasks
         phone.save(validate: false)
       end
     end
+    # rubocop:enable Metrics/AbcSize
   end
 end
