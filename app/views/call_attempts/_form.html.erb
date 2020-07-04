@@ -12,9 +12,9 @@
       <%= render partial: '/boolean_radiobuttons', locals: { f: f, field: :return_visit, allow_nil: false } %>
     <% end %>
     <hr>
-    <%= f.input :notes %>
+    <%= f.input :notes, as: :text %>
     <hr>
-    <%= f.input :reachable_by %>
+    <%= f.input :reachable_by, as: :text %>
     <hr>
 
     <%= f.submit(class: 'btn btn-primary btn-block') %>
