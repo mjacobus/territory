@@ -1,57 +1,45 @@
 <% unless call_attempts.empty? %>
-  <div class="text-center">
-  <%= t('app.titles.history') %>
-  </div>
-  <ul class="list-group mb-4">
-    <% call_attempts.each do |attempt| %>
-      <li class="list-group-item">
-        <div class="row mt-2" data-toggle="collapse" data-target="#call-attempt-details-id_<%= attempt.id  %>">
-          <div class="col-6 text-left">
-            <%= outcome_label(attempt.outcome) %>
-          </div>
-          <div class="col-6 text-right">
-            <%= l(attempt.created_at, format: :short) %>
+  <div class="text-center"><%= t('app.titles.history') %></div>
+
+  <div class="vertical-timeline">
+    <% call_attempts.reverse.each do |attempt| %>
+      <div class="vertical-timeline-entry">
+        <div class="timeline-header">
+          <span
+            title="<%= outcome_label(attempt.outcome) %>"
+            class="timeline-bullet badge-success <%= attempt.outcome.to_s.gsub('_', '-') %>"></span>
+          <%= l(attempt.created_at, format: :short) %>
+
+          <span class="outcome">  </span>
+          <div class="float-right">
+            <a data-method="delete"
+               data-confirm="<%= t('app.messages.confirm_call_attempt_delete') %>"
+               href="<%= territory_phone_call_attempt_path(@territory, @phone, attempt) %>">
+               <%= t('app.links.remove') %>
+            </a> | <a href="<%= edit_territory_phone_call_attempt_path(@territory, @phone, attempt) %>"><%= t('app.links.edit') %></a>
           </div>
         </div>
 
-        <div class="collapse" id="call-attempt-details-id_<%= attempt.id  %>">
-          <% if attempt.contacted? %>
-            <p>
-              <% if attempt.user != current_user %>
-                <strong>Publicador:</strong> <%= attempt.user.name %><br>
-              <% end %>
-              <% unless attempt.return_visit.nil? %>
-                <strong>Revisitar?</strong><br> <%= t attempt.return_visit? %><br>
-              <% end %>
-            </p>
-
-            <p><strong>Observações:</strong><br> <%= simple_format(attempt.notes) %></p>
-
-            <% if attempt.reachable_by.present? %>
-              <p><strong>Melhor hora:</strong><br> <%= attempt.reachable_by %></p>
+        <div class="timeline-text">
+          <p>
+            <% if attempt.user != current_user %>
+              <strong>Publicador:</strong> <%= attempt.user.name %><br>
             <% end %>
+            <% unless attempt.return_visit.nil? %>
+              <strong>Revisitar:</strong> <%= t attempt.return_visit? %><br>
+            <% end %>
+          </p>
+
+          <% if attempt.notes.present? %>
+            <p><%= simple_format(attempt.notes) %></p>
           <% end %>
 
-
-          <div class="row mt-2">
-            <div class="col-6 text-left">
-              <a class="btn btn-danger btn-block"
-                 data-method="delete"
-                 data-confirm="<%= t('app.messages.confirm_call_attempt_delete') %>"
-                 href="<%= territory_phone_call_attempt_path(@territory, @phone, attempt) %>">
-                 <%= t('app.links.remove') %>
-              </a>
-            </div>
-            <div class="col-6 text-right">
-              <a class="btn btn-info btn-block"
-                 href="<%= edit_territory_phone_call_attempt_path(@territory, @phone, attempt) %>">
-                 <%= t('app.links.edit') %>
-              </a>
-            </div>
-          </div>
-
+          <% if attempt.reachable_by.present? %>
+            <p><strong>Melhor hora:</strong> <%= attempt.reachable_by %></p>
+          <% end %>
         </div>
-      </li>
+
+      </div>
     <% end %>
-  </ul>
+  </div>
 <% end %>
