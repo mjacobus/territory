@@ -71,3 +71,46 @@
   line-height: 100px;
   vertical-align: middle;
 }
+
+.vertical-timeline {
+  margin-left: 5px;
+  border-left: 1px solid #ddd;
+  padding: 0 0 0 10px;
+}
+
+.timeline-header {
+  line-height: 30px;
+  text-align: middle;
+}
+
+.timeline-bullet {
+  background: blue;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: -16px;
+  width: 10px;
+  height: 10px;
+  display: block;
+  float: left;
+
+  &.not-home {
+    background: gold;
+  }
+
+  &.contacted {
+    background: green;
+  }
+
+  &.unreachable {
+    background: gray;
+  }
+
+  &.disconnected {
+    background: red;
+  }
+}
+
+.timeline-text {
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
