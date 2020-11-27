@@ -1,15 +1,14 @@
 <% unless call_attempts.empty? %>
   <div class="text-center"><%= t('app.titles.history') %></div>
 
-  <small></small>
-
   <div class="vertical-timeline">
     <% call_attempts.reverse.each do |attempt| %>
       <div class="vertical-timeline-entry">
         <div class="timeline-header">
           <span
             title="<%= outcome_label(attempt.outcome) %>"
-            class="timeline-bullet badge-success <%= attempt.outcome.to_s.gsub('_', '-') %>"></span>
+            class="timeline-bullet badge-success <%= attempt.outcome.to_s.gsub('_', '-') %>">
+          </span>
 
           <span class="outcome" title="<%= l(attempt.created_at, format: :short) %>">
             <%= time_ago_in_words(attempt.created_at) %> atrás
@@ -28,17 +27,10 @@
             <% if attempt.user != current_user %>
               <strong>Publicador:</strong> <%= attempt.user.name %><br>
             <% end %>
-            <% unless attempt.return_visit.nil? %>
-              <strong>Revisitar:</strong> <%= t attempt.return_visit? %><br>
-            <% end %>
           </p>
 
           <% if attempt.notes.present? %>
             <p><%= simple_format(attempt.notes) %></p>
-          <% end %>
-
-          <% if attempt.reachable_by.present? %>
-            <p><strong>Melhor hora:</strong> <%= attempt.reachable_by %></p>
           <% end %>
         </div>
 
