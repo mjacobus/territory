@@ -1,6 +1,8 @@
 <% unless call_attempts.empty? %>
   <div class="text-center"><%= t('app.titles.history') %></div>
 
+  <small></small>
+
   <div class="vertical-timeline">
     <% call_attempts.reverse.each do |attempt| %>
       <div class="vertical-timeline-entry">
@@ -8,9 +10,10 @@
           <span
             title="<%= outcome_label(attempt.outcome) %>"
             class="timeline-bullet badge-success <%= attempt.outcome.to_s.gsub('_', '-') %>"></span>
-          <%= l(attempt.created_at, format: :short) %>
 
-          <span class="outcome">  </span>
+          <span class="outcome" title="<%= l(attempt.created_at, format: :short) %>">
+            <%= time_ago_in_words(attempt.created_at) %> atrás
+          </span>
           <div class="float-right">
             <a data-method="delete"
                data-confirm="<%= t('app.messages.confirm_call_attempt_delete') %>"
