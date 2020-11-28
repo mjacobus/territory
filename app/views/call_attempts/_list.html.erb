@@ -10,7 +10,7 @@
             class="timeline-bullet badge-success <%= attempt.outcome.to_s.gsub('_', '-') %>">
           </span>
 
-          <span class="outcome" title="<%= l(attempt.created_at, format: :short) %>">
+          <span title="<%= l(attempt.created_at, format: :short) %>">
             <%= time_ago_in_words(attempt.created_at) %> atrás
           </span>
           <div class="float-right">
