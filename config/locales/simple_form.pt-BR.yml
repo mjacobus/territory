@@ -33,4 +33,9 @@ pt-BR:
     # prompts:
     #   defaults:
     #     age: 'Select your age'
-
+    labels:
+      call_attempt:
+        return_visit: Revisitar?
+        gender: Sexo
+        notes: Observações
+        reachable_by: Melhor hora para ligar

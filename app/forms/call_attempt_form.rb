@@ -98,7 +98,9 @@ class CallAttemptForm
     @phone.gender
   end
 
-  def persisted?; end
+  def persisted?
+    @phone.persisted? && @call_attempt.persisted?
+  end
 
   def save; end
 
