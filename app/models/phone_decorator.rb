@@ -39,32 +39,9 @@ class PhoneDecorator
     @phone.call_attempts.pluck(:notes).compact
   end
 
-  # rubocop:disable Metrics/MethodLength
   def status
-    if outcomes.empty?
-      return 'never_called'
-    end
-
-    # Contacted but no feedback
-    unless return_visit.nil?
-      if return_visit?
-        return 'contact_again'
-      end
-
-      return 'do_not_contact_again'
-    end
-
-    if outcomes.include?('unreachable')
-      return 'unreachable'
-    end
-
-    if outcomes.include?('not_home')
-      return 'not_home'
-    end
-
-    'error'
+    PhoneStatus.new(self).to_s
   end
-  # rubocop:enable Metrics/MethodLength
 
   def contact?
     true
