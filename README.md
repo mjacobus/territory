@@ -27,6 +27,7 @@ yarn install
 # every time you update your project
 
 cd ~/Projects/territory
+docker-compose up     # start docker. Make sure your local postgress is not running
 bundle install
 ./bin/rake db:create  # create database
 ./bin/rake db:migrate # create tables
@@ -58,3 +59,15 @@ bundle exec rubocop -a
 - If you are on [Ubuntu 18.04 LTS](https://github.com/mjacobus/installers/tree/master/ubuntu/18.04)
 - The above step is not installing ruby itself. However you can try to use [asdf for ruby](https://github.com/asdf-vm/asdf-ruby).
 - Same for nodejs and yarn. Try [asdf for nodejs](https://github.com/asdf-vm/asdf-nodejs) and after installing run `npm install -g yarn`.
+
+## Heroku
+
+- [DB Backups](https://data.heroku.com/datastores/6d47c6e8-812a-4559-9fbe-42ac5ebbd428#durability)
+
+### Restoring a backup
+
+Download a backup from the above link and then:
+
+```bash
+pg_restore -U pguser -W --no-owner --no-privileges -h localhost -d territory_manager_development -1 tmp/bkp/jw-territory-backup-21-01-14
+```
