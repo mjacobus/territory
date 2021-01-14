@@ -27,6 +27,7 @@ yarn install
 # every time you update your project
 
 cd ~/Projects/territory
+docker-compose up     # start docker. Make sure your local postgress is not running
 bundle install
 ./bin/rake db:create  # create database
 ./bin/rake db:migrate # create tables
