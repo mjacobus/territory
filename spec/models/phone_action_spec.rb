@@ -29,7 +29,7 @@ RSpec.describe PhoneAction do
     context 'when code is 3' do
       let(:code) { 3 }
 
-      it { is_expected.to eq('check') }
+      it { is_expected.to eq('verify') }
     end
   end
 end

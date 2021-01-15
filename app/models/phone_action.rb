@@ -5,7 +5,7 @@ class PhoneAction
     0 => :call,
     1 => :return_visit,
     2 => :forget,
-    3 => :check
+    3 => :verify
   }.freeze
 
   attr_reader :code
