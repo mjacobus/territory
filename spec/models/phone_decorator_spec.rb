@@ -64,6 +64,15 @@ RSpec.describe PhoneDecorator do
       end
     end
 
+    context 'when it was unreachable' do
+      let(:plucked) { [%w[name unreachable]] }
+      let(:return_visit) { nil }
+
+      it 'returns error' do
+        expect(decorator.status).to eq('unreachable')
+      end
+    end
+
     context 'when information is missing' do
       let(:plucked) { [%w[name contacted]] }
       let(:return_visit) { nil }
