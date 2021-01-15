@@ -68,6 +68,7 @@ class CallAttemptsController < ApplicationController
       :name,
       :user,
       :phone,
+      :action_code,
       :notes,
       :age,
       :answered,

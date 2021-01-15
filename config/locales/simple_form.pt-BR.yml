@@ -37,5 +37,6 @@ pt-BR:
       call_attempt:
         return_visit: Revisitar?
         gender: Sexo
+        action_code: O que fazer
         notes: Observações
         reachable_by: Melhor hora para ligar

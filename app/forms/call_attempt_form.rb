@@ -2,6 +2,7 @@
 
 class CallAttemptForm
   include ActiveModel::Model
+  include ApplicationHelper
 
   validate :validate_contacted_fields
 
@@ -89,6 +90,14 @@ class CallAttemptForm
     @phone.reachable_by
   end
 
+  def action_code
+    @phone.action_code
+  end
+
+  def action_code=(code)
+    @phone.action_code = code
+  end
+
   def gender=(value)
     @phone.gender = value
     @call_attempt.gender = value
@@ -127,6 +136,19 @@ class CallAttemptForm
 
     unless notes.present?
       errors.add(:notes, :blank)
+    end
+  end
+
+  def action_code_options
+    PhoneAction::CODE_MAP.keys.map do |code| 
+      action = PhoneAction.new(code)
+      [action.localized, code]
+    end
+  end
+
+  def gender_options
+    CallAttempt::GENDERS.map do |gender|
+      [gender_label(gender), gender]
     end
   end
 end
