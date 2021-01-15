@@ -8,9 +8,8 @@ RSpec.describe PhoneDecorator do
   end
   let(:return_visit) { nil }
   let(:decorator) { described_class.new(phone) }
-  # rubocop:disable RSpec/VerifiedDoubles
   let(:call_attempts) { double(:call_attempts) }
-  # rubocop:enable RSpec/VerifiedDoubles
+
   let(:pluck_args) do
     %i[
       name
