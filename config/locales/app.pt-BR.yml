@@ -85,7 +85,7 @@ pt-BR:
       return_visit: "Revisitar"
       forget: "Esquecer"
       verify: "Verificar"
-
+      error: "Erro"
     vcard:
       notes: 'Testemunho por telefone. %{notes}'
       name_prefix: 'jwtel -'

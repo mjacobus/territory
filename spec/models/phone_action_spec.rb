@@ -31,6 +31,18 @@ RSpec.describe PhoneAction do
 
       it { is_expected.to eq('verify') }
     end
+
+    context 'when code is 99' do
+      let(:code) { 99 }
+
+      it { is_expected.to eq('error') }
+    end
+
+    context 'when code is something else' do
+      let(:code) { :something }
+
+      it { is_expected.to eq('error') }
+    end
   end
 
   describe '#localized' do
@@ -58,6 +70,12 @@ RSpec.describe PhoneAction do
       let(:code) { 3 }
 
       it { is_expected.to eq('Verificar') }
+    end
+
+    context 'when code is 99' do
+      let(:code) { 99 }
+
+      it { is_expected.to eq('Erro') }
     end
   end
 end

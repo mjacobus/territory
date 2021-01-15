@@ -5,7 +5,8 @@ class PhoneAction
     0 => :call,
     1 => :return_visit,
     2 => :forget,
-    3 => :verify
+    3 => :verify,
+    99 => :error
   }.freeze
 
   attr_reader :code
@@ -19,7 +20,7 @@ class PhoneAction
   end
 
   def to_sym
-    CODE_MAP.fetch(code)
+    CODE_MAP.fetch(code, :error)
   end
 
   def localized
