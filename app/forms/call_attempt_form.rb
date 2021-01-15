@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 class CallAttemptForm
   include ActiveModel::Model
   include ApplicationHelper
@@ -140,7 +141,7 @@ class CallAttemptForm
   end
 
   def action_code_options
-    PhoneAction::CODE_MAP.keys.map do |code| 
+    PhoneAction::CODE_MAP.keys.map do |code|
       action = PhoneAction.new(code)
       [action.localized, code]
     end
@@ -152,3 +153,4 @@ class CallAttemptForm
     end
   end
 end
+# rubocop:enable Metrics/ClassLength
