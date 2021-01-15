@@ -3,9 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe PhoneAction do
-  subject(:action) { described_class.new(phone) }
-
-  let(:phone) { double(:phone, action_code: code) }
+  subject(:action) { described_class.new(code) }
 
   describe '#to_s' do
     context 'when code is 0' do

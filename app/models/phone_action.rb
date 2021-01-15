@@ -8,12 +8,10 @@ class PhoneAction
     3 => :check
   }.freeze
 
-  def initialize(phone)
-    @phone = phone
-  end
+  attr_reader :code
 
-  def code
-    @phone.action_code
+  def initialize(code)
+    @code = code
   end
 
   def to_s

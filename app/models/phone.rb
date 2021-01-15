@@ -19,7 +19,7 @@ class Phone < ApplicationRecord
   end
 
   def action
-    PhoneAction.new(self)
+    PhoneAction.new(action_code)
   end
 
   def casted_number
