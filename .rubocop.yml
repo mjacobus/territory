@@ -50,6 +50,10 @@ RSpec/ExampleLength:
 RSpec/MultipleExpectations:
   Enabled: false
 
+# while that is a good rule, AR objects can't be properly instance_double'd
+RSpec/VerifiedDoubles:
+  Enabled: false
+
 AllCops:
   Exclude:
     - 'node_modules/**/*'

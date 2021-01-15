@@ -11,6 +11,12 @@ RSpec.describe Phone, type: :model do
     expect(phone.territory).to eq(territory)
   end
 
+  describe '#action' do
+    it 'defaults to zero' do
+      expect(phone.action.code).to eq(0)
+    end
+  end
+
   context 'when quering for previous' do
     before do
       territory.save!
