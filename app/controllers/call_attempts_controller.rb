@@ -61,22 +61,8 @@ class CallAttemptsController < ApplicationController
     @territory ||= current_user.allowed_territories.find(params[:territory_id])
   end
 
-  # rubocop:disable Metrics/MethodLength
   def call_attempt_params
-    params.require(:call_attempt).permit(
-      :outcome,
-      :name,
-      :user,
-      :phone,
-      :notes,
-      :age,
-      :answered,
-      :gender,
-      :has_children,
-      :return_visit,
-      :called_annonymously,
-      :reachable_by
-    ).to_h.merge(user: current_user)
+    params.require(:call_attempt)
+      .permit(*form.allowed_attributes).to_h.merge(user: current_user)
   end
-  # rubocop:enable Metrics/MethodLength
 end

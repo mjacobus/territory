@@ -80,6 +80,12 @@ pt-BR:
       error: "Verificar"
       never_called: "Nunca ligado"
       not_home: "Não atendeu"
+    phone_action:
+      call: "Ligar"
+      return_visit: "Revisitar"
+      forget: "Esquecer"
+      verify: "Verificar"
+      error: "Erro"
     vcard:
       notes: 'Testemunho por telefone. %{notes}'
       name_prefix: 'jwtel -'

@@ -1,0 +1,19 @@
+<%
+action = phone.action
+
+badge_class = {
+  return_visit: 'badge-success',
+  call: 'badge-light',
+  verify: 'badge-warning',
+  # not_home: 'badge-warning',
+  forget: 'badge-danger',
+  error: 'badge-dark'
+}.fetch(action.to_sym)
+
+%>
+
+<span class="badge <%= badge_class  %>"><%= action.localized %>
+  <% if phone.call_attempts.length.positive? %>
+    <span class="badge badge-light"><%= phone.call_attempts.length %></span>
+  <% end %>
+</span>

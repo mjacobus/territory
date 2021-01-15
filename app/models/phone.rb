@@ -18,6 +18,10 @@ class Phone < ApplicationRecord
     save!
   end
 
+  def action
+    PhoneAction.new(action_code)
+  end
+
   def casted_number
     PhoneNumber.new(number)
   end

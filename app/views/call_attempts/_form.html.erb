@@ -7,11 +7,11 @@
       <hr>
       <%= f.input :name %>
       <hr>
-      <%= f.input :gender, as: :radio_buttons, collection: CallAttempt::GENDERS.map { |gender| [gender_label(gender), gender] } %>
+      <%= f.input :gender, as: :radio_buttons, collection: @form.gender_options %>
       <hr>
     <% end %>
 
-    <%= render partial: '/boolean_radiobuttons', locals: { f: f, field: :return_visit, allow_nil: false } %>
+    <%= f.input :action_code, as: :radio_buttons, collection: @form.action_code_options %>
 
     <hr>
     <%= f.input :notes, as: :text %>

@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 class CallAttemptForm
   include ActiveModel::Model
+  include ApplicationHelper
 
   validate :validate_contacted_fields
 
@@ -89,6 +91,14 @@ class CallAttemptForm
     @phone.reachable_by
   end
 
+  def action_code
+    @phone.action_code
+  end
+
+  def action_code=(code)
+    @phone.action_code = code
+  end
+
   def gender=(value)
     @phone.gender = value
     @call_attempt.gender = value
@@ -129,4 +139,40 @@ class CallAttemptForm
       errors.add(:notes, :blank)
     end
   end
+
+  def action_code_options
+    keys = PhoneAction::CODE_MAP.keys
+    keys.pop # remove error
+    keys.map do |code|
+      action = PhoneAction.new(code)
+      [action.localized, code]
+    end
+  end
+
+  def gender_options
+    CallAttempt::GENDERS.map do |gender|
+      [gender_label(gender), gender]
+    end
+  end
+
+  # rubocop:disable Metrics/MethodLength
+  def allowed_attributes(*_args)
+    %i[
+      outcome
+      name
+      user
+      phone
+      action_code
+      notes
+      age
+      answered
+      gender
+      has_children
+      return_visit
+      called_annonymously
+      reachable_by
+    ]
+  end
+  # rubocop:enable Metrics/MethodLength
 end
+# rubocop:enable Metrics/ClassLength

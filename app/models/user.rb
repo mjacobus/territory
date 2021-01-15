@@ -12,9 +12,10 @@ class User < ApplicationRecord
   end
 
   def return_visits
-    Phone.where(return_visit: true)
+    territory_ids = Territory.where(user_id: id).select('id')
+    Phone.where(action_code: 1)
       .joins(:call_attempts)
-      .where(call_attempts: { user_id: id })
+      .where(territory_id: territory_ids)
       .distinct
   end
 end

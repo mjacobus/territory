@@ -12,6 +12,7 @@ class PhoneDecorator
            :casted_number,
            :next,
            :name,
+           :action,
            to: :@phone
 
   def initialize(phone)
