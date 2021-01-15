@@ -32,4 +32,32 @@ RSpec.describe PhoneAction do
       it { is_expected.to eq('verify') }
     end
   end
+
+  describe '#localized' do
+    subject { action.localized }
+
+    context 'when code is 0' do
+      let(:code) { 0 }
+
+      it { is_expected.to eq('Ligar') }
+    end
+
+    context 'when code is 1' do
+      let(:code) { 1 }
+
+      it { is_expected.to eq('Revisitar') }
+    end
+
+    context 'when code is 2' do
+      let(:code) { 2 }
+
+      it { is_expected.to eq('Esquecer') }
+    end
+
+    context 'when code is 3' do
+      let(:code) { 3 }
+
+      it { is_expected.to eq('Verificar') }
+    end
+  end
 end

@@ -21,4 +21,8 @@ class PhoneAction
   def to_sym
     CODE_MAP.fetch(code)
   end
+
+  def localized
+    I18n.t("app.phone_action.#{to_sym}")
+  end
 end
