@@ -152,5 +152,25 @@ class CallAttemptForm
       [gender_label(gender), gender]
     end
   end
+
+  # rubocop:disable Metrics/MethodLength
+  def allowed_attributes(*_args)
+    %i[
+      outcome
+      name
+      user
+      phone
+      action_code
+      notes
+      age
+      answered
+      gender
+      has_children
+      return_visit
+      called_annonymously
+      reachable_by
+    ]
+  end
+  # rubocop:enable Metrics/MethodLength
 end
 # rubocop:enable Metrics/ClassLength
