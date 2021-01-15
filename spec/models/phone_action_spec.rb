@@ -3,39 +3,33 @@
 require 'spec_helper'
 
 RSpec.describe PhoneAction do
-  subject(:action) { described_class.new(code) }
+  let(:action) { described_class.new(code) }
 
   describe '#to_s' do
+    subject { action.to_s }
+
     context 'when code is 0' do
       let(:code) { 0 }
 
-      it 'returns call' do
-        expect(action.to_s).to eq('call')
-      end
+      it { is_expected.to eq('call') }
     end
 
     context 'when code is 1' do
       let(:code) { 1 }
 
-      it 'returns return_visit' do
-        expect(action.to_s).to eq('return_visit')
-      end
+      it { is_expected.to eq('return_visit') }
     end
 
     context 'when code is 2' do
       let(:code) { 2 }
 
-      it 'returns forget' do
-        expect(action.to_s).to eq('forget')
-      end
+      it { is_expected.to eq('forget') }
     end
 
     context 'when code is 3' do
       let(:code) { 3 }
 
-      it 'returns check' do
-        expect(action.to_s).to eq('check')
-      end
+      it { is_expected.to eq('check') }
     end
   end
 end
