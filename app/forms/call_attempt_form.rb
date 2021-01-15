@@ -141,7 +141,9 @@ class CallAttemptForm
   end
 
   def action_code_options
-    PhoneAction::CODE_MAP.keys.map do |code|
+    keys = PhoneAction::CODE_MAP.keys
+    keys.pop # remove error
+    keys.map do |code|
       action = PhoneAction.new(code)
       [action.localized, code]
     end
