@@ -4,3 +4,14 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+namespace :app do
+  namespace :data do
+    desc 'populate phone action'
+    task populate_phone_action: :environment do
+      ActiveRecord::Base.transaction do
+        Tasks::ActionCodeMigrator.new.migrate
+      end
+    end
+  end
+end
