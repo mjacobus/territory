@@ -14,7 +14,7 @@ module Tasks
         do_not_contact_again: :forget,
         unreachable: :verify,
         not_home: :call,
-        error: :error
+        error: :call # most errors were disconnected
       }
 
       # status: PhoneAction::CODE_MAP key

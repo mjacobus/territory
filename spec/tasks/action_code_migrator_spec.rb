@@ -53,7 +53,7 @@ RSpec.describe Tasks::ActionCodeMigrator do
     context 'when status is error' do
       let(:status) { 'error' }
 
-      it { is_expected.to eq('error') }
+      it { is_expected.to eq('call') }
     end
   end
 end
