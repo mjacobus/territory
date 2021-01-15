@@ -131,10 +131,6 @@ class CallAttemptForm
       return
     end
 
-    unless [true, false].include?(return_visit)
-      errors.add(:return_visit, :blank)
-    end
-
     unless notes.present?
       errors.add(:notes, :blank)
     end
