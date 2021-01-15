@@ -22,13 +22,9 @@
       (<%= gender_label(@phone.gender)  %>)
     <% end %>
   </p>
-  <h3>
-    <span class="badge <%= @phone.badge_class  %>"><%= @phone.badge_text %>
-    <% if @phone.call_attempts.length.positive? %>
-      <span class="badge badge-light"><%= @phone.call_attempts.length %></span>
-    <% end %>
-    </span>
-  </h3>
+
+  <h3><%= render partial: 'phones/action_badge', locals: { phone: @phone } %></h3>
+
   <p>
   <small>
     <% if @phone.reachable_by.present? %>

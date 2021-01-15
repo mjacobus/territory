@@ -28,12 +28,9 @@
             <div class="col-sm-12 col-md-2">
               <%= time_ago_in_words(phone.call_attempts.last.created_at) %> atrás
             </div>
+
             <div class="col-sm-12 col-md-2 text-md-right">
-              <span class="badge <%= phone.badge_class  %>"><%= phone.badge_text %> 
-              <% if phone.call_attempts.length.positive? %>
-                <span class="badge badge-light"><%= phone.call_attempts.length %></span>
-              <% end %>
-              </span>
+              <%= render partial: 'phones/action_badge', locals: { phone: phone } %>
             </div>
           </div>
         </li>
