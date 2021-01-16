@@ -100,4 +100,12 @@ RSpec.describe CallAttempt, type: :model do
 
     expect(contacted).not_to be_valid
   end
+
+  it 'increments counter on phone' do
+    a = factory.create
+    phone = a.phone
+    factory.create(phone: phone)
+
+    expect(phone.call_attempts_count).to eq(2)
+  end
 end

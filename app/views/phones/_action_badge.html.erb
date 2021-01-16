@@ -13,7 +13,7 @@ badge_class = {
 %>
 
 <span class="badge <%= badge_class  %>"><%= action.localized %>
-  <% if phone.call_attempts.length.positive? %>
-    <span class="badge badge-light"><%= phone.call_attempts.length %></span>
+  <% if phone.call_attempts_count&.positive? %>
+    <span class="badge badge-light"><%= phone.call_attempts_count %></span>
   <% end %>
 </span>
