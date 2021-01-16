@@ -6,7 +6,8 @@ class PhonesController < ApplicationController
   end
 
   def show
-    @phone = PhoneDecorator.new(territory.phones.find(params[:id]))
+    @phone_navigator = PhoneNavigator.new(params, scope: territory.phones)
+    @phone = PhoneDecorator.new(@phone_navigator.current)
   end
 
   def create

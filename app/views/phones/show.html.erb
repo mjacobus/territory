@@ -36,10 +36,10 @@
 
 <div class="row">
   <div class="col-6 text-left">
-    <a class="btn btn-light w-100" href="<%= territory_phone_path(@territory, @phone.previous) %>"> <%= t('app.links.previous') %></a>
+    <a class="btn btn-light w-100" href="<%= @phone_navigator.previous_url(self) %>"> <%= t('app.links.previous') %></a>
   </div>
   <div class="col-6 text-right">
-    <a class="btn btn-light w-100" href="<%= territory_phone_path(@territory, @phone.next) %>"> <%= t('app.links.next') %></a>
+    <a class="btn btn-light w-100" href="<%= @phone_navigator.next_url(self) %>"> <%= t('app.links.next') %></a>
   </div>
 </div>
 
