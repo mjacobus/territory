@@ -16,29 +16,13 @@ class Phone < ApplicationRecord
     PhoneNumber.new(number)
   end
 
-  def next
-    ids = siblings.pluck(:id)
-    index = ids.index(id)
-    next_index = ids[index + 1]
-    if next_index.nil?
-      next_index = ids.first
-    end
-    siblings.find(next_index)
+  def next(siblings = territory.phones)
+    navigator = ArrayNavigator.new(siblings.pluck(:id), current: id)
+    siblings.find(navigator.next)
   end
 
-  def previous
-    ids = siblings.pluck(:id)
-    index = ids.index(id)
-    previous_index = ids[index - 1]
-    if previous_index.nil?
-      previous_index = ids.first
-    end
-    siblings.find(previous_index)
-  end
-
-  private
-
-  def siblings
-    territory.phones
+  def previous(siblings = territory.phones)
+    navigator = ArrayNavigator.new(siblings.pluck(:id), current: id)
+    siblings.find(navigator.previous)
   end
 end
