@@ -2,7 +2,7 @@
 
 class PhonesController < ApplicationController
   def index
-    @phones = territory.phones
+    @phones = territory.phones.includes(:call_attempts)
   end
 
   def show
