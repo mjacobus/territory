@@ -8,16 +8,6 @@ class Phone < ApplicationRecord
 
   validates :number, presence: true, uniqueness: { case_sensitive: false }
 
-  def update_status
-    self.return_visit = nil
-
-    call_attempts.pluck(:return_visit).compact.each do |return_visit|
-      self.return_visit = return_visit
-    end
-
-    save!
-  end
-
   def action
     PhoneAction.new(action_code)
   end

@@ -18,7 +18,6 @@ class CallAttemptForm
     if valid?
       @call_attempt.save!
       @phone.save!
-      @phone.update_status
     end
   end
 
@@ -72,14 +71,6 @@ class CallAttemptForm
 
   def notes
     @call_attempt.notes
-  end
-
-  def return_visit=(value)
-    @call_attempt.return_visit = value
-  end
-
-  def return_visit
-    @call_attempt.return_visit
   end
 
   def reachable_by=(value)
@@ -164,7 +155,6 @@ class CallAttemptForm
       answered
       gender
       has_children
-      return_visit
       called_annonymously
       reachable_by
     ]

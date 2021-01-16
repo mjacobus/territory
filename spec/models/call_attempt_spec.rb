@@ -13,13 +13,8 @@ RSpec.describe CallAttempt, type: :model do
       outcome: 'contacted',
       user: User.new,
       gender: 'male',
-      return_visit: false,
       notes: 'nice talk'
     )
-  end
-
-  it 'defaults return_visit nil' do
-    expect(described_class.new.return_visit).to be nil
   end
 
   it 'belongs to phone' do
@@ -36,7 +31,6 @@ RSpec.describe CallAttempt, type: :model do
     attempt.outcome = 'contacted'
     attempt.notes = 'something'
     attempt.gender = 'male'
-    attempt.return_visit = true
 
     expect(attempt).to be_valid
   end
@@ -70,15 +64,6 @@ RSpec.describe CallAttempt, type: :model do
   it 'is valid with no extra data when outcome is unreachable' do
     attempt.outcome = 'unreachable'
     attempt.gender = ''
-
-    expect(attempt).to be_valid
-  end
-
-  it 'accepts false return_visit when person was contacted' do
-    attempt.outcome = 'contacted'
-    attempt.return_visit = false
-    attempt.notes = false
-    attempt.gender = 'male'
 
     expect(attempt).to be_valid
   end
