@@ -152,10 +152,7 @@ class CallAttemptForm
       action_code
       notes
       age
-      answered
       gender
-      has_children
-      called_annonymously
       reachable_by
     ]
   end
