@@ -8,8 +8,6 @@ pt-BR:
     attributes:
       territory:
         user_id: Publicador
-      phone:
-        return_visit: Revisitar
       call_attempt_form:
         outcome: Resultado
         gender: Gênero
@@ -18,7 +16,6 @@ pt-BR:
         notes: Observações
         answered: Atendeu
         has_children: Tem filhos?
-        return_visit: Revisitar?
         called_annonymously: Chamada anônima?
         reachable_by: Quando é melhor revisitar
       call_attempt:
@@ -29,7 +26,6 @@ pt-BR:
         notes: Observações
         answered: Atendeu
         has_children: Tem filhos?
-        return_visit: Revisitar?
         called_annonymously: Chamada anônima?
         reachable_by: Quando é melhor revisitar
   'true': 'Sim'
@@ -73,13 +69,6 @@ pt-BR:
       phones: 'Telefones'
       my_return_visits: 'Minhas Revisitas'
 
-    phone_status:
-      unreachable: "Número inválido"
-      contact_again: "Revisitar"
-      do_not_contact_again: "Não ligar mais"
-      error: "Verificar"
-      never_called: "Nunca ligado"
-      not_home: "Não atendeu"
     phone_action:
       call: "Ligar"
       return_visit: "Revisitar"

@@ -35,7 +35,6 @@ pt-BR:
     #     age: 'Select your age'
     labels:
       call_attempt:
-        return_visit: Revisitar?
         gender: Sexo
         action_code: O que fazer
         notes: Observações

@@ -76,14 +76,6 @@ class TestFactories
       create(overrides.merge(outcome: 'not_home'))
     end
 
-    def create_return_visit(overrides = {})
-      create(overrides.merge(outcome: 'contacted', return_visit: true))
-    end
-
-    def create_do_not_call(overrides = {})
-      create(overrides.merge(outcome: 'contacted', return_visit: false))
-    end
-
     def attributes(overrides = {})
       {
         user: overrides[:user] || User.new,
