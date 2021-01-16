@@ -14,9 +14,6 @@ pt-BR:
         age: Idade
         name: Nome
         notes: Observações
-        answered: Atendeu
-        has_children: Tem filhos?
-        called_annonymously: Chamada anônima?
         reachable_by: Quando é melhor revisitar
       call_attempt:
         outcome: Resultado
@@ -24,9 +21,6 @@ pt-BR:
         age: Idade
         name: Nome
         notes: Observações
-        answered: Atendeu
-        has_children: Tem filhos?
-        called_annonymously: Chamada anônima?
         reachable_by: Quando é melhor revisitar
   'true': 'Sim'
   'false': 'Não'

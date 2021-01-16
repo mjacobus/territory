@@ -12,7 +12,6 @@ pt-BR:
       default_message: "Corrija os problemas abaixo:"
     hints:
       defaults:
-        called_annonymously: "A chamada foi feita de modo a esconder o número de quem ligou?"
         notes: "- Ficou feliz de receber a ligação?<br>- Que textos foram lidos?<br>- Como a pessoa regiu?<br>- Fiquei de mandar alguma publicação?<br>- Qual a minha idéia de revisita?"
     # Examples
     # labels:
