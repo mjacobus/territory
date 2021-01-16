@@ -23,7 +23,7 @@
             <%= phone.contact_name %>
           </div>
           <div class="col-sm-12 col-md-3">
-            <% if phone.call_attempts.any? %>
+            <% if phone.call_attempts_count.positive? %>
               <span title="<%= l(phone.call_attempts.last.created_at, format: :short) %>">
                 <%= time_ago_in_words(phone.call_attempts.last.created_at) %> atrás
               </span>
