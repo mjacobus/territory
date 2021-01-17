@@ -15,13 +15,13 @@ class CallAttemptsController < ApplicationController
 
   def quick_create
     form.draft(outcome: params[:outcome], user: current_user)
-    url = [:edit, form.url, hide_outcome: true].flatten
+    url = [:edit, form.url, request.query_parameters.merge(hide_outcome: true)].flatten
     redirect_to(url)
   end
 
   def create
     form.persist(call_attempt_params)
-    redirect_to [territory, phone]
+    redirect_to [territory, phone, request.query_parameters]
   rescue ActiveRecord::RecordInvalid => exception
     @call_attempt = exception.record
     render :new
@@ -29,7 +29,7 @@ class CallAttemptsController < ApplicationController
 
   def update
     if form.persist(call_attempt_params.except(:user))
-      return redirect_to([territory, phone])
+      return redirect_to [territory, phone, request.query_parameters]
     end
 
     render :edit
@@ -37,7 +37,7 @@ class CallAttemptsController < ApplicationController
 
   def destroy
     call_attempt.destroy
-    redirect_to [territory, phone]
+    redirect_to [territory, phone, request.query_parameters]
   end
 
   private
