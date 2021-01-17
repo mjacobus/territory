@@ -64,6 +64,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include ControllerSpecHelper, type: :controller
+  config.include RequestSpecHelper, type: :request
 end
 
 # Monkey patch for testing only.
