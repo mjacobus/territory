@@ -16,9 +16,9 @@
           <div class="float-right">
             <a data-method="delete"
                data-confirm="<%= t('app.messages.confirm_call_attempt_delete') %>"
-               href="<%= territory_phone_call_attempt_path(@territory, @phone, attempt) %>">
+               href="<%= territory_phone_call_attempt_path(@territory, @phone, attempt, request.query_parameters) %>">
                <%= t('app.links.remove') %>
-            </a> | <a href="<%= edit_territory_phone_call_attempt_path(@territory, @phone, attempt) %>"><%= t('app.links.edit') %></a>
+            </a> | <a href="<%= edit_territory_phone_call_attempt_path(@territory, @phone, attempt, request.query_parameters) %>"><%= t('app.links.edit') %></a>
           </div>
         </div>
 

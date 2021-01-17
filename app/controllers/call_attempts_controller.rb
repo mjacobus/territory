@@ -15,7 +15,7 @@ class CallAttemptsController < ApplicationController
 
   def quick_create
     form.draft(outcome: params[:outcome], user: current_user)
-    url = [:edit, form.url, request.query_parameters.merge(hide_outcome: true)].flatten
+    url = [:edit, form.url(request.query_parameters.merge(hide_outcome: true))].flatten
     redirect_to(url)
   end
 

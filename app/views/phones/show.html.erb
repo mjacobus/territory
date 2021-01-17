@@ -61,15 +61,14 @@
     <%= t('app.links.add') %>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" data-method="post" href="<%= create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'contacted') %>"><%= t('app.outcomes.contacted') %></a>
-    <a class="dropdown-item" data-method="post" href="<%= create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'not_home') %>"><%= t('app.outcomes.not_home') %></a>
-    <a class="dropdown-item" data-method="post" href="<%= create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'disconnected') %>"><%= t('app.outcomes.disconnected') %></a>
-    <a class="dropdown-item" data-method="post" href="<%= create_territory_phone_call_attempts_path(@territory, @phone, outcome: 'unreachable') %>"><%= t('app.outcomes.unreachable') %></a>
+    <% %w(contacted not_home disconnected unreachable).each do |outcome|  %>
+      <a class="dropdown-item" data-method="post" href="<%= create_territory_phone_call_attempts_path(@territory, @phone, request.query_parameters.merge(outcome: outcome).symbolize_keys) %>"><%= t("app.outcomes.#{outcome}") %></a>
+    <% end %>
     <div class="dropdown-divider"></div>
     <a class="dropdown-item text-danger"
        data-method="delete"
        data-confirm="<%= t('app.messages.confirm_phone_delete') %>"
-       href="<%= territory_phone_path(@territory, @phone) %>"><%= t('app.links.remove_phone') %></a>
+       href="<%= territory_phone_path(@territory, @phone, request.query_parameters) %>"><%= t('app.links.remove_phone') %></a>
   </div>
 </div>
 
