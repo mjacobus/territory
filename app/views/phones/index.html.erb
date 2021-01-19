@@ -30,7 +30,7 @@
             <% end %>
           </div>
           <div class="col-sm-12 col-md-3 text-md-right">
-            <%= render partial: 'phones/action_badge', locals: { phone: phone } %>
+            <%= render partial: 'phones/action_badge', locals: { phone: phone, url: territory_phone_path(@territory, phone, action_code: phone.action.code) } %>
           </div>
         </div>
       </li>

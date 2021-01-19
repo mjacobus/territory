@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CallAttemptsController, type: :controller do
+RSpec.describe CallAttemptsController, type: :request do
   let(:territory) { Territory.create!(name: 'foo', user: current_user) }
   let(:phone) { Phone.create!(number: '222', territory: territory) }
   let(:call_attempt) do
@@ -14,16 +14,12 @@ RSpec.describe CallAttemptsController, type: :controller do
     )
   end
   let(:call_attempt_params) { { outcome: 'not_home' } }
-  let(:params) do
-    {
-      call_attempt: call_attempt_params,
-      territory_id: territory.id,
-      phone_id: phone.id
-    }
-  end
+  let(:params) { { call_attempt: call_attempt_params } }
 
   describe 'POST #create' do
-    let(:perform_request) { post :create, params: params }
+    let(:perform_request) do
+      post territory_phone_call_attempts_path(territory, phone, foo: 'bar'), params: params
+    end
 
     it 'creates a new call_attempts' do
       expect { perform_request }.to change(CallAttempt, :count).by(1)
@@ -38,20 +34,21 @@ RSpec.describe CallAttemptsController, type: :controller do
     it 'redirects to the phone view' do
       perform_request
 
-      path = territory_phone_path(territory, phone)
+      path = territory_phone_path(territory, phone, foo: 'bar')
 
       expect(response).to redirect_to(path)
     end
   end
 
   describe 'POST #quick_create' do
-    let(:params) do
-      {
-        territory_id: territory.id,
-        phone_id: phone.id
-      }
+    let(:perform_request) do
+      post create_territory_phone_call_attempts_path(
+        territory,
+        phone,
+        outcome: 'not_home',
+        foo: 'bar'
+      )
     end
-    let(:perform_request) { post :quick_create, params: params.merge(outcome: 'not_home') }
 
     it 'quick_create a new call_attempts' do
       expect { perform_request }.to change(CallAttempt, :count).by(1)
@@ -64,7 +61,7 @@ RSpec.describe CallAttemptsController, type: :controller do
         territory,
         phone,
         CallAttempt.last,
-        hide_outcome: true
+        foo: 'bar'
       )
 
       expect(response).to redirect_to(path)
@@ -77,13 +74,12 @@ RSpec.describe CallAttemptsController, type: :controller do
     end
 
     it 'redirects to the edit form when phone contacted' do
-      post :quick_create, params: params.merge(outcome: 'contacted')
+      post create_territory_phone_call_attempts_path(territory, phone, outcome: 'contacted')
 
       path = edit_territory_phone_call_attempt_path(
         territory,
         phone,
-        CallAttempt.last,
-        hide_outcome: true
+        CallAttempt.last
       )
 
       expect(response).to redirect_to(path)
@@ -99,15 +95,15 @@ RSpec.describe CallAttemptsController, type: :controller do
     end
 
     let(:current_user) { admin_user }
-    let(:params) do
-      {
-        call_attempt: call_attempt_params.merge(notes: 'updated note'),
-        territory_id: territory.id,
-        phone_id: phone.id,
-        id: call_attempt.id
-      }
+    let(:params) { { call_attempt: call_attempt_params.merge(notes: 'updated note') } }
+    let(:perform_request) do
+      put territory_phone_call_attempt_path(
+        territory,
+        phone,
+        call_attempt,
+        foo: 'bar'
+      ), params: params
     end
-    let(:perform_request) { put :update, params: params }
 
     it 'updates data' do
       expect { perform_request }
@@ -118,7 +114,7 @@ RSpec.describe CallAttemptsController, type: :controller do
     it 'redirects to the phone view' do
       perform_request
 
-      path = territory_phone_path(territory, phone)
+      path = territory_phone_path(territory, phone, foo: 'bar')
 
       expect(response).to redirect_to(path)
     end
@@ -134,17 +130,24 @@ RSpec.describe CallAttemptsController, type: :controller do
       call_attempt
     end
 
-    let(:perform_request) { delete :destroy, params: params.merge(id: call_attempt.id) }
+    let(:perform_request) do
+      delete territory_phone_call_attempt_path(
+        territory,
+        phone,
+        call_attempt,
+        foo: 'bar'
+      )
+    end
 
     it 'updates data' do
       expect { perform_request }
         .to change { phone.call_attempts.count }.by(-1)
     end
 
-    it 'redirects to the phone view' do
+    it 'redirects to the phone view with query params' do
       perform_request
 
-      path = territory_phone_path(territory, phone)
+      path = territory_phone_path(territory, phone, foo: 'bar')
 
       expect(response).to redirect_to(path)
     end

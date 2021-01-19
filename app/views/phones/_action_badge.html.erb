@@ -1,5 +1,6 @@
 <%
 action = phone.action
+url ||= url
 
 badge_class = {
   return_visit: 'badge-success',
@@ -12,8 +13,14 @@ badge_class = {
 
 %>
 
-<span class="badge <%= badge_class  %>"><%= action.localized %>
+<% if url %>
+  <a href="<%= url %>">
+<% end %>
+  <span class="badge <%= badge_class  %>"><%= action.localized %>
   <% if phone.call_attempts_count&.positive? %>
     <span class="badge badge-light"><%= phone.call_attempts_count %></span>
   <% end %>
-</span>
+  </span>
+<% if url %>
+    </a>
+<% end %>

@@ -109,8 +109,8 @@ class CallAttemptForm
     id.present? ? :patch : :post
   end
 
-  def url
-    [@territory, @phone, @call_attempt]
+  def url(query_parameters = {})
+    [@territory, @phone, @call_attempt, query_parameters]
   end
 
   def contacted?
