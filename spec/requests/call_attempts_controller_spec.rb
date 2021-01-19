@@ -61,7 +61,6 @@ RSpec.describe CallAttemptsController, type: :request do
         territory,
         phone,
         CallAttempt.last,
-        hide_outcome: true,
         foo: 'bar'
       )
 
@@ -80,8 +79,7 @@ RSpec.describe CallAttemptsController, type: :request do
       path = edit_territory_phone_call_attempt_path(
         territory,
         phone,
-        CallAttempt.last,
-        hide_outcome: true
+        CallAttempt.last
       )
 
       expect(response).to redirect_to(path)
