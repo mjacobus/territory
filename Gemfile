@@ -11,7 +11,7 @@ gem 'mysql2', '>= 0.4.4'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pg'
-gem 'puma', '~> 4.3'
+gem 'puma', '~> 5.1'
 gem 'rails', '~> 6.1'
 
 # frontend
