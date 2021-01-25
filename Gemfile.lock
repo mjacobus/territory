@@ -343,7 +343,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   simple_form
-  simplecov
+  simplecov (~> 0.16.1)
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)

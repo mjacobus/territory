@@ -35,7 +35,7 @@ group :development do
   gem 'rubocop', '~> 0.79', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rspec', require: false
-  gem 'simplecov', require: false
+  gem 'simplecov', '~> 0.16.1', require: false
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
