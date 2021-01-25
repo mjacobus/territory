@@ -27,25 +27,25 @@ RSpec.describe Phone, type: :model do
     end
 
     it 'finds next and when there is one' do
-      phone = described_class.find_by_number('c').next
+      phone = described_class.find_by(number: 'c').next
 
       expect(phone.number).to eq('d')
     end
 
     it 'returns first when there is no next' do
-      phone = described_class.find_by_number('f').next
+      phone = described_class.find_by(number: 'f').next
 
       expect(phone.number).to eq('a')
     end
 
     it 'finds previous and when there is one' do
-      phone = described_class.find_by_number('c').previous
+      phone = described_class.find_by(number: 'c').previous
 
       expect(phone.number).to eq('b')
     end
 
     it 'returns first when there is no previous' do
-      phone = described_class.find_by_number('a').previous
+      phone = described_class.find_by(number: 'a').previous
 
       expect(phone.number).to eq('f')
     end
