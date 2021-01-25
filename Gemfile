@@ -30,7 +30,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'coveralls', require: false
+  gem 'coveralls', '~> 0.8.23', require: false
   gem 'listen', '~> 3.4'
   gem 'rubocop', '~> 0.79', require: false
   gem 'rubocop-performance', require: false
