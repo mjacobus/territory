@@ -1,5 +1,6 @@
 require:
   - rubocop-performance
+  - rubocop-rails
   - rubocop-rspec
 
 Metrics/BlockLength:
@@ -42,6 +43,10 @@ Naming/RescuedExceptionsVariableName:
 
 Style/FormatStringToken:
   EnforcedStyle: template
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'spec/**/*'
 
 RSpec:
   Exclude:
