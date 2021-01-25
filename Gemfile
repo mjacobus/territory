@@ -12,7 +12,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pg'
 gem 'puma', '~> 4.3'
-gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
+gem 'rails', '~> 6.1'
 
 # frontend
 gem 'bootstrap', '~> 4.4'
@@ -27,7 +27,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rails-controller-testing'
-  gem 'rspec-rails', '4.0.0.beta3'
+  gem 'rspec-rails', '4.0'
 end
 
 group :development do
