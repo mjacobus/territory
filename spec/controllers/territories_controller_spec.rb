@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe TerritoriesController, type: :controller do
+RSpec.describe TerritoriesController, type: :request do
   let(:territory) { Territory.create!(name: 'foo', user: current_user) }
 
   describe 'GET #index' do
     it 'assigns @territories' do
       territory
 
-      get :index
+      get territories_path
 
       expect(assigns(:territories)).to eq(Territory.all)
     end
@@ -18,7 +18,7 @@ RSpec.describe TerritoriesController, type: :controller do
       let(:current_user) { nil }
 
       it 'redirects to /' do
-        get :index
+        get territories_path
 
         expect(response).to redirect_to('/')
       end
@@ -27,13 +27,13 @@ RSpec.describe TerritoriesController, type: :controller do
 
   describe 'GET #new' do
     it 'renders the new template' do
-      get :new
+      get new_territory_path
 
       expect(controller).to render_template('new')
     end
 
     it 'assigns a new territory' do
-      get :new
+      get new_territory_path
 
       expect(assigns(:territory)).to be_a(Territory)
       expect(assigns(:territory)).not_to be_persisted
@@ -46,7 +46,7 @@ RSpec.describe TerritoriesController, type: :controller do
 
       it 'creates a new territory' do
         expect do
-          post :create, params: { territory: territory_params }
+          post territories_path, params: { territory: territory_params }
         end.to change(Territory, :count).by(1)
       end
 
@@ -59,7 +59,7 @@ RSpec.describe TerritoriesController, type: :controller do
 
     context 'when record is invalid' do
       it 're-renders the form' do
-        post :create, params: { territory: { name: '' } }
+        post territories_path, params: { territory: { name: '' } }
 
         expect(controller).to render_template('new')
       end
@@ -71,13 +71,13 @@ RSpec.describe TerritoriesController, type: :controller do
       let(:territory_params) { { name: 'T1' } }
 
       it 'creates a new territory' do
-        patch :update, params: { territory: { name: 'T2' }, id: territory.id }
+        patch territory_path(territory), params: { territory: { name: 'T2' }}
 
         expect(Territory.last.name).to eq('T2')
       end
 
       it 'redirects to the index page' do
-        patch :update, params: { territory: { name: 'T2' }, id: territory.id }
+        patch territory_path(territory), params: { territory: { name: 'T2' }}
 
         expect(response).to redirect_to('/territories')
       end
@@ -85,7 +85,7 @@ RSpec.describe TerritoriesController, type: :controller do
 
     context 'when record is invalid' do
       it 're-renders the form' do
-        patch :update, params: { territory: { name: '' }, id: territory.id }
+        patch territory_path(territory), params: { territory: { name: '' }}
 
         expect(controller).to render_template('edit')
       end
@@ -99,12 +99,12 @@ RSpec.describe TerritoriesController, type: :controller do
 
     it 'deletes territory' do
       expect do
-        delete :destroy, params: { id: territory.id }
+        delete territory_path(territory)
       end.to change(Territory, :count).by(-1)
     end
 
     it 'redirects to the index page' do
-      delete :destroy, params: { id: territory.id }
+      delete territory_path(territory)
 
       expect(response).to redirect_to('/territories')
     end
