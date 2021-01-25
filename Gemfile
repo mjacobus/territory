@@ -16,7 +16,6 @@ gem 'rails', '~> 6.1'
 
 # frontend
 gem 'bootstrap', '~> 4.4'
-gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
 gem 'sass-rails', '>= 6'
 gem 'simple_form'
