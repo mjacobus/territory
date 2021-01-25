@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# rubocop:disable RSpec/MultipleMemoizedHelpers
 RSpec.describe CallAttemptsController, type: :request do
   let(:territory) { Territory.create!(name: 'foo', user: current_user) }
   let(:phone) { Phone.create!(number: '222', territory: territory) }
@@ -153,3 +154,4 @@ RSpec.describe CallAttemptsController, type: :request do
     end
   end
 end
+# rubocop:enable RSpec/MultipleMemoizedHelpers

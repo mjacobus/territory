@@ -60,12 +60,12 @@ RSpec.describe PhoneNavigator do
     end
   end
 
-  context 'when current has the different state' do
+  context 'when current does not belong to the scope' do
     before do
       current.update_attribute(:territory_id, Territory.unscoped.order(:id).last.id)
     end
 
-    it 'properly calculates current' do
+    it 'raises error' do
       expect { navigator.current }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end

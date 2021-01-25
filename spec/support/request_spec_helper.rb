@@ -19,8 +19,8 @@ module RequestSpecHelper
   # rubocop:enable Metrics/MethodLength
 
   def login_user(user)
-    # rubocop:disable Rspec/AnyInstance
+    # rubocop:disable RSpec/AnyInstance
     allow_any_instance_of(described_class).to receive(:current_user).and_return(user)
-    # rubocop:enable Rspec/AnyInstance
+    # rubocop:enable RSpec/AnyInstance
   end
 end
