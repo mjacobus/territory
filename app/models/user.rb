@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  has_many :territories
+  has_many :territories, dependent: :restrict_with_exception
 
   def allowed_territories
     if master?

@@ -15,9 +15,7 @@ class PhoneAction
     @code = code
   end
 
-  def to_s
-    to_sym.to_s
-  end
+  delegate :to_s, to: :to_sym
 
   def to_sym
     CODE_MAP.fetch(code, :error)

@@ -122,7 +122,7 @@ class CallAttemptForm
       return
     end
 
-    unless notes.present?
+    if notes.blank?
       errors.add(:notes, :blank)
     end
   end
