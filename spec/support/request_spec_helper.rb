@@ -4,10 +4,11 @@ module RequestSpecHelper
   # rubocop:disable Metrics/MethodLength
   def self.included(base)
     base.class_eval do
-      let(:regular_user) { User.new(id: 1, enabled: true, master: false) }
+      let(:regular_user) { User.new(id: 1, enabled: true, master: false, avatar: avatar) }
       let(:current_user) { regular_user }
-      let(:admin_user) { User.new(id: 2, enabled: true, master: true) }
+      let(:admin_user) { User.new(id: 2, enabled: true, master: true, avatar: avatar) }
       let(:skip_login) { false }
+      let(:avatar) { 'https://foo.com/bar.png'  }
 
       before do
         unless skip_login
