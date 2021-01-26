@@ -8,7 +8,7 @@ ruby '3.0.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'dotenv-rails'
 gem 'mysql2', '>= 0.4.4'
-gem 'omniauth'
+gem 'omniauth', '~> 1.9.1'
 gem 'omniauth-google-oauth2'
 gem 'pg'
 gem 'puma', '~> 5.1'
