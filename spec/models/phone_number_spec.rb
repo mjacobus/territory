@@ -12,4 +12,14 @@ RSpec.describe PhoneNumber do
       expect(sanitized).to eq('0144112341234')
     end
   end
+
+  describe '#without_area_code' do
+    let(:number) { described_class.new('(41) 11234-1234') }
+
+    it 'only returns numbers' do
+      sanitized = number.without_area_code
+
+      expect(sanitized).to eq('112341234')
+    end
+  end
 end

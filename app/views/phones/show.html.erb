@@ -44,31 +44,37 @@
 </div>
 
 <div class="dropdown mt-2">
-  <button class="btn btn-warning dropdown-toggle btn-block" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <%= t('app.links.call_number') %>
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <% @phone.carrier_variations.each do |carrier, number| %>
-      <a class="dropdown-item" href="tel:<%= number.sanitized %>"><%= carrier %></a>
-    <% end %>
-    <a class="dropdown-item" href="tel:<%= @phone.casted_number.sanitized %>"><%= t('app.links.other_carrier') %></a>
+  <div class="btn-group btn-block">
+    <a href="tel:<%= @phone.casted_number.sanitized %>" class="btn btn-warning btn-block"><%= t('app.links.call_number') %></a>
+    <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <div class="dropdown-menu">
+      <% @phone.carrier_variations.each do |carrier, number| %>
+        <a class="dropdown-item" href="tel:<%= number.sanitized %>"><%= carrier %></a>
+      <% end %>
+      <a class="dropdown-item" href="tel:<%= @phone.casted_number.sanitized %>"><%= t('app.links.other_carrier') %></a>
+      <a class="dropdown-item" href="tel:<%= @phone.casted_number.without_area_code %>"><%= t('app.links.without_area_code') %></a>
+    </div>
   </div>
 </div>
 
 
 <div class="dropdown mt-2">
-  <button class="btn btn-dark dropdown-toggle btn-block" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <%= t('app.links.add') %>
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <% %w(contacted not_home disconnected unreachable).each do |outcome|  %>
-      <a class="dropdown-item" data-method="post" href="<%= create_territory_phone_call_attempts_path(@territory, @phone, request.query_parameters.merge(outcome: outcome).symbolize_keys) %>"><%= t("app.outcomes.#{outcome}") %></a>
-    <% end %>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item text-danger"
-       data-method="delete"
-       data-confirm="<%= t('app.messages.confirm_phone_delete') %>"
-       href="<%= territory_phone_path(@territory, @phone, request.query_parameters) %>"><%= t('app.links.remove_phone') %></a>
+  <div class="btn-group btn-block">
+    <button class="btn btn-dark dropdown-toggle btn-block" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= t('app.links.add') %>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <% %w(contacted not_home disconnected unreachable).each do |outcome|  %>
+        <a class="dropdown-item" data-method="post" href="<%= create_territory_phone_call_attempts_path(@territory, @phone, request.query_parameters.merge(outcome: outcome).symbolize_keys) %>"><%= t("app.outcomes.#{outcome}") %></a>
+      <% end %>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item text-danger"
+         data-method="delete"
+         data-confirm="<%= t('app.messages.confirm_phone_delete') %>"
+         href="<%= territory_phone_path(@territory, @phone, request.query_parameters) %>"><%= t('app.links.remove_phone') %></a>
+    </div>
   </div>
 </div>
 
