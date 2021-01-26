@@ -18,7 +18,13 @@ class CallAttemptForm
     if valid?
       @call_attempt.save!
       @phone.save!
+      @phone.update_status
     end
+  end
+
+  def destroy
+    @phone.update_status
+    @call_attempt.destroy
   end
 
   def draft(outcome:, user:)
@@ -29,6 +35,7 @@ class CallAttemptForm
       return @call_attempt.save(validate: false)
     end
 
+    @phone.update_status
     @call_attempt.save!
   end
 

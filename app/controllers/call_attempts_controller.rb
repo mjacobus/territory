@@ -36,7 +36,7 @@ class CallAttemptsController < ApplicationController
   end
 
   def destroy
-    call_attempt.destroy
+    form.destroy
     redirect_to [territory, phone, request.query_parameters]
   end
 

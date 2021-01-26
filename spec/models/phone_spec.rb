@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Phone, type: :model do
+  include ActiveSupport::Testing::TimeHelpers
+
   let(:phone) { described_class.new(number: 'some-number', territory: territory) }
   let(:territory) { Territory.new(name: 'T1') }
   let(:user) { User.create!(name: 'name') }
@@ -61,6 +63,31 @@ RSpec.describe Phone, type: :model do
 
     it 'saves the call attempt' do
       expect { assign }.to change { phone.call_attempts.count }.by(1)
+    end
+  end
+
+  describe '#update_status' do
+    before do
+      phone.save!
+      CallAttemptForm.new(phone.call_attempts.build).draft(outcome: 'contacted', user: User.last)
+    end
+
+    it 'updates last_contacted_at' do
+      freeze_time do
+        phone.update_status
+
+        expect(phone.reload.last_contacted_at.to_i).to eq(Time.now.to_i)
+      end
+    end
+
+    it 'updates last_contacted_at to nil when there are no records' do
+      freeze_time do
+        phone.update_status
+        phone.call_attempts.clear
+        phone.update_status
+
+        expect(phone.reload.last_contacted_at).to be_nil
+      end
     end
   end
 end
