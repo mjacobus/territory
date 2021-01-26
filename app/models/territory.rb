@@ -3,7 +3,7 @@
 class Territory < ApplicationRecord
   MAX_PHONES = 100
 
-  belongs_to :user, required: false
+  belongs_to :user, optional: true
   has_many :phones, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }

@@ -20,8 +20,8 @@ RSpec.describe Tasks::CallAttributesToPhoneMigrator do
 
       migrate
 
-      phone1 = Phone.find_by_number('111')
-      phone2 = Phone.find_by_number('222')
+      phone1 = Phone.find_by(number: '111')
+      phone2 = Phone.find_by(number: '222')
 
       expect(phone1.name).to eq('Foo, Bar')
       expect(phone2.name).to eq('Baz')

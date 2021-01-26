@@ -32,8 +32,9 @@ end
 group :development do
   gem 'coveralls', '~> 0.8.23', require: false
   gem 'listen', '~> 3.4'
-  gem 'rubocop', '~> 0.79', require: false
+  gem 'rubocop', '~> 1.8.1', require: false
   gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'simplecov', '~> 0.16.1', require: false
   gem 'spring'

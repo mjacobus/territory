@@ -9,7 +9,7 @@ class CallAttempt < ApplicationRecord
   default_scope -> { order(created_at: :asc) }
 
   validates :outcome, presence: true, inclusion: { in: OUTCOMES }
-  validates :gender, inclusion: { in: GENDERS, allow_nil: true, allow_blank: true }
+  validates :gender, inclusion: { in: GENDERS, allow_blank: true }
   validates :user, presence: true
 
   def contacted?
