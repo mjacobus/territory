@@ -47,6 +47,7 @@ pt-BR:
       previous: "<< Anterior"
       next: "Próximo >>"
       other_carrier: 'Outra operadora'
+      without_area_code: 'Sem DDD'
       export_contacts: 'Importar lista de contatos'
     genders:
       male: "Masculino"
