@@ -28,10 +28,12 @@ class Phone < ApplicationRecord
 
   def update_status
     time = call_attempts
-      .unscoped
-      .order(created_at: :desc)
+      .reorder(created_at: :desc)
+      .where(outcome: :contacted)
       .limit(1)
-      .pick(:created_at)
+      .pluck(:created_at)
+      .first
+
     self.last_contacted_at = time
     save(validate: false)
   end
