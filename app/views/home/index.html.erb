@@ -22,12 +22,18 @@
             <div class="col-sm-12 col-md-2">
               <%= phone.contact_name %>
             </div>
-            <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-3">
               <%= phone.reachable_by %>
             </div>
-            <div class="col-sm-12 col-md-2">
-              <% if phone.last_contacted_at %>
-                Último Contato: <%= time_ago_in_words(phone.last_contacted_at) %> atrás
+            <div class="col-sm-12 col-md-3">
+              <% times = [phone.last_contacted_at, phone.call_attempts.last&.created_at].compact.uniq %>
+              <% times.each_with_index do |time, index| %>
+                <span class="text-<%=  index.zero? ? 'success' : 'warning' %>" title="<%= l(time, format: :short) %>">
+                  <% if index.positive? %>
+                    <br>
+                  <% end %>
+                  <%= time_ago_in_words(time) %> atrás
+                </span>
               <% end %>
             </div>
             <div class="col-sm-12 col-md-2 text-md-right">
