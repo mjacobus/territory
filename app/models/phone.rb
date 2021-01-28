@@ -31,8 +31,7 @@ class Phone < ApplicationRecord
       .reorder(created_at: :desc)
       .where(outcome: :contacted)
       .limit(1)
-      .pluck(:created_at)
-      .first
+      .pick(:created_at)
 
     self.last_contacted_at = time
     save(validate: false)
