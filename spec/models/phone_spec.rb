@@ -80,6 +80,14 @@ RSpec.describe Phone, type: :model do
       end
     end
 
+    it 'updates last_called_at' do
+      freeze_time do
+        phone.update_status
+
+        expect(phone.reload.last_called_at.to_i).to eq(Time.now.to_i)
+      end
+    end
+
     it 'updates last_contacted_at to nil when there are no records' do
       freeze_time do
         phone.update_status
@@ -87,6 +95,16 @@ RSpec.describe Phone, type: :model do
         phone.update_status
 
         expect(phone.reload.last_contacted_at).to be_nil
+      end
+    end
+
+    it 'updates last_called_at to nil when there are no records' do
+      freeze_time do
+        phone.update_status
+        phone.call_attempts.clear
+        phone.update_status
+
+        expect(phone.reload.last_called_at).to be_nil
       end
     end
   end

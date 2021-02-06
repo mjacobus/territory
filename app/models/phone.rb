@@ -27,13 +27,13 @@ class Phone < ApplicationRecord
   end
 
   def update_status
-    time = call_attempts
-      .reorder(created_at: :desc)
+    last_call_attempt = call_attempts.reorder(created_at: :desc).limit(1)
+
+    self.last_called_at = last_call_attempt.pick(:created_at)
+    self.last_contacted_at = last_call_attempt
       .where(outcome: :contacted)
-      .limit(1)
       .pick(:created_at)
 
-    self.last_contacted_at = time
     save(validate: false)
   end
 end
