@@ -11,12 +11,12 @@ class User < ApplicationRecord
     territories
   end
 
-  def return_visits
+  def return_visits(sort_by: 'last_contacted_at.desc')
     territory_ids = Territory.where(user_id: id).select('id')
     Phone
       .unscoped
       .where(action_code: 1)
       .where(territory_id: territory_ids)
-      .order(last_contacted_at: :desc)
+      .order(Phones::SortBy.new(sort_by).to_s)
   end
 end

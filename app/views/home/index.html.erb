@@ -6,6 +6,18 @@
 
 <br>
 
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link disabled"  href="#">Ordenar por</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link <%= 'active' if params[:sort_by] == 'last_contacted_at.desc' %>" href="<%= url_for(sort_by: 'last_contacted_at.desc') %>">Contato</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link <%= 'active' if params[:sort_by] == 'last_called_at.desc' %>" href="<%= url_for(sort_by: 'last_called_at.desc') %>">Tentativa</a>
+  </li>
+</ul>
+
 <% if current_user %>
   <div class="card">
     <div class="card-header">
@@ -26,7 +38,7 @@
               <%= phone.reachable_by %>
             </div>
             <div class="col-sm-12 col-md-3">
-              <% times = [phone.last_contacted_at, phone.call_attempts.last&.created_at].compact.uniq %>
+              <% times = [phone.last_contacted_at, phone.last_called_at].compact.uniq %>
               <% times.each_with_index do |time, index| %>
                 <span class="text-<%=  index.zero? ? 'success' : 'warning' %>" title="<%= l(time, format: :short) %>">
                   <% if index.positive? %>

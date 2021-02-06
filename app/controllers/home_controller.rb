@@ -5,7 +5,9 @@ class HomeController < ApplicationController
 
   def index
     if current_user
-      @phones_to_return_visit = current_user.return_visits
+      @phones_to_return_visit = current_user.return_visits(
+        sort_by: params[:sort_by]
+      )
     end
   end
 end
