@@ -13,13 +13,10 @@ class User < ApplicationRecord
 
   def return_visits
     territory_ids = Territory.where(user_id: id).select('id')
-    phones = Phone.where(action_code: 1)
-      .joins(:call_attempts)
+    Phone
+      .unscoped
+      .where(action_code: 1)
       .where(territory_id: territory_ids)
-      .distinct
-
-    phones.sort_by do |phone|
-      phone.call_attempts.last.created_at
-    end.reverse
+      .order(last_contacted_at: :desc)
   end
 end

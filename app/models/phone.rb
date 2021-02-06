@@ -25,4 +25,15 @@ class Phone < ApplicationRecord
     navigator = ArrayNavigator.new(siblings.pluck(:id), current: id)
     siblings.find(navigator.previous)
   end
+
+  def update_status
+    time = call_attempts
+      .reorder(created_at: :desc)
+      .where(outcome: :contacted)
+      .limit(1)
+      .pick(:created_at)
+
+    self.last_contacted_at = time
+    save(validate: false)
+  end
 end

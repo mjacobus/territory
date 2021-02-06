@@ -4,3 +4,12 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+namespace :phones do
+  desc 'update statuses'
+  task update: :environment do
+    ActiveRecord::Base.transaction do
+      Phone.all.each(&:update_status)
+    end
+  end
+end
