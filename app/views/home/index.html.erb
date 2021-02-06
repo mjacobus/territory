@@ -26,7 +26,7 @@
               <%= phone.reachable_by %>
             </div>
             <div class="col-sm-12 col-md-3">
-              <% times = [phone.last_contacted_at, phone.call_attempts.last&.created_at].compact.uniq %>
+              <% times = [phone.last_contacted_at, phone.last_called_at].compact.uniq %>
               <% times.each_with_index do |time, index| %>
                 <span class="text-<%=  index.zero? ? 'success' : 'warning' %>" title="<%= l(time, format: :short) %>">
                   <% if index.positive? %>
