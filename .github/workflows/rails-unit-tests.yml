@@ -22,10 +22,11 @@ jobs:
         ruby-version: 3.0
     - name: Build and test with Rake
       env:
-        PGHOST: 127.0.0.1
-        PGUSER: postgres
-        DATABASE_URL: "postgres://postgres@localhost:5432/territory_manager_ENV"
         RAILS_ENV: test
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: postgres
+        DATABASE_URL: "postgres://postgres:postgres@localhost:5432/territory_manager_ENV"
       run: |
         sudo apt-get -yqq install libpq-dev
         gem install bundler
