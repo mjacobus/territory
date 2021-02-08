@@ -14,6 +14,10 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          ALLOW_IP_RANGE: 0.0.0.0/0
     steps:
     - uses: actions/checkout@v2
     - name: Set up Ruby 3.0
@@ -23,9 +27,6 @@ jobs:
     - name: Build and test with Rake
       env:
         RAILS_ENV: test
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: postgres
-        ALLOW_IP_RANGE: 0.0.0.0/0
         DATABASE_URL: "postgres://postgres:postgres@localhost:5432/territory_manager_test"
       run: |
         sudo apt-get -yqq install libpq-dev
