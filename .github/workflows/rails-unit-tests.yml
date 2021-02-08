@@ -25,8 +25,8 @@ jobs:
         RAILS_ENV: test
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: postgres
-        POSTGRES_DB: postgres
-        DATABASE_URL: "postgres://postgres:postgres@localhost:5432/territory_manager_ENV"
+        ALLOW_IP_RANGE: 0.0.0.0/0
+        DATABASE_URL: "postgres://postgres:postgres@localhost:5432/territory_manager_test"
       run: |
         sudo apt-get -yqq install libpq-dev
         gem install bundler
