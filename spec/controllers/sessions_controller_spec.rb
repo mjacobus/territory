@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SessionsController, type: :controller do
+RSpec.describe SessionsController, type: :request do
   let(:user_session_service) { instance_double(UserSessionService) }
 
   before do
@@ -43,9 +43,9 @@ RSpec.describe SessionsController, type: :controller do
     end
 
     it 'logs user out' do
-      session['user_id'] = 1
+      session[:user_id] = 1
 
-      get :destroy
+      get '/logout'
 
       expect(user_session_service).to have_received(:destroy)
     end

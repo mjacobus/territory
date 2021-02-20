@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UsersController, type: :controller do
+RSpec.describe UsersController, type: :request do
   let(:current_user) { admin_user }
   let(:enabled) { true }
   let(:master) { true }
@@ -17,13 +17,13 @@ RSpec.describe UsersController, type: :controller do
   describe '#index' do
     context 'when user is master' do
       it 'responds with success' do
-        get :index
+        get users_path
 
         expect(response).to be_successful
       end
 
       it 'assigns all users' do
-        get :index
+        get users_path
 
         expect(assigns(:users)).to eq(User.all)
       end
@@ -33,7 +33,7 @@ RSpec.describe UsersController, type: :controller do
       let(:current_user) { regular_user }
 
       it 'redirects to /' do
-        get :index
+        get users_path
 
         expect(response).to redirect_to('/')
       end
@@ -44,7 +44,7 @@ RSpec.describe UsersController, type: :controller do
     let(:enabled) { false }
 
     let(:perform_request) do
-      patch :enable, params: { id: user.id }
+      patch enable_user_path(user)
     end
 
     it 'redirects to /users' do
@@ -60,7 +60,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe '#disable' do
     let(:perform_request) do
-      patch :disable, params: { id: user.id }
+      patch disable_user_path(user)
     end
 
     it 'redirects to /users' do
@@ -77,7 +77,7 @@ RSpec.describe UsersController, type: :controller do
   describe '#grant_admin' do
     let(:master) { false }
     let(:perform_request) do
-      patch :grant_admin, params: { id: user.id }
+      patch grant_admin_user_path(user)
     end
 
     it 'redirects to /users' do
@@ -93,7 +93,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe '#revoke_admin' do
     let(:perform_request) do
-      patch :revoke_admin, params: { id: user.id }
+      patch revoke_admin_user_path(user)
     end
 
     it 'redirects to /users' do

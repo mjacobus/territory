@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :controller do
+RSpec.describe HomeController, type: :request do
   describe 'GET #index' do
     it 'returns http success' do
-      get :index
+      get root_path
       expect(response).to have_http_status(:success)
     end
   end
