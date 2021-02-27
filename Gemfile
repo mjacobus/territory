@@ -30,7 +30,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'coveralls_reborn', require: 'false'
+  gem 'coveralls_reborn', require: false
   gem 'listen', '~> 3.4'
   gem 'rubocop', '~> 1.8.1', require: false
   gem 'rubocop-performance', require: false
