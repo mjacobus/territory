@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     get '/dev/login', to: 'development#login'
   end
 
+  get 'phones/random', to: 'phones#random_show', as: :random_phone
+
   resources :territories do
     resources :phones do
       collection do
