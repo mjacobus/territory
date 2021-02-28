@@ -10,6 +10,13 @@ class PhonesController < ApplicationController
     @phone = PhoneDecorator.new(@phone_navigator.current)
   end
 
+  def random_show
+    @phone_navigator = RandomPhoneNavigator.new(current_user)
+    @territory = @phone_navigator.current.territory
+    @phone = PhoneDecorator.new(@phone_navigator.current)
+    render :show
+  end
+
   def create
     territory.create_phones(params[:phone_numbers].split("\n"))
     redirect_to action: :index

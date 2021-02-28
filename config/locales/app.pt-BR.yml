@@ -32,8 +32,10 @@ pt-BR:
       confirm_phone_delete: "Tem certeza de que deseja excluir este telefone?"
       confirm_call_attempt_delete: "Tem certeza de que deseja excluir este telefonema?"
       alert_someone_else_territory: "Cuidado! Este território está designado para outro publicador."
+      page_not_found: "Página não encontrada."
     links:
       home: "Home"
+      random_phone: "Telefone Aleatório"
       my_territories: "Meus territórios"
       territories: "Territórios"
       users: "Usuários"
@@ -46,6 +48,8 @@ pt-BR:
       edit: "Alterar"
       previous: "<< Anterior"
       next: "Próximo >>"
+      previous_random: "<< Aleatório"
+      next_random: "Aleatório >>"
       other_carrier: 'Outra operadora'
       without_area_code: 'Sem DDD'
       export_contacts: 'Importar lista de contatos'

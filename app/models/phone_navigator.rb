@@ -26,6 +26,14 @@ class PhoneNavigator
     url_helper.url_for(@params.permit!.to_h.merge(id: next_id, only_path: true))
   end
 
+  def previous_label
+    I18n.t('app.links.previous')
+  end
+
+  def next_label
+    I18n.t('app.links.next')
+  end
+
   private
 
   def ids

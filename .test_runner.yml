@@ -3,7 +3,7 @@ adapters:
   rspec_with_spring:
     adapter: custom
     file_pattern: ".*_spec.rb"
-    command: "./bin/rspec"
+    command: "time ./bin/rspec"
     commands:
       all: "{command}"
       file: "{command} {file}"

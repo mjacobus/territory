@@ -9,6 +9,14 @@ class PhoneAction
     99 => :error
   }.freeze
 
+  CODES = {
+    call: 0,
+    return_visit: 1,
+    forget: 2,
+    verify: 3,
+    erro: 99
+  }.freeze
+
   attr_reader :code
 
   def initialize(code)
