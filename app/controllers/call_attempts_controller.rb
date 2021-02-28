@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class CallAttemptsController < ApplicationController
-  def history
-    render plain: 'yes'
+  def call_history
+    @phones = current_user.call_history
   end
 
   def index
