@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class CallAttemptsController < ApplicationController
+  def history
+    render plain: 'yes'
+  end
+
   def index
     @call_attempts = phone.call_attempts
   end

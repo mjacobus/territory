@@ -14,6 +14,7 @@
         <a class="nav-link" href="<%= territories_path %>"><%= t('app.links.territories') %></a>
       </li>
       <li class="nav-item"><a class="nav-link" href="<%= random_phone_path  %>"><%= t('app.links.random_phone') %></a></li>
+      <li class="nav-item"><a class="nav-link" href="<%= history_path %>"><%= t('app.links.history') %></a></li>
       <% if current_user.master? %>
         <li class="nav-item">
           <a class="nav-link" href="<%= users_path %>"><%= t('app.links.users') %></a>
