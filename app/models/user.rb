@@ -12,11 +12,20 @@ class User < ApplicationRecord
   end
 
   def return_visits(sort_by: 'last_contacted_at.desc')
+    phones.where(action_code: 1)
+      .order(Phones::SortBy.new(sort_by).to_s)
+  end
+
+  def call_history(limit = 50)
+    phones.order(last_called_at: :desc).limit(limit).includes(:territory)
+  end
+
+  private
+
+  def phones
     territory_ids = Territory.where(user_id: id).select('id')
     Phone
       .unscoped
-      .where(action_code: 1)
       .where(territory_id: territory_ids)
-      .order(Phones::SortBy.new(sort_by).to_s)
   end
 end

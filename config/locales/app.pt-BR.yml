@@ -33,12 +33,13 @@ pt-BR:
       confirm_call_attempt_delete: "Tem certeza de que deseja excluir este telefonema?"
       alert_someone_else_territory: "Cuidado! Este território está designado para outro publicador."
       page_not_found: "Página não encontrada."
+      history_limit_last_x_calls: "Últimas %{number} chamadas."
     links:
       home: "Home"
-      random_phone: "Telefone Aleatório"
+      random_phone: "Telefone aleatório"
       my_territories: "Meus territórios"
       territories: "Territórios"
-      history: "Histórico"
+      call_history: "Histórico de chamadas"
       users: "Usuários"
       logout: "Sair"
       google_login: "Entrar com minha conta do Gmail"
@@ -65,6 +66,7 @@ pt-BR:
       unreachable: "Telefone inválido"
 
     titles:
+      call_history: 'Histórico de Chamadas'
       history: 'Histórico'
       phones: 'Telefones'
       my_return_visits: 'Minhas Revisitas'

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get 'phones/random', to: 'phones#random_show', as: :random_phone
 
-  get 'history', to: 'call_attempts#history', as: :history
+  get 'history', to: 'call_attempts#call_history', as: :call_history
 
   resources :territories do
     resources :phones do

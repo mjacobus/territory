@@ -1,0 +1,7 @@
+<h1><%= t('app.titles.call_history') %></h1>
+
+<div class="alert alert-warning" role="alert">
+  <%= t('app.messages.history_limit_last_x_calls', number: @phones.count) %>
+</div>
+
+<%= render partial: 'phones/list', locals: { phones: @phones, vcards: false } %>

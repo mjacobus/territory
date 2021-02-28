@@ -1,0 +1,36 @@
+<div class="card">
+  <% if vcards %>
+    <div class="card-header">
+      <%= t('app.titles.phones') %> - <a href="<%= vcards_territory_phones_path(@territory) %>"><%= t('app.links.export_contacts') %></a>
+    </div>
+  <% end %>
+  <ul class="list-group list-group-flush">
+    <% phones.each_with_index do |phone, index| %>
+      <% phone = PhoneDecorator.new(phone) %>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-sm-12 col-md-3">
+            <%= link_to(phone.number, territory_phone_path(phone.territory, phone)) %>
+          </div>
+          <div class="col-sm-12 col-md-3">
+            <%= phone.contact_name %>
+          </div>
+          <div class="col-sm-12 col-md-3">
+            <% times = [phone.last_contacted_at, phone.last_called_at].compact.uniq %>
+            <% times.each_with_index do |time, index| %>
+              <span class="text-<%=  index.zero? ? 'success' : 'warning' %>" title="<%= l(time, format: :short) %>">
+                <% if index.positive? %>
+                  <br>
+                <% end %>
+                <%= time_ago_in_words(time) %> atrás
+              </span>
+            <% end %>
+          </div>
+          <div class="col-sm-12 col-md-3 text-md-right">
+            <%= render partial: 'phones/action_badge', locals: { phone: phone, url: territory_phone_path(phone.territory, phone, action_code: phone.action.code) } %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

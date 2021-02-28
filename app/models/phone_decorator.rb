@@ -8,6 +8,7 @@ class PhoneDecorator
            :previous,
            :carrier_variations,
            :casted_number,
+           :territory,
            :next,
            :name,
            :action,
