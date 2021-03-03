@@ -17,7 +17,9 @@ class User < ApplicationRecord
   end
 
   def call_history(limit = 50)
-    phones.order(last_called_at: :desc).limit(limit).includes(:territory)
+    phones.order(last_called_at: :desc)
+      .where.not(last_called_at: nil)
+      .limit(limit).includes(:territory)
   end
 
   private
