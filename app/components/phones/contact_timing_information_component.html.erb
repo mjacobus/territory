@@ -1,0 +1,15 @@
+<% if show_contacted? %>
+  <span class="text-success" title="<%= contacted_time %>">
+    <%= contacted_time_ago %>
+  </span>
+<% end %>
+
+<% if two_times? %>
+  <br>
+<% end %>
+
+<% if show_contacted_attempt? %>
+  <span class="text-warning" title="<%= last_attempt_time %>">
+    <%= last_attempt_time_ago %>
+  </span>
+<% end %>

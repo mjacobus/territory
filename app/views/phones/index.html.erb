@@ -7,7 +7,7 @@
 }
 %>
 
-<%= render partial: 'list', locals: { phones: @phones, vcards: true } %>
+<%= render Phones::ListComponent.new(territory: @territory, phones: @phones, vcards: true) %>
 
 <% unless @territory.full?  %>
   <hr>
