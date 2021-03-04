@@ -19,7 +19,7 @@
             <%= render Phones::ContactTimingInformationComponent.new(phone) %>
           </div>
           <div class="col-sm-12 col-md-3 text-md-right">
-            <%= render partial: 'phones/action_badge', locals: { phone: phone, url: territory_phone_path(phone.territory, phone, action_code: phone.action.code) } %>
+            <%= render Phones::ActionBadgeComponent.new(phone: phone, url: true) %>
           </div>
         </div>
       </li>

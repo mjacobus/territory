@@ -49,7 +49,7 @@
               <% end %>
             </div>
             <div class="col-sm-12 col-md-2 text-md-right">
-              <%= render partial: 'phones/action_badge', locals: { phone: phone } %>
+              <%= render Phones::ActionBadgeComponent.new(phone: phone) %>
             </div>
           </div>
         </li>

@@ -23,7 +23,7 @@
     <% end %>
   </p>
 
-  <h3><%= render partial: 'phones/action_badge', locals: { phone: @phone } %></h3>
+  <h3><%= render Phones::ActionBadgeComponent.new(phone: @phone) %></h3>
 
   <p>
   <small>
