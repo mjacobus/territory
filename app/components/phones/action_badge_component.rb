@@ -6,7 +6,7 @@ class Phones::ActionBadgeComponent < ApplicationComponent
   end
 
   def url
-    @url ||= get_url
+    @url ||= setup_url
   end
 
   def action
@@ -30,7 +30,7 @@ class Phones::ActionBadgeComponent < ApplicationComponent
 
   private
 
-  def get_url
+  def setup_url
     if get(:url) == true
       return territory_phone_path(phone.territory, phone, action_code: phone.action.code)
     end

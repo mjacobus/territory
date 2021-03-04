@@ -5,7 +5,6 @@ class Phones::ContactTimingInformationComponent < ApplicationComponent
 
   def initialize(phone)
     @phone = phone
-    super
   end
 
   def show_contacted?
