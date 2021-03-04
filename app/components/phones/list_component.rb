@@ -7,7 +7,6 @@ class Phones::ListComponent < ApplicationComponent
     @territory = territory
     @phones = phones
     @vcards = vcards
-    super
   end
 
   def vcards?
