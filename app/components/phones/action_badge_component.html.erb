@@ -1,0 +1,13 @@
+<% if url %>
+  <a href="<%= url %>">
+<% end %>
+
+    <span class="badge <%= badge_class  %>"><%= action.localized %>
+      <% if contact_attempts.positive? %>
+        <span class="badge badge-light"><%= contact_attempts %></span>
+      <% end %>
+    </span>
+
+<% if url %>
+  </a>
+<% end %>

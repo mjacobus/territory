@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Phones::ListComponent < ApplicationComponent
-  attr_reader :header
+  attr_reader :phones
 
   def initialize(phones:, territory: nil, vcards: false)
     @territory = territory
