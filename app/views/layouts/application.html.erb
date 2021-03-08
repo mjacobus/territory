@@ -10,10 +10,7 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-
-    <% if current_user %>
-      <%= render partial: '/navbar' %>
-    <% end %>
+    <%= render NavbarComponent.new %>
 
     <% unless current_user %>
       <div class="login">
