@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+class Phones::RegisterOutcomeComponent < ApplicationComponent
+  has :territory
+  has :phone
+  has :outcome
+
+  def url
+    create_territory_phone_call_attempts_path(
+      get(:territory),
+      get(:phone),
+      request.query_parameters.merge(outcome: get(:outcome)).symbolize_keys
+    )
+  end
+
+  def text
+    t("app.outcomes.#{get(:outcome)}")
+  end
+end
