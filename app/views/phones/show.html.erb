@@ -1,9 +1,4 @@
-<%= render BreadcrumbComponent.new
-    .add('Territórios', territories_path)
-    .add(@territory.name, @territory)
-    .add('Telefones', territory_phones_path(@territory))
-    .add(@phone.number)
-%>
+<%= render BreadcrumbComponent.new.for_phone(@phone) %>
 
 <% unless @territory.assigned_to?(current_user) %>
   <div class="alert alert-danger" role="alert">

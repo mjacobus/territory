@@ -22,6 +22,10 @@ class ApplicationComponent < ViewComponent::Base
 
   private
 
+  def urls
+    Rails.application.routes.url_helpers
+  end
+
   def get(key)
     @options[key]
   end
