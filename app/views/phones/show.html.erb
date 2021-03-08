@@ -1,11 +1,8 @@
-<%= render partial: '/breadcrumb', locals: {
-  items: [
-    ['Territórios', territories_path],
-    [@territory.name],
-    ['Telefones', territory_phones_path(@territory)],
-    [@phone.number]
-  ]
-}
+<%= render BreadcrumbComponent.new
+    .add('Territórios', territories_path)
+    .add(@territory.name, @territory)
+    .add('Telefones', territory_phones_path(@territory))
+    .add(@phone.number)
 %>
 
 <% unless @territory.assigned_to?(current_user) %>
