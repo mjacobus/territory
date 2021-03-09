@@ -1,14 +1,3 @@
-<%= render partial: '/breadcrumb', locals: {
-  items: [
-    ['Territórios', territories_path],
-    [@territory.name],
-    ['Telefones', territory_phones_path(@territory)],
-    [@phone.number, territory_phone_path(@territory, @phone)],
-    ['Tentativas de Contato', territory_phone_path(@territory, @phone)],
-    ['Alterar']
-  ]
-}
-%>
+<%= render BreadcrumbComponent.new.for_call_attempt_form(@call_attempt) %>
 
 <%= render partial: 'form', locals: { call_attempt: @call_attempt } %>
-

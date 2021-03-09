@@ -1,9 +1,2 @@
-<%= render partial: '/breadcrumb', locals: {
-  items: [
-    ['Territórios', territories_path],
-    ['Novo']
-  ]
-}
-%>
-
+<%= render BreadcrumbComponent.new.for_territory_form(@territory) %>
 <%= render partial: 'form', locals: { territory: @territory } %>

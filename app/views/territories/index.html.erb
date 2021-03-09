@@ -1,9 +1,4 @@
-<%= render partial: '/breadcrumb', locals: {
-  items: [
-    ['Territórios'],
-  ]
-}
-%>
+<%= render BreadcrumbComponent.new.for_territories %>
 
 <%= link_to('New', new_territory_path, class: 'btn btn-info') %>
 

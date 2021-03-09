@@ -1,0 +1,14 @@
+<nav aria-label="breadcrumb" class="pt-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <% each do |item| %>
+      <li class="breadcrumb-item <%= 'active' if item.last %>">
+        <% if item.url %>
+          <%= link_to(item.text, item.url) %>
+        <% else %>
+          <%= item.text %>
+        <% end %>
+      </li>
+    <% end %>
+  </ol>
+</nav>
