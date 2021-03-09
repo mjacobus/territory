@@ -10,7 +10,7 @@ class PhonesController < ApplicationController
     @phone = PhoneDecorator.new(@phone_navigator.current)
 
     if params[:navigation_type] == 'random'
-      return random_show
+      random_show
     end
   end
 
