@@ -9,7 +9,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <% items.each do |item| %>
+      <% each_item.each do |item| %>
         <li class="nav-item">
           <a class="nav-link <%= 'active' if item.active %>" href="<%= item.url %>"><%= item.text %></a>
         </li>

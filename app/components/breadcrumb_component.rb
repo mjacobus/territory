@@ -11,9 +11,7 @@ class BreadcrumbComponent < ApplicationComponent
     mapped.each(&block)
   end
 
-  def items
-    @items
-  end
+  attr_reader :items
 
   def add(text, url = nil)
     @items << [text, url]

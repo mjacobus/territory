@@ -15,13 +15,13 @@ class NavbarComponent < ApplicationComponent
     current_user.name
   end
 
-  delegate :current_user, to: :helpers
-
-  def items
+  def each_item
     standard_items + admin_items
   end
 
   private
+
+  delegate :current_user, to: :helpers
 
   def standard_items
     [
