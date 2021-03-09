@@ -6,17 +6,17 @@ class PhonesController < ApplicationController
   end
 
   def show
+    @phone_navigator = PhoneNavigator.new(params, scope: territory.phones)
+    @phone = PhoneDecorator.new(@phone_navigator.current)
+
     if params[:navigation_type] == 'random'
       return random_show
     end
-
-    @phone_navigator = PhoneNavigator.new(params, scope: territory.phones)
-    @phone = PhoneDecorator.new(@phone_navigator.current)
   end
 
   def random_show
     request.query_parameters[:navigation_type] = 'random'
-    @phone_navigator = RandomPhoneNavigator.new(current_user)
+    @phone_navigator = RandomPhoneNavigator.new(current_user, @phone)
     @territory = @phone_navigator.current.territory
     @phone = PhoneDecorator.new(@phone_navigator.current)
     render :show

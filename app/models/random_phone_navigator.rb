@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class RandomPhoneNavigator
-  def initialize(user)
+  def initialize(user, current = nil)
     @user = user
+    @current = current
   end
 
   def current
