@@ -7,9 +7,9 @@ class Phones::RegisterOutcomeComponent < ApplicationComponent
 
   def url
     create_territory_phone_call_attempts_path(
-      get(:territory),
-      get(:phone),
-      request.query_parameters.merge(outcome: get(:outcome)).symbolize_keys
+      territory,
+      phone,
+      request.query_parameters.merge(outcome: outcome).symbolize_keys
     )
   end
 
