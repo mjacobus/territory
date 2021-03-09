@@ -59,7 +59,7 @@
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <% %w(contacted not_home disconnected unreachable).each do |outcome|  %>
-        <a class="dropdown-item" data-method="post" href="<%= create_territory_phone_call_attempts_path(@territory, @phone, request.query_parameters.merge(outcome: outcome).symbolize_keys) %>"><%= t("app.outcomes.#{outcome}") %></a>
+        <%= render Phones::RegisterOutcomeComponent.new(territory: @territory, phone: @phone, outcome: outcome) %>
       <% end %>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item text-danger"
