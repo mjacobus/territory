@@ -28,6 +28,12 @@ RSpec.describe RandomPhoneNavigator do
         territory: territories[1]
       ).id
 
+      wanted << factories.phones.create(
+        action_code: PhoneAction::CODES[:call],
+        last_called_at: nil,
+        territory: territories[1]
+      ).id
+
       # too recent
       factories.phones.create(
         action_code: PhoneAction::CODES[:call],
@@ -57,6 +63,7 @@ RSpec.describe RandomPhoneNavigator do
       end
 
       expect(collected.uniq.length).not_to be(1)
+      expect(described_class.new(user).send(:query).map(&:id).sort).to eq(wanted)
     end
     # rubocop:enable RSpec/ExampleLength
 
