@@ -29,13 +29,15 @@ class RandomPhoneNavigator
   private
 
   def random_phone
+    query.first
+  end
+
+  def query
     ids = Territory.unscoped.where(user: @user).select(:id)
-    query = Phone
+    Phone
       .unscoped
       .order('RANDOM()')
       .where(territory_id: ids, action_code: PhoneAction::CODES[:call])
-      .where('last_called_at < ?', 1.day.ago)
-
-    query.first
+      .where('last_called_at < ? OR last_called_at IS NULL', 1.day.ago)
   end
 end
