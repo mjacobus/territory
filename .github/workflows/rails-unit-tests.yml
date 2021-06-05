@@ -28,8 +28,13 @@ jobs:
         DATABASE_URL: "postgres://postgres:postgres@localhost:5432/territory_manager_test"
       run: |
         sudo apt-get -yqq install libpq-dev
+        yarn install
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec rails db:create
         bundle exec rails db:migrate
         ./bin/rspec
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
