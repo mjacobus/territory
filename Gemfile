@@ -12,6 +12,8 @@ gem 'omniauth-google-oauth2'
 gem 'pg'
 gem 'puma', '~> 5.3'
 gem 'rails', '~> 6.1'
+gem 'sentry-rails'
+gem 'sentry-ruby'
 
 # frontend
 gem 'bootstrap', '~> 4.4'
