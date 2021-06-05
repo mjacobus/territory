@@ -32,13 +32,13 @@ group :development, :test do
 end
 
 group :development do
-  gem 'coveralls_reborn', require: false
   gem 'listen', '~> 3.4'
   gem 'rubocop', '~> 1.8.1', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'simplecov'
+  gem 'simplecov-lcov', require: false
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
