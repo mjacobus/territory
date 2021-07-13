@@ -54,6 +54,8 @@ pt-BR:
       next_random: "Aleatório >>"
       other_carrier: 'Outra operadora'
       without_area_code: 'Sem DDD'
+      whatsapp_web: 'Whatsapp Web'
+      whatsapp_api: 'Whatsapp API'
       export_contacts: 'Importar lista de contatos'
     genders:
       male: "Masculino"

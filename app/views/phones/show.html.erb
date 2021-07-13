@@ -47,6 +47,7 @@
       <% end %>
       <a class="dropdown-item" href="tel:<%= @phone.casted_number.sanitized %>"><%= t('app.links.other_carrier') %></a>
       <a class="dropdown-item" href="tel:<%= @phone.casted_number.without_area_code %>"><%= t('app.links.without_area_code') %></a>
+      <a class="dropdown-item" href="https://web.whatsapp.com/send?phone=<%= @phone.casted_number.sanitized %>"><%= t('app.links.whatsapp_web') %></a>
     </div>
   </div>
 </div>
