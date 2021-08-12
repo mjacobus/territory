@@ -1,4 +1,5 @@
 # test_runner.yml
+#
 adapters:
   rspec_with_spring:
     adapter: custom
