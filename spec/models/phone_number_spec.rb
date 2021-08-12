@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe PhoneNumber do
   let(:number) { described_class.new('(41) 1234-1234') }

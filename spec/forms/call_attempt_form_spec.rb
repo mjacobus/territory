@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe CallAttemptForm do
   subject(:form) { described_class.new(attempt) }
