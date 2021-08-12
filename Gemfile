@@ -33,18 +33,17 @@ group :development, :test do
 end
 
 group :development do
+  gem 'koine-test_runner'
   gem 'listen', '~> 3.4'
   gem 'rubocop', '~> 1.8.1', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'simplecov'
-  gem 'simplecov-lcov', require: false
+  gem 'simplecov-lcov'
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
-  gem 'koine-test_runner'
 end
 
 group :test do

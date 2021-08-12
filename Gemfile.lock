@@ -361,7 +361,6 @@ DEPENDENCIES
   sentry-rails
   sentry-ruby
   simple_form
-  simplecov
   simplecov-lcov
   spring
   spring-commands-rspec
