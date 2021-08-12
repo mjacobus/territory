@@ -5,10 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Ruby 3.0.0
+    - name: Set up Ruby 3.0.2
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 3.0.0
+        ruby-version: 3.0.2
     - name: Runs rubocop
       run: |
         sudo apt-get -yqq install libpq-dev

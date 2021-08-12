@@ -18,16 +18,16 @@ function! RubocopFixCs(target)
 endfunction
 
 function! RunTestFileFilteredByLine()
-  let command = "run_test " . expand('%') . " --line=" . line(".")
+  let command = "bundle exec run_test " . expand('%') . " --line=" . line(".")
   call ClearEchoAndExecute(command)
 endfunction
 
 function! RunTestFile()
-  let command = "run_test " . expand('%')
+  let command = "bundle exec run_test " . expand('%')
   call ClearEchoAndExecute(command)
 endfunction
 
 function! RunAllTests()
-  let command = "run_test " . expand('%') . " --all"
+  let command = "bundle exec run_test " . expand('%') . " --all"
   call ClearEchoAndExecute(command)
 endfunction
