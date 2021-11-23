@@ -27,6 +27,8 @@ gem 'webpacker', '~> 4.0'
 group :development, :test do
   gem 'awesome_print'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'simplecov'
+  gem 'simplecov-lcov'
   gem 'coveralls_reborn', '~> 0.22.0', require: false
   gem 'rails-controller-testing'
   gem 'rspec-rails', '4.0'
@@ -39,7 +41,6 @@ group :development do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'simplecov-lcov'
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
