@@ -27,11 +27,11 @@ gem 'webpacker', '~> 4.0'
 group :development, :test do
   gem 'awesome_print'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'simplecov'
-  gem 'simplecov-lcov'
   gem 'coveralls_reborn', '~> 0.22.0', require: false
   gem 'rails-controller-testing'
   gem 'rspec-rails', '4.0'
+  gem 'simplecov'
+  gem 'simplecov-lcov'
 end
 
 group :development do
