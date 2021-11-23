@@ -11,7 +11,7 @@
           </span>
 
           <span title="<%= l(attempt.created_at, format: :short) %>">
-            <%= time_ago_in_words(attempt.created_at) %> atrás <small class="time">(<%= attempt.created_at.strftime('%H:%M') %>)</small>
+            <%= time_ago_in_words(attempt.created_at) %> atrás <small class="time">(<%= l(attempt.created_at) %>)</small>
           </span>
           <div class="float-right">
             <a data-method="delete"
