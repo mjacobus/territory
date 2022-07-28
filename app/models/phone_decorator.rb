@@ -51,6 +51,10 @@ class PhoneDecorator
     @outcomes ||= pluck(:outcome)
   end
 
+  def vcard_file_name
+    [contact_name, @phone.number.to_s, 'vcf'].join('.')
+  end
+
   private
 
   def pluck(field)

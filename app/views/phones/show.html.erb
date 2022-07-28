@@ -13,6 +13,7 @@
     <% if @phone.gender.present? %>
       (<%= gender_label(@phone.gender)  %>)
     <% end %>
+    <%= link_to("Baixar contato", vcard_territory_phone_path(@territory, @phone)) %>
   </p>
 
   <h3><%= render Phones::ActionBadgeComponent.new(phone: @phone) %></h3>
