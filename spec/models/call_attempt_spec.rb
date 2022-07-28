@@ -6,10 +6,10 @@ RSpec.describe CallAttempt, type: :model do
   let(:factories) { TestFactories.new }
   let(:factory) { factories.call_attempts }
   let(:phone) { Phone.new }
-  let(:attempt) { described_class.new(phone: phone, user: User.new) }
+  let(:attempt) { described_class.new(phone:, user: User.new) }
   let(:contacted) do
     factory.build(
-      phone: phone,
+      phone:,
       outcome: 'contacted',
       user: User.new,
       gender: 'male',
@@ -89,7 +89,7 @@ RSpec.describe CallAttempt, type: :model do
   it 'increments counter on phone' do
     a = factory.create
     phone = a.phone
-    factory.create(phone: phone)
+    factory.create(phone:)
 
     expect(phone.call_attempts_count).to eq(2)
   end

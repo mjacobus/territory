@@ -7,8 +7,8 @@ class BreadcrumbComponent < ApplicationComponent
     @items = items
   end
 
-  def each(&block)
-    mapped.each(&block)
+  def each(&)
+    mapped.each(&)
   end
 
   attr_reader :items

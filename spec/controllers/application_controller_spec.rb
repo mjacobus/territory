@@ -7,7 +7,7 @@ RSpec.describe ApplicationController, type: :controller do
   let(:skip_login) { true }
 
   before do
-    allow(UserSessionService).to receive(:new).with(session: session).and_return(service)
+    allow(UserSessionService).to receive(:new).with(session:).and_return(service)
   end
 
   describe '#current_user' do

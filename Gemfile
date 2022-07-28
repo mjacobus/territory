@@ -3,10 +3,11 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.0'
+ruby '3.1.2'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'dotenv-rails'
+gem 'net-smtp'
 gem 'omniauth', '~> 1.9.1'
 gem 'omniauth-google-oauth2'
 gem 'pg'
@@ -37,7 +38,7 @@ end
 group :development do
   gem 'koine-test_runner'
   gem 'listen', '~> 3.4'
-  gem 'rubocop', '~> 1.8.1', require: false
+  gem 'rubocop', '~> 1.32', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false

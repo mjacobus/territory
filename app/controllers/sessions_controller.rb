@@ -16,6 +16,6 @@ class SessionsController < ApplicationController
   private
 
   def session_service
-    @session_service ||= UserSessionService.new(session: session)
+    @session_service ||= UserSessionService.new(session:)
   end
 end

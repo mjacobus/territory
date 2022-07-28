@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ArrayNavigator do
-  subject(:navigator) { described_class.new(values, current: current) }
+  subject(:navigator) { described_class.new(values, current:) }
 
   let(:values) { %w[a b c d e] }
   let(:current) { 'c' }

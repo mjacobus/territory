@@ -4,7 +4,7 @@ require 'rails_helper'
 
 # rubocop:disable RSpec/MultipleMemoizedHelpers
 RSpec.describe UserSessionService do
-  subject(:service) { described_class.new(session: session, oauth_config_factory: factory) }
+  subject(:service) { described_class.new(session:, oauth_config_factory: factory) }
 
   let(:session) { {} }
   let(:factory) { instance_double(OauthConfigFactory) }

@@ -5,7 +5,7 @@ require 'rails_helper'
 # rubocop:disable RSpec/MultipleMemoizedHelpers
 RSpec.describe CallAttemptsController, type: :request do
   let(:territory) { Territory.create!(name: 'foo', user: current_user) }
-  let(:phone) { Phone.create!(number: '222', territory: territory) }
+  let(:phone) { Phone.create!(number: '222', territory:) }
   let(:call_attempt) do
     phone.assign_call_attempt(
       call_attempt_params.merge(
@@ -19,7 +19,7 @@ RSpec.describe CallAttemptsController, type: :request do
 
   describe 'POST #create' do
     let(:perform_request) do
-      post territory_phone_call_attempts_path(territory, phone, foo: 'bar'), params: params
+      post territory_phone_call_attempts_path(territory, phone, foo: 'bar'), params:
     end
 
     it 'creates a new call_attempts' do
@@ -103,7 +103,7 @@ RSpec.describe CallAttemptsController, type: :request do
         phone,
         call_attempt,
         foo: 'bar'
-      ), params: params
+      ), params:
     end
 
     it 'updates data' do
