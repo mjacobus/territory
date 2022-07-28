@@ -9,8 +9,8 @@ RSpec.describe UsersController, type: :controller do
   let(:user) do
     User.create!(
       name: 'admin',
-      master: master,
-      enabled: enabled
+      master:,
+      enabled:
     )
   end
 

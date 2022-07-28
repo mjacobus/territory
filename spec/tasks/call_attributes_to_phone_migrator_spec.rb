@@ -32,13 +32,13 @@ RSpec.describe Tasks::CallAttributesToPhoneMigrator do
     end
 
     def create_attempt(number, name, gender, reachable_by = nil)
-      phone = Phone.find_or_create_by!(number: number, territory: territory)
+      phone = Phone.find_or_create_by!(number:, territory:)
       factories.call_attempts.build(
-        phone: phone,
+        phone:,
         outcome: 'contacted',
-        name: name,
-        gender: gender,
-        reachable_by: reachable_by,
+        name:,
+        gender:,
+        reachable_by:,
         user: User.new
       ).tap do |attempt|
         attempt.save(validate: false)

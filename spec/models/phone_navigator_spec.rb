@@ -8,7 +8,7 @@ RSpec.describe PhoneNavigator do
   let(:factories) { TestFactories.new }
   let(:territory) { factories.territories.create }
   let(:phones) { factories.phones }
-  let(:current) { phones.create(number: '13', territory: territory) }
+  let(:current) { phones.create(number: '13', territory:) }
   let(:params) do
     {
       territory_id: territory.id,
@@ -18,13 +18,13 @@ RSpec.describe PhoneNavigator do
   end
 
   before do
-    phones.create(number: '10', territory: territory)
-    phones.create(number: '11', territory: territory)
-    phones.create(number: '12', territory: territory, action_code: 2)
+    phones.create(number: '10', territory:)
+    phones.create(number: '11', territory:)
+    phones.create(number: '12', territory:, action_code: 2)
     current
     phones.create(number: '14') # other territory
-    phones.create(number: '15', territory: territory)
-    phones.create(number: '16', territory: territory)
+    phones.create(number: '15', territory:)
+    phones.create(number: '16', territory:)
     phones.create # different territory
   end
 

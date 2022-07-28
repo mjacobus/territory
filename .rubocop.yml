@@ -71,6 +71,7 @@ RSpec/VerifiedDoubles:
 AllCops:
   NewCops: enable
   Exclude:
+    - 'db/seeds.rb' # bug in parser
     - 'node_modules/**/*'
     - 'script/**/*'
     - 'log/**/*'

@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= UserSessionService.new(session: session).current_user
+    @current_user ||= UserSessionService.new(session:).current_user
   end
 
   def render_page404(_error)

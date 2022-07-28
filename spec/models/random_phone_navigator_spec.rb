@@ -12,8 +12,8 @@ RSpec.describe RandomPhoneNavigator do
       another_user = factories.users.create
 
       territories = []
-      territories << factories.territories.create(user: user)
-      territories << factories.territories.create(user: user)
+      territories << factories.territories.create(user:)
+      territories << factories.territories.create(user:)
 
       wanted = []
       wanted << factories.phones.create(

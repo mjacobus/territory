@@ -7,7 +7,7 @@ RSpec.describe SessionsController, type: :controller do
 
   before do
     allow(UserSessionService)
-      .to receive(:new).with(session: session)
+      .to receive(:new).with(session:)
       .and_return(user_session_service)
   end
 

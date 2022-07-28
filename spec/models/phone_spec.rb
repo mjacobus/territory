@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Phone, type: :model do
   include ActiveSupport::Testing::TimeHelpers
 
-  let(:phone) { described_class.new(number: 'some-number', territory: territory) }
+  let(:phone) { described_class.new(number: 'some-number', territory:) }
   let(:territory) { Territory.new(name: 'T1') }
   let(:user) { User.create!(name: 'name') }
 
@@ -24,7 +24,7 @@ RSpec.describe Phone, type: :model do
       territory.save!
 
       %w[a b c d e f].shuffle.each do |number|
-        described_class.create!(number: number, territory: territory)
+        described_class.create!(number:, territory:)
       end
     end
 
@@ -58,7 +58,7 @@ RSpec.describe Phone, type: :model do
       phone.save!
     end
 
-    let(:attributes) { { outcome: 'not_home', user: user } }
+    let(:attributes) { { outcome: 'not_home', user: } }
     let(:assign) { phone.assign_call_attempt(attributes) }
 
     it 'saves the call attempt' do

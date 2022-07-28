@@ -6,7 +6,7 @@ RSpec.describe CallAttemptForm do
   subject(:form) { described_class.new(attempt) }
 
   let(:phone) { Phone.new }
-  let(:attempt) { CallAttempt.new(phone: phone, user: User.new) }
+  let(:attempt) { CallAttempt.new(phone:, user: User.new) }
 
   it 'requires notes when person was contacted' do
     form.outcome = 'contacted'

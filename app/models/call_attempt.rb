@@ -10,7 +10,6 @@ class CallAttempt < ApplicationRecord
 
   validates :outcome, presence: true, inclusion: { in: OUTCOMES }
   validates :gender, inclusion: { in: GENDERS, allow_blank: true }
-  validates :user, presence: true
 
   def contacted?
     outcome.to_s == 'contacted'

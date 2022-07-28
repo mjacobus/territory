@@ -9,7 +9,7 @@ class Phones::RegisterOutcomeComponent < ApplicationComponent
     create_territory_phone_call_attempts_path(
       territory,
       phone,
-      request.query_parameters.merge(outcome: outcome).symbolize_keys
+      request.query_parameters.merge(outcome:).symbolize_keys
     )
   end
 
