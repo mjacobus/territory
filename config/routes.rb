@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   resources :territories do
     resources :phones do
+      member do
+        get :vcard
+      end
       collection do
         get :vcards
       end

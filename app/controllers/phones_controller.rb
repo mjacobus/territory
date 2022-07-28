@@ -42,6 +42,17 @@ class PhonesController < ApplicationController
     )
   end
 
+  def vcard
+    decorator = PhoneDecorator.new(phone)
+    @phones = [phone]
+    data = render_to_string(template: 'phones/vcards', layout: false)
+    send_data(
+      data,
+      content_type: 'text/x-vcard',
+      filename: decorator.vcard_file_name.to_s
+    )
+  end
+
   private
 
   def phone
