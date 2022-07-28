@@ -7,7 +7,6 @@ ruby '3.1.2'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'dotenv-rails'
-gem 'net-smtp'
 gem 'omniauth', '~> 1.9.1'
 gem 'omniauth-google-oauth2'
 gem 'pg'
@@ -16,7 +15,12 @@ gem 'rails', '~> 6.1'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 
-# frontend
+# temporary
+gem 'net-imap', require: false
+gem 'net-pop', require: false
+gem 'net-smtp', require: false
+
+# frontend https://stackoverflow.com/questions/70500220/rails-7-ruby-3-1-loaderror-cannot-load-such-file-net-smtp
 gem 'bootstrap', '~> 4.4'
 gem 'jquery-rails'
 gem 'sass-rails', '>= 6'
